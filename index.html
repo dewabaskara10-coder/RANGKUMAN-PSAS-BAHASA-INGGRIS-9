@@ -1,1 +1,383 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rangkuman Interaktif PSAS Bahasa Inggris IX</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
+  
+  :root {
+    --primary: #4f46e5;
+    --primary-light: #e0e7ff;
+    --secondary: #7c3aed;
+    --accent: #f59e0b;
+    --success: #10b981;
+    --danger: #ef4444;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --muted: #64748b;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
+  body { background: var(--bg); color: var(--text); padding: 16px; line-height: 1.6; }
+
+  .container { max-width: 850px; margin: 0 auto; }
+
+  /* Hero Banner */
+  .hero {
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
+    color: white;
+    padding: 32px 24px;
+    border-radius: 24px;
+    box-shadow: 0 12px 28px rgba(79, 70, 229, 0.25);
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+    animation: fadeInDown 0.6s ease;
+  }
+  .badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    padding: 6px 14px;
+    border-radius: 99px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    backdrop-filter: blur(4px);
+  }
+  .hero h1 { font-size: 26px; font-weight: 800; line-height: 1.3; margin-bottom: 10px; }
+  .hero h1 span { color: #fde047; }
+  .hero p { font-size: 14px; opacity: 0.95; max-width: 650px; }
+
+  /* Navigation Tabs */
+  .tabs {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+  }
+  .tab-btn {
+    background: var(--card);
+    border: 2px solid #e2e8f0;
+    padding: 10px 18px;
+    border-radius: 14px;
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--muted);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.25s ease;
+  }
+  .tab-btn:hover { border-color: var(--primary); color: var(--primary); }
+  .tab-btn.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+  }
+
+  /* Sections */
+  .section { display: none; animation: fadeIn 0.4s ease; }
+  .section.active { display: block; }
+
+  .card {
+    background: var(--card);
+    border-radius: 20px;
+    padding: 22px;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
+    border: 1px solid #f1f5f9;
+    transition: transform 0.2s ease;
+  }
+  .card:hover { transform: translateY(-2px); }
+  .card h2 { font-size: 18px; color: var(--primary); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+  .card h3 { font-size: 15px; margin: 12px 0 6px; color: #334155; }
+
+  /* Grid Stats */
+  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-top: 12px; }
+  .stat-box { background: var(--primary-light); padding: 14px; border-radius: 14px; text-align: center; }
+  .stat-box strong { display: block; font-size: 20px; color: var(--primary); }
+  .stat-box span { font-size: 12px; color: #4338ca; font-weight: 600; }
+
+  /* Table */
+  table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13px; }
+  th, td { padding: 10px 12px; border: 1px solid #e2e8f0; text-align: left; }
+  th { background: #f1f5f9; font-weight: 700; color: #334155; }
+
+  /* Quiz Styles */
+  .quiz-item { margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px dashed #cbd5e1; }
+  .quiz-q { font-weight: 700; font-size: 14px; margin-bottom: 10px; }
+  .opt-btn {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 10px 14px;
+    margin-bottom: 8px;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    background: #fff;
+    font-size: 13px;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  .opt-btn:hover { background: #f8fafc; border-color: #94a3b8; }
+  .opt-btn.correct { background: #d1fae5; border-color: var(--success); color: #065f46; font-weight: 700; }
+  .opt-btn.wrong { background: #fee2e2; border-color: var(--danger); color: #991b1b; }
+  .feedback { font-size: 13px; margin-top: 8px; padding: 10px; border-radius: 10px; display: none; }
+
+  /* Essay Toggle */
+  .toggle-ans {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+    margin-top: 8px;
+  }
+  .essay-box {
+    display: none;
+    background: #fffbeb;
+    border-left: 4px solid var(--accent);
+    padding: 14px;
+    border-radius: 10px;
+    margin-top: 10px;
+    font-size: 13px;
+  }
+
+  /* Checklist */
+  .progress-wrap { background: #e2e8f0; height: 12px; border-radius: 99px; overflow: hidden; margin: 12px 0 18px; }
+  .progress-bar { background: linear-gradient(90deg, #10b981, #34d399); height: 100%; width: 0%; transition: width 0.4s ease; }
+  .check-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+    font-size: 13px;
+  }
+  .check-item:hover { background: #f8fafc; }
+  .check-item input { width: 18px; height: 18px; accent-color: var(--success); cursor: pointer; }
+  .check-item.done { background: #ecfdf5; border-color: #a7f3d0; text-decoration: line-through; color: #047857; }
+
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeInDown { from { opacity: 0; transform: translateY(-12px); } to { opacity: 1; transform: translateY(0); } }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <!-- Hero -->
+  <div class="hero">
+    <div class="badge">Kisi-Kisi & Rangkuman Belajar Murid • TA 2026-2027</div>
+    <h1>Siap Taklukkan <span>PSAS Bahasa Inggris Kelas IX!</span> 🚀</h1>
+    <p>Pelajari seluruh materi inti mulai dari Recount, Narrative (Folktales), Report Text, Simple Past & Present Tense, hingga Numeracy dengan cara yang seru dan interaktif!</p>
+  </div>
+
+  <!-- Navigation Tabs -->
+  <div class="tabs">
+    <button class="tab-btn active" onclick="openTab('info', this)">📋 Info Ujian</button>
+    <button class="tab-btn" onclick="openTab('materi', this)">📚 Materi Inti</button>
+    <button class="tab-btn" onclick="openTab('kuis', this)">🎯 Latihan Soal</button>
+    <button class="tab-btn" onclick="openTab('checklist', this)">✅ Checklist (<span id="nav-count">0/11</span>)</button>
+  </div>
+
+  <!-- TAB 1: INFO UJIAN -->
+  <div id="info" class="section active">
+    <div class="card">
+      <h2>📌 Informasi Umum PSAS</h2>
+      <p style="font-size:13px; color:var(--muted);">Pastikan kamu memahami struktur soal dan alokasi waktu pengerjaan berikut:</p>
+      <div class="stats-grid">
+        <div class="stat-box"><strong>35 Soal</strong><span>Total Pertanyaan</span></div>
+        <div class="stat-box"><strong>90 Menit</strong><span>Waktu Pengerjaan</span></div>
+        <div class="stat-box"><strong>20 PG</strong><span>Pilihan Ganda</span></div>
+        <div class="stat-box"><strong>5 PGK</strong><span>PG Kompleks</span></div>
+        <div class="stat-box"><strong>5 B/S</strong><span>Benar/Salah (4 Poin)</span></div>
+        <div class="stat-box"><strong>5 Uraian</strong><span>Esai Singkat</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <h2>🗺️ Cakupan Kompetensi</h2>
+      <ul style="padding-left:20px; font-size:13px; line-height:1.8;">
+        <li><strong>Recount Text:</strong> Tujuan teks, urutan peristiwa, kesimpulan pengalaman tokoh, rujukan kata ganti, dan numerasi.</li>
+        <li><strong>Narrative Text (Folktales):</strong> Alasan tindakan tokoh, informasi penting cerita, pesan moral, dan rujukan kata ganti.</li>
+        <li><strong>Report Text:</strong> General Classification vs Description, ide pokok, ciri fisik hewan, serta tindakan pelestarian/konservasi.</li>
+        <li><strong>Grammar & Numeracy:</strong> Simple Past Tense (Verb 2), Simple Present Tense (s/es, is/are, has/have), serta penjumlahan & selisih dalam Bahasa Inggris.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- TAB 2: MATERI -->
+  <div id="materi" class="section">
+    <div class="card">
+      <h2>1️⃣ Recount Text & Narrative Text 📜</h2>
+      <table>
+        <tr><th>Aspek</th><th>Penjelasan</th><th>Contoh</th></tr>
+        <tr><td><strong>Recount Purpose</strong></td><td>Menceritakan pengalaman masa lalu</td><td><em>To retell past experiences.</em></td></tr>
+        <tr><td><strong>Sequence Words</strong></td><td>Kata penghubung urutan kejadian</td><td><em>First, next, after that, finally</em></td></tr>
+        <tr><td><strong>Reference</strong></td><td>Rujukan kata ganti (he, she, they, it)</td><td><em>Rina helped Sinta. <strong>She</strong> was kind.</em></td></tr>
+        <tr><td><strong>Narrative / Folktale</strong></td><td>Tokoh, masalah, resolusi, & pesan moral</td><td><em>What can we learn from the story?</em></td></tr>
+        <tr><td><strong>Simple Past Tense</strong></td><td>Menggunakan <strong>Verb 2</strong> untuk masa lalu</td><td><em>go → went, see → saw, buy → bought</em></td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>2️⃣ Report Text & Simple Present Tense 🐼</h2>
+      <p style="font-size:13px;"><strong>Social Function:</strong> Menyajikan informasi umum tentang hewan, tumbuhan, atau benda (<em>To present general information...</em>).</p>
+      <h3>Struktur Teks (Generic Structure):</h3>
+      <ul style="padding-left:20px; font-size:13px; margin-bottom:10px;">
+        <li><strong>General Classification:</strong> Pengenalan umum objek. Contoh: <em>Komodo dragons are large reptiles from Indonesia.</em></li>
+        <li><strong>Description:</strong> Ciri fisik, habitat, makanan, kebiasaan, & ancaman. Contoh: <em>They have strong legs and sharp claws. They eat meat.</em></li>
+      </ul>
+      <table>
+        <tr><th>Subject</th><th>Kata Kerja (Verb)</th><th>Contoh Kalimat</th></tr>
+        <tr><td><strong>I / You / We / They / Plural</strong></td><td>Verb 1 / have / are</td><td><em>Orangutans <strong>have</strong> long arms. They <strong>eat</strong> fruit.</em></td></tr>
+        <tr><td><strong>He / She / It / Singular</strong></td><td>Verb 1 + s/es / has / is</td><td><em>An orangutan <strong>has</strong> long arms. It <strong>eats</strong> fruit.</em></td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>3️⃣ Numeracy in English 🔢</h2>
+      <table>
+        <tr><th>Kata Kunci</th><th>Operasi Matematika</th><th>Contoh Penggunaan</th></tr>
+        <tr><td><strong>altogether / in total</strong></td><td>Penjumlahan (+)</td><td><em>24 eggs + 17 eggs = 41 eggs altogether.</em></td></tr>
+        <tr><td><strong>how many more / difference</strong></td><td>Pengurangan (-)</td><td><em>52 birds - 38 birds = 14 more birds.</em></td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- TAB 3: LATIHAN SOAL -->
+  <div id="kuis" class="section">
+    <div class="card">
+      <h2>🎯 Latihan Soal Interaktif</h2>
+      
+      <div class="quiz-item">
+        <div class="quiz-q">1. Yesterday, Dina visited a library. First, she returned two books. Next, she borrowed a science book. Finally, she went home. What did Dina do after returning the books?</div>
+        <button class="opt-btn" onclick="checkAns(this, false, 'q1', 'Kurang tepat! Dina pulang (went home) di urutan terakhir.')">A. She went home.</button>
+        <button class="opt-btn" onclick="checkAns(this, true, 'q1', 'Benar! Kata kunci Next menunjukkan kegiatan setelah mengembalikan buku adalah meminjam buku sains.')">B. She borrowed a science book.</button>
+        <button class="opt-btn" onclick="checkAns(this, false, 'q1', 'Tidak disebutkan museum dalam teks.')">C. She visited a museum.</button>
+        <div id="q1" class="feedback"></div>
+      </div>
+
+      <div class="quiz-item">
+        <div class="quiz-q">2. Which Simple Past Tense sentence is INCORRECT?</div>
+        <button class="opt-btn" onclick="checkAns(this, false, 'q2', 'Kalimat ini sudah benar (went adalah Verb 2 dari go).')">A. She went to school yesterday.</button>
+        <button class="opt-btn" onclick="checkAns(this, false, 'q2', 'Kalimat ini sudah benar (played adalah Verb 2 dari play).')">B. They played football last week.</button>
+        <button class="opt-btn" onclick="checkAns(this, true, 'q2', 'Tepat! Kata buyed salah, bentuk lampau (Verb 2) dari buy adalah bought.')">C. He buyed a new bag.</button>
+        <div id="q2" class="feedback"></div>
+      </div>
+
+      <div class="quiz-item">
+        <div class="quiz-q">3. A conservation team counted 38 birds in one forest and 52 birds in another forest. How many more birds were found in the second forest?</div>
+        <button class="opt-btn" onclick="checkAns(this, true, 'q3', 'Benar! How many more berarti mencari selisih: 52 - 38 = 14 birds.')">A. 14 birds</button>
+        <button class="opt-btn" onclick="checkAns(this, false, 'q3', '90 adalah hasil penjumlahan (altogether), sedangkan soal menanyakan selisih (how many more).')">B. 90 birds</button>
+        <button class="opt-btn" onclick="checkAns(this, false, 'q3', 'Coba hitung kembali 52 dikurangi 38.')">C. 24 birds</button>
+        <div id="q3" class="feedback"></div>
+      </div>
+
+      <div class="quiz-item" style="border:none; margin-bottom:0;">
+        <div class="quiz-q">4. Latihan Menulis Report Text: Sun Bears (7-10 Kalimat, 2 Paragraf)</div>
+        <p style="font-size:13px; color:var(--muted);">Fakta: Mammals, Tropical forests, Dark fur & strong claws, Eat insects/fruit/honey, Climb trees, Threats: habitat loss & illegal hunting.</p>
+        <button class="toggle-ans" onclick="toggleEssay()">👀 Lihat Contoh Jawaban Uraian</button>
+        <div id="essay-ans" class="essay-box">
+          <strong>Paragraf 1 (General Classification & Appearance):</strong><br>
+          Sun bears are small mammals that live in tropical forests. They are the smallest members of the bear family. Sun bears have short, dark fur and a distinctive golden patch on their chest. They also have very strong claws and long tongues.<br><br>
+          <strong>Paragraf 2 (Habits, Diet & Threats):</strong><br>
+          These animals are excellent climbers and spend much of their time in trees. They eat a variety of foods, including insects, fruit, and honey. Unfortunately, sun bears face serious threats in the wild. Habitat loss and illegal hunting continue to reduce their population.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 4: CHECKLIST -->
+  <div id="checklist" class="section">
+    <div class="card">
+      <h2>✅ Checklist Kesiapan PSAS</h2>
+      <p style="font-size:13px; color:var(--muted);">Centang kompetensi yang sudah kamu kuasai (<strong id="prog-text">0 dari 11 selesai</strong>):</p>
+      <div class="progress-wrap"><div id="prog-bar" class="progress-bar"></div></div>
+      <div id="checklist-container"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const items = [
+    "I can identify the purpose of a Recount Text.",
+    "I can understand the sequence of past events.",
+    "I can find references and make inferences.",
+    "I can identify moral values in folktales.",
+    "I can use Simple Past Tense correctly.",
+    "I can identify the purpose and main idea of a Report Text.",
+    "I can distinguish General Classification and Description.",
+    "I can use Simple Present Tense correctly.",
+    "I can answer numeracy questions in English.",
+    "I can choose correct facts and conclusions from a text.",
+    "I can write a Report Text of 7-10 sentences."
+  ];
+
+  const container = document.getElementById('checklist-container');
+  items.forEach((text, i) => {
+    const label = document.createElement('label');
+    label.className = 'check-item';
+    label.innerHTML = `<input type="checkbox" onchange="updateProgress(this)"> <span>${text}</span>`;
+    container.appendChild(label);
+  });
+
+  function openTab(tabId, btn) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(tabId).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  function checkAns(btn, isCorrect, feedbackId, msg) {
+    const parent = btn.parentElement;
+    parent.querySelectorAll('.opt-btn').forEach(b => {
+      b.classList.remove('correct', 'wrong');
+    });
+    const fb = document.getElementById(feedbackId);
+    fb.style.display = 'block';
+    fb.textContent = msg;
+    if (isCorrect) {
+      btn.classList.add('correct');
+      fb.style.background = '#d1fae5';
+      fb.style.color = '#065f46';
+    } else {
+      btn.classList.add('wrong');
+      fb.style.background = '#fee2e2';
+      fb.style.color = '#991b1b';
+    }
+  }
+
+  function toggleEssay() {
+    const box = document.getElementById('essay-ans');
+    box.style.display = box.style.display === 'block' ? 'none' : 'block';
+  }
+
+  function updateProgress(checkbox) {
+    const label = checkbox.parentElement;
+    if (checkbox.checked) label.classList.add('done');
+    else label.classList.remove('done');
+
+    const total = items.length;
+    const checked = document.querySelectorAll('#checklist-container input:checked').length;
+    const pct = Math.round((checked / total) * 100);
+
+    document.getElementById('prog-bar').style.width = pct + '%';
+    document.getElementById('prog-text').textContent = `${checked} dari ${total} selesai (${pct}%)`;
+    document.getElementById('nav-count').textContent = `${checked}/${total}`;
+  }
+</script>
+
+</body>
+</html>
 
