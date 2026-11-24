@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PSAS Quest: Bahasa Inggris IX</title>
+<title>PSAS Ultimate Quest: Bahasa Inggris IX</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
   
@@ -22,7 +22,7 @@
 
   * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
   body { background: var(--bg); color: var(--text); padding: 14px; line-height: 1.6; }
-  .container { max-width: 860px; margin: 0 auto; }
+  .container { max-width: 880px; margin: 0 auto; }
 
   /* Player HUD */
   .hud {
@@ -55,7 +55,7 @@
   .tabs { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 18px; }
   .tab-btn {
     background: var(--card); border: 2px solid #334155; color: var(--muted);
-    padding: 10px 16px; border-radius: 14px; font-weight: 700; font-size: 13px;
+    padding: 10px 15px; border-radius: 14px; font-weight: 700; font-size: 13px;
     cursor: pointer; white-space: nowrap; transition: 0.25s;
   }
   .tab-btn.active {
@@ -70,9 +70,10 @@
     background: var(--card); border: 1px solid #334155; border-radius: 20px;
     padding: 20px; margin-bottom: 16px; box-shadow: 0 6px 20px rgba(0,0,0,0.25);
   }
-  .card h2 { font-size: 18px; color: #fde047; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+  .card h2 { font-size: 18px; color: #fde047; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+  .card h3 { font-size: 15px; color: #38bdf8; margin: 14px 0 6px; }
 
-  /* Profile Customization Section */
+  /* Profile & Customization */
   .profile-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-top: 12px; }
   .profile-card { background: #0f172a; border: 1px solid #334155; padding: 16px; border-radius: 16px; }
   .profile-input {
@@ -91,10 +92,10 @@
   .badge-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin-top: 10px; }
   .badge-item {
     background: #0f172a; border: 1px solid #334155; border-radius: 14px; padding: 12px;
-    text-align: center; opacity: 0.5; transition: 0.3s;
+    text-align: center; opacity: 0.4; transition: 0.3s;
   }
   .badge-item.unlocked { opacity: 1; border-color: var(--success); background: rgba(16,185,129,0.1); }
-  .badge-icon { font-size: 28px; margin-bottom: 4px; }
+  .badge-icon { font-size: 26px; margin-bottom: 4px; }
 
   /* Quest Items */
   .quest-item {
@@ -112,31 +113,32 @@
   /* Mini Games */
   .game-box {
     background: linear-gradient(135deg, #1e1b4b, #312e81);
-    border: 2px solid #4f46e5; border-radius: 18px; padding: 20px; text-align: center;
+    border: 2px solid #4f46e5; border-radius: 18px; padding: 20px; text-align: center; margin-bottom: 16px;
   }
   .word-display {
-    font-size: 32px; font-weight: 800; color: #fde047; margin: 16px 0;
+    font-size: 28px; font-weight: 800; color: #fde047; margin: 14px 0;
     letter-spacing: 1px; text-shadow: 0 2px 10px rgba(253,224,71,0.3);
   }
   .game-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 14px; }
   .game-opt {
     background: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.2);
-    color: white; padding: 12px; border-radius: 12px; font-weight: 700; font-size: 14px;
-    cursor: pointer; transition: 0.2s;
+    color: white; padding: 12px; border-radius: 12px; font-weight: 700; font-size: 13px;
+    cursor: pointer; transition: 0.2s; text-align: left;
   }
-  .game-opt:hover { background: rgba(255,255,255,0.2); transform: scale(1.02); }
+  .game-opt:hover { background: rgba(255,255,255,0.2); transform: scale(1.01); }
   .btn-action {
     background: linear-gradient(135deg, #f59e0b, #d97706); color: #0f172a;
     border: none; padding: 10px 22px; border-radius: 12px; font-weight: 800;
-    font-size: 14px; cursor: pointer; margin-top: 10px; transition: 0.2s;
+    font-size: 14px; cursor: pointer; margin-top: 10px; transition: 0.2s; display: inline-block;
   }
   .btn-action:hover { transform: scale(1.04); }
 
-  /* Tables & Toast */
+  /* Tables */
   table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13px; }
   th, td { padding: 10px; border: 1px solid #334155; text-align: left; }
   th { background: #0f172a; color: #38bdf8; }
 
+  /* Toast Notification */
   #toast {
     position: fixed; bottom: 20px; right: 20px; background: #10b981; color: white;
     padding: 12px 20px; border-radius: 14px; font-weight: 700; font-size: 13px;
@@ -158,7 +160,7 @@
 <body>
 
 <div class="container">
-  <!-- PLAYER HUD / PROFIL RINGKAS -->
+  <!-- PLAYER HUD -->
   <div class="hud" onclick="openTab('profil', document.querySelectorAll('.tab-btn')[0])" style="cursor:pointer;" title="Klik untuk edit profil">
     <div class="player-info">
       <div class="avatar" id="hud-avatar">🦊</div>
@@ -169,35 +171,33 @@
     </div>
     <div class="xp-box">
       <div class="xp-header">
-        <span>XP Kamu: <strong id="xp-val" style="color:#fde047;">0</strong> / 500 XP</span>
-        <span id="quest-summary">Misi: 0/4</span>
+        <span>XP Kamu: <strong id="xp-val" style="color:#fde047;">0</strong> / 600 XP</span>
+        <span id="quest-summary">Misi: 0/5</span>
       </div>
       <div class="xp-bar-bg"><div class="xp-bar-fill" id="xp-bar"></div></div>
     </div>
   </div>
 
-  <!-- NAVIGATION -->
+  <!-- NAVIGATION TABS -->
   <div class="tabs">
-    <button class="tab-btn active" onclick="openTab('profil', this)">👤 Profil & Statistik</button>
-    <button class="tab-btn" onclick="openTab('misi', this)">🎯 Papan Misi</button>
-    <button class="tab-btn" onclick="openTab('game', this)">🎮 Mini-Game</button>
-    <button class="tab-btn" onclick="openTab('materi', this)">📚 Materi</button>
+    <button class="tab-btn active" onclick="openTab('profil', this)">👤 Profil</button>
+    <button class="tab-btn" onclick="openTab('misi', this)">🎯 Misi</button>
+    <button class="tab-btn" onclick="openTab('game', this)">🎮 Mini-Games (3)</button>
+    <button class="tab-btn" onclick="openTab('materi', this)">📚 Materi Lengkap</button>
     <button class="tab-btn" onclick="openTab('checklist', this)">✅ Checklist (<span id="chk-nav">0/11</span>)</button>
   </div>
 
-  <!-- TAB 0: PROFIL PEMAIN INTERAKTIF -->
+  <!-- TAB 0: PROFIL -->
   <div id="profil" class="section active">
     <div class="card">
-      <h2>👤 Pengaturan Profil Pemain</h2>
-      <p style="font-size:13px; color:var(--muted); margin-bottom:14px;">Personalisasi karakter pejuang PSAS kamu di sini agar sesi belajar makin seru!</p>
-      
+      <h2>👤 Kustomisasi Profil Pejuang</h2>
       <div class="profile-grid">
         <div class="profile-card">
-          <label style="font-size:13px; font-weight:700;">Nama Pejuang:</label>
+          <label style="font-size:13px; font-weight:700;">Nama Karakter:</label>
           <input type="text" id="input-name" class="profile-input" value="Pejuang PSAS" oninput="updateProfileName(this.value)">
           
-          <label style="font-size:13px; font-weight:700;">Pilih Avatar Karakter:</label>
-          <div class="avatar-picker" id="avatar-picker">
+          <label style="font-size:13px; font-weight:700;">Pilih Avatar:</label>
+          <div class="avatar-picker">
             <div class="avatar-opt selected" onclick="setAvatar('🦊', this)">🦊</div>
             <div class="avatar-opt" onclick="setAvatar('🐱', this)">🐱</div>
             <div class="avatar-opt" onclick="setAvatar('🐯', this)">🐯</div>
@@ -206,109 +206,146 @@
             <div class="avatar-opt" onclick="setAvatar('🚀', this)">🚀</div>
           </div>
         </div>
-
         <div class="profile-card">
-          <label style="font-size:13px; font-weight:700; color:#38bdf8;">📊 Statistik Belajarmu:</label>
+          <label style="font-size:13px; font-weight:700; color:#38bdf8;">📊 Statistik Permainan:</label>
           <ul style="padding-left:18px; font-size:13px; margin-top:8px; color:var(--muted); line-height:1.8;">
-            <li>Total XP Terkumpul: <strong id="stat-xp" style="color:#fde047;">0 XP</strong></li>
-            <li>Misi Diselesaikan: <strong id="stat-quests" style="color:#34d399;">0 / 4</strong></li>
-            <li>Skor Verb 2 Arena: <strong id="stat-verb" style="color:#38bdf8;">0 Poin</strong></li>
-            <li>Checklist Selesai: <strong id="stat-chk" style="color:#a78bfa;">0 / 11</strong></li>
+            <li>Total XP: <strong id="stat-xp" style="color:#fde047;">0 XP</strong></li>
+            <li>Misi Selesai: <strong id="stat-quests" style="color:#34d399;">0 / 5</strong></li>
+            <li>Skor Mini-Game 1: <strong id="stat-v1" style="color:#38bdf8;">0 Poin</strong></li>
+            <li>Skor Mini-Game 2 & 3: <strong id="stat-v2" style="color:#f43f5e;">0 Selesai</strong></li>
           </ul>
         </div>
       </div>
     </div>
-
     <div class="card">
-      <h2>🏅 Lencana Pencapaian (Badges)</h2>
+      <h2>🏅 Koleksi Lencana (Badges)</h2>
       <div class="badge-grid">
-        <div class="badge-item" id="badge-1"><div class="badge-icon">📖</div><div style="font-size:12px; font-weight:700;">Pengintai</div></div>
-        <div class="badge-item" id="badge-2"><div class="badge-icon">⚡</div><div style="font-size:12px; font-weight:700;">Master Verb 2</div></div>
-        <div class="badge-item" id="badge-3"><div class="badge-icon">🛠️</div><div style="font-size:12px; font-weight:700;">Detektif</div></div>
-        <div class="badge-item" id="badge-4"><div class="badge-icon">👑</div><div style="font-size:12px; font-weight:700;">PSAS Champion</div></div>
+        <div class="badge-item" id="badge-1"><div class="badge-icon">📖</div><div style="font-size:11px; font-weight:700;">Pengamat Materi</div></div>
+        <div class="badge-item" id="badge-2"><div class="badge-icon">⚡</div><div style="font-size:11px; font-weight:700;">Master Verb 2</div></div>
+        <div class="badge-item" id="badge-3"><div class="badge-icon">🛠️</div><div style="font-size:11px; font-weight:700;">Detektif Grammar</div></div>
+        <div class="badge-item" id="badge-4"><div class="badge-icon">🐉</div><div style="font-size:11px; font-weight:700;">Pakar Folktale</div></div>
+        <div class="badge-item" id="badge-5"><div class="badge-icon">👑</div><div style="font-size:11px; font-weight:700;">PSAS Champion</div></div>
       </div>
     </div>
   </div>
 
-  <!-- TAB 1: PAPAN MISI -->
+  <!-- TAB 1: MISI -->
   <div id="misi" class="section">
     <div class="card">
-      <h2>🏆 Daftar Misi Belajar PSAS</h2>
+      <h2>🏆 Daftar Misi PSAS Bahasa Inggris IX</h2>
       <div class="quest-item" id="q-read">
         <div>
-          <strong style="font-size:14px;">📖 Misi 1: Pengintai Materi</strong>
-          <p style="font-size:12px; color:var(--muted);">Buka tab Materi dan klaim bonus XP di bagian bawah.</p>
+          <strong style="font-size:14px;">📖 Misi 1: Penjelajah Materi</strong>
+          <p style="font-size:12px; color:var(--muted);">Baca materi lengkap dan klaim bonus di tab Materi.</p>
         </div>
         <span class="quest-reward" id="r-read">+100 XP</span>
       </div>
-      <div class="quest-item" id="q-verb">
+      <div class="quest-item" id="q-v1">
         <div>
-          <strong style="font-size:14px;">⚡ Misi 2: Penakluk Verb 2 (Mini-Game)</strong>
-          <p style="font-size:12px; color:var(--muted);">Raih skor minimal 30 poin di Mini-Game Arena.</p>
+          <strong style="font-size:14px;">⚡ Misi 2: Arena Verb 2</strong>
+          <p style="font-size:12px; color:var(--muted);">Raih minimal 30 poin di Mini-Game 1.</p>
         </div>
-        <span class="quest-reward" id="r-verb">+150 XP</span>
+        <span class="quest-reward" id="r-v1">+120 XP</span>
       </div>
-      <div class="quest-item" id="q-gram">
+      <div class="quest-item" id="q-v2">
         <div>
           <strong style="font-size:14px;">🛠️ Misi 3: Detektif Grammar & Numeracy</strong>
           <p style="font-size:12px; color:var(--muted);">Selesaikan semua soal tantangan di Mini-Game 2.</p>
         </div>
-        <span class="quest-reward" id="r-gram">+150 XP</span>
+        <span class="quest-reward" id="r-v2">+120 XP</span>
+      </div>
+      <div class="quest-item" id="q-v3">
+        <div>
+          <strong style="font-size:14px;">🐉 Misi 4: Pakar Folktale & Report Text</strong>
+          <p style="font-size:12px; color:var(--muted);">Selesaikan Mini-Game 3 seputar struktur teks & pesan moral.</p>
+        </div>
+        <span class="quest-reward" id="r-v3">+120 XP</span>
       </div>
       <div class="quest-item" id="q-chk">
         <div>
-          <strong style="font-size:14px;">✅ Misi 4: Siap Tempur 100%</strong>
-          <p style="font-size:12px; color:var(--muted);">Centang seluruh 11 poin di tab Checklist Persiapan PSAS.</p>
+          <strong style="font-size:14px;">✅ Misi 5: Siap Tempur 100%</strong>
+          <p style="font-size:12px; color:var(--muted);">Centang seluruh 11 poin di tab Checklist.</p>
         </div>
-        <span class="quest-reward" id="r-chk">+100 XP</span>
+        <span class="quest-reward" id="r-chk">+140 XP</span>
       </div>
     </div>
   </div>
 
-  <!-- TAB 2: MINI GAMES -->
+  <!-- TAB 2: MINI-GAMES (3 BUAH) -->
   <div id="game" class="section">
+    <!-- Mini Game 1 -->
     <div class="card">
       <h2>⚡ Mini-Game 1: Verb 2 Speed Arena</h2>
-      <p style="font-size:13px; color:var(--muted); margin-bottom:12px;">Pilih bentuk <strong>Simple Past Tense (Verb 2)</strong> yang tepat! (+10 poin per jawaban benar)</p>
+      <p style="font-size:13px; color:var(--muted); margin-bottom:12px;">Pilih bentuk lampau (Verb 2) yang tepat! (+10 poin per benar)</p>
       <div class="game-box">
         <div style="display:flex; justify-content:space-between; font-size:13px; font-weight:700;">
-          <span>Skor Game: <strong id="v-score" style="color:#34d399;">0</strong></span>
-          <span>Target Misi: 30 Poin</span>
+          <span>Skor: <strong id="score-mg1" style="color:#34d399;">0</strong></span>
+          <span>Target: 30 Poin</span>
         </div>
-        <div class="word-display" id="v-word">GO</div>
-        <div class="game-grid" id="v-options"></div>
+        <div class="word-display" id="mg1-word">GO</div>
+        <div class="game-grid" id="mg1-options" style="grid-template-columns: repeat(2, 1fr);"></div>
       </div>
     </div>
 
+    <!-- Mini Game 2 -->
     <div class="card">
       <h2>🛠️ Mini-Game 2: Detektif Grammar & Numeracy</h2>
-      <p style="font-size:13px; color:var(--muted); margin-bottom:12px;">Selesaikan tantangan tata bahasa & numerasi (<strong id="g-prog">Soal 1/3</strong>):</p>
+      <p style="font-size:13px; color:var(--muted); margin-bottom:12px;">Tantangan tata bahasa & hitung angka (<strong id="mg2-prog">Soal 1/3</strong>):</p>
       <div class="game-box" style="background: linear-gradient(135deg, #064e3b, #065f46); border-color:#10b981;">
-        <div style="font-size:15px; font-weight:700; margin-bottom:12px;" id="g-question">Loading...</div>
-        <div class="game-grid" id="g-options" style="grid-template-columns: 1fr;"></div>
+        <div style="font-size:14px; font-weight:700; margin-bottom:12px;" id="mg2-q">Loading...</div>
+        <div class="game-grid" id="mg2-options" style="grid-template-columns: 1fr;"></div>
+      </div>
+    </div>
+
+    <!-- Mini Game 3 -->
+    <div class="card">
+      <h2>🐉 Mini-Game 3: Kuis Folktale & Report Text Structure</h2>
+      <p style="font-size:13px; color:var(--muted); margin-bottom:12px;">Uji pemahaman pesan moral & struktur teks (<strong id="mg3-prog">Soal 1/3</strong>):</p>
+      <div class="game-box" style="background: linear-gradient(135deg, #701a75, #581c87); border-color:#a855f7;">
+        <div style="font-size:14px; font-weight:700; margin-bottom:12px;" id="mg3-q">Loading...</div>
+        <div class="game-grid" id="mg3-options" style="grid-template-columns: 1fr;"></div>
       </div>
     </div>
   </div>
 
-  <!-- TAB 3: MATERI -->
+  <!-- TAB 3: MATERI LENGKAP -->
   <div id="materi" class="section">
     <div class="card">
-      <h2>📜 1. Recount & Narrative Text (Simple Past)</h2>
-      <table>
-        <tr><th>Materi</th><th>Inti Penting</th><th>Contoh</th></tr>
-        <tr><td><strong>Recount Text</strong></td><td>Pengalaman masa lalu (<em>First, next, after that, finally</em>)</td><td><em>Last Sunday, I visited my grandma.</em></td></tr>
-        <tr><td><strong>Narrative / Folktale</strong></td><td>Tokoh, masalah, resolusi, & pesan moral</td><td><em>What can we learn from the story?</em></td></tr>
-        <tr><td><strong>Simple Past Tense</strong></td><td>Wajib pakai <strong>Verb 2</strong></td><td><em>go → went, buy → bought, see → saw</em></td></tr>
-      </table>
+      <h2>📜 1. Recount Text & Narrative Text (Folktales)</h2>
+      <p style="font-size:13px; color:var(--muted);">Fokus utama: Menceritakan pengalaman masa lalu[span_3](start_span)[span_3](end_span) atau kisah legenda rakyat dengan struktur alur yang jelas.</p>
+      <h3>Kunci Belajar:</h3>
+      <ul style="padding-left:18px; font-size:13px; margin-bottom:10px; line-height:1.8;">
+        <li><strong>Sequence Words:</strong> <em>First, next, after that, finally</em> (menunjukkan urutan kejadian)[span_4](start_span)[span_4](end_span).</li>
+        <li><strong>Reference Words:</strong> Menentukan rujukan kata ganti (*he, she, they, we, it*)[span_5](start_span)[span_5](end_span). Contoh: *"Rina helped Sinta. **She** was very kind."* ($\rightarrow$ She merujuk ke subjek yang sesuai konteks)[span_6](start_span)[span_6](end_span).</li>
+        <li><strong>Narrative Moral Value:</strong> Pertanyaan seputar pesan moral (*"What can we learn from the story?"*)[span_7](start_span)[span_7](end_span).</li>
+        <li><strong>Simple Past Tense:</strong> Wajib menggunakan **Verb 2**[span_8](start_span)[span_8](end_span) untuk kejadian lampau (*go $\rightarrow$ went, see $\rightarrow$ saw, help $\rightarrow$ helped*[span_9](start_span)[span_9](end_span)). Hati-hati dengan bentuk kata kerja salah seperti *buyed* (yang benar *bought*)[span_10](start_span)[span_10](end_span).</li>
+      </ul>
     </div>
+
     <div class="card">
       <h2>🐼 2. Report Text & Simple Present Tense</h2>
+      <p style="font-size:13px; color:var(--muted);">Berfungsi untuk menyajikan informasi faktual umum mengenai hewan, tumbuhan, atau benda[span_11](start_span)[span_11](end_span).</p>
+      <h3>Struktur Teks (Generic Structure)[span_12](start_span)[span_12](end_span):</h3>
+      <ul style="padding-left:18px; font-size:13px; margin-bottom:10px; line-height:1.8;">
+        <li><strong>General Classification:</strong> Pengenalan & pengelompokan objek di awal teks. Contoh: *"Komodo dragons are large reptiles from Indonesia."*[span_13](start_span)[span_13](end_span)</li>
+        <li><strong>Description:</strong> Penjelasan rinci ciri fisik, habitat, makanan, kebiasaan, hingga ancaman konservasi. Contoh: *"They have strong legs and sharp claws. They eat meat."*[span_14](start_span)[span_14](end_span)</li>
+      </ul>
+      <h3>Kaidah Kebahasaan (Simple Present Tense)[span_15](start_span)[span_15](end_span):</h3>
       <table>
-        <tr><th>Subject</th><th>Aturan Kata Kerja</th><th>Contoh</th></tr>
-        <tr><td><strong>I/You/We/They/Plural</strong></td><td>Verb 1 / have / are</td><td><em>Sun bears <strong>have</strong> strong claws.</em></td></tr>
-        <tr><td><strong>He/She/It/Singular</strong></td><td>Verb 1 + s/es / has / is</td><td><em>An elephant <strong>has</strong> a long trunk.</em></td></tr>
+        <tr><th>Subjek</th><th>Aturan Kata Kerja</th><th>Contoh Kalimat</th></tr>
+        <tr><td><strong>I / You / We / They / Plural</strong></td><td>Verb 1 / have / are</td><td><em>Orangutans <strong>have</strong> long arms. They <strong>eat</strong> fruit.</em>[span_16](start_span)[span_16](end_span)</td></tr>
+        <tr><td><strong>He / She / It / Singular</strong></td><td>Verb 1 + s/es / has / is</td><td><em>An orangutan <strong>has</strong> long arms. It <strong>eats</strong> fruit.</em>[span_17](start_span)[span_17](end_span)</td></tr>
       </table>
-      <button class="btn-action" id="btn-claim-read" onclick="completeQuest('read', 100); unlockBadge(1);">🎁 Klaim +100 XP Selesai Membaca!</button>
+    </div>
+
+    <div class="card">
+      <h2>🔢 3. Numeracy in English</h2>
+      <p style="font-size:13px; color:var(--muted); margin-bottom:8px;">Soal cerita matematika dalam bahasa Inggris[span_18](start_span)[span_18](end_span). Perhatikan kata kunci operasi hitung:</p>
+      <ul style="padding-left:18px; font-size:13px; margin-bottom:14px; line-height:1.8;">
+        <li>➕ <strong>altogether / in total</strong> = Penjumlahan (Contoh: *24 eggs + 17 eggs = 41 eggs altogether*)[span_19](start_span)[span_19](end_span).</li>
+        <li>➖ <strong>how many more / difference</strong> = Pengurangan/Selisih (Contoh: *52 birds - 38 birds = 14 more birds*)[span_20](start_span)[span_20](end_span).</li>
+      </ul>
+      <button class="btn-action" id="btn-claim-read" onclick="completeQuest('read', 100); unlockBadge(1);">🎁 Klaim +100 XP Selesai Membaca Materi!</button>
     </div>
   </div>
 
@@ -316,17 +353,18 @@
   <div id="checklist" class="section">
     <div class="card">
       <h2>✅ Checklist Kesiapan PSAS (0/11)</h2>
+      <p style="font-size:13px; color:var(--muted); margin-bottom:12px;">Centang seluruh target penguasaan materi di bawah ini:</p>
       <div id="chk-list"></div>
     </div>
   </div>
 </div>
 
-<div id="toast">🎉 Notifikasi Berhasil!</div>
+<div id="toast">🎉 Berhasil!</div>
 
 <script>
   let xp = 0;
   let currentAvatar = '🦊';
-  const quests = { read: false, verb: false, gram: false, chk: false };
+  const quests = { read: false, v1: false, v2: false, v3: false, chk: false };
 
   function showToast(msg) {
     const t = document.getElementById('toast');
@@ -355,18 +393,14 @@
     xp += amount;
     document.getElementById('xp-val').textContent = xp;
     document.getElementById('stat-xp').textContent = xp + ' XP';
-    const pct = Math.min((xp / 500) * 100, 100);
+    const pct = Math.min((xp / 600) * 100, 100);
     document.getElementById('xp-bar').style.width = pct + '%';
 
     const title = document.getElementById('rank-title');
-    if (xp >= 450) {
-      title.textContent = 'Level 4 • Master PSAS!';
-      unlockBadge(4);
-    } else if (xp >= 250) {
-      title.textContent = 'Level 3 • Ksatria Grammar';
-    } else if (xp >= 100) {
-      title.textContent = 'Level 2 • Penjelajah Teks';
-    }
+    if (xp >= 550) { title.textContent = 'Level 5 • PSAS Champion!'; unlockBadge(5); }
+    else if (xp >= 400) { title.textContent = 'Level 4 • Master Bahasa Inggris'; }
+    else if (xp >= 250) { title.textContent = 'Level 3 • Ksatria Grammar'; }
+    else if (xp >= 100) { title.textContent = 'Level 2 • Penjelajah Teks'; }
     showToast(`🎉 +${amount} XP: ${reason}`);
   }
 
@@ -377,8 +411,8 @@
     document.getElementById('r-' + id).textContent = 'SELESAI ✓';
     
     const doneCount = Object.values(quests).filter(Boolean).length;
-    document.getElementById('quest-summary').textContent = `Misi: ${doneCount}/4`;
-    document.getElementById('stat-quests').textContent = `${doneCount} / 4`;
+    document.getElementById('quest-summary').textContent = `Misi: ${doneCount}/5`;
+    document.getElementById('stat-quests').textContent = `${doneCount} / 5`;
     
     if (id === 'read') {
       const btn = document.getElementById('btn-claim-read');
@@ -396,19 +430,21 @@
     btn.classList.add('active');
   }
 
-  // --- MINI GAME 1 ---
+  // --- MINI GAME 1: VERB 2 ---
   const verbs = [
     { v1: 'GO', ans: 'went', opts: ['goed', 'went', 'gone', 'going'] },
     { v1: 'BUY', ans: 'bought', opts: ['buyed', 'buys', 'bought', 'buying'] },
     { v1: 'SEE', ans: 'saw', opts: ['seed', 'seen', 'saw', 'sees'] },
-    { v1: 'EAT', ans: 'ate', opts: ['eated', 'ate', 'eaten', 'eats'] }
+    { v1: 'EAT', ans: 'ate', opts: ['eated', 'ate', 'eaten', 'eats'] },
+    { v1: 'WRITE', ans: 'wrote', opts: ['writed', 'written', 'wrote', 'writing'] },
+    { v1: 'FIND', ans: 'found', opts: ['finded', 'found', 'finds', 'finding'] }
   ];
-  let vIdx = 0, vScore = 0;
+  let vIdx = 0, scoreMg1 = 0;
 
-  function loadVerbGame() {
+  function loadMg1() {
     const q = verbs[vIdx % verbs.length];
-    document.getElementById('v-word').textContent = q.v1;
-    const box = document.getElementById('v-options');
+    document.getElementById('mg1-word').textContent = q.v1;
+    const box = document.getElementById('mg1-options');
     box.innerHTML = '';
     q.opts.forEach(opt => {
       const b = document.createElement('button');
@@ -416,65 +452,117 @@
       b.textContent = opt;
       b.onclick = () => {
         if (opt === q.ans) {
-          vScore += 10;
-          document.getElementById('v-score').textContent = vScore;
-          document.getElementById('stat-verb').textContent = vScore + ' Poin';
+          scoreMg1 += 10;
+          document.getElementById('score-mg1').textContent = scoreMg1;
+          document.getElementById('stat-v1').textContent = scoreMg1 + ' Poin';
           showToast('✅ Benar! +10 Poin');
-          if (vScore >= 30 && !quests.verb) {
-            completeQuest('verb', 150);
+          if (scoreMg1 >= 30 && !quests.v1) {
+            completeQuest('v1', 120);
             unlockBadge(2);
           }
         } else {
           showToast(`❌ Salah! Verb 2 dari ${q.v1} adalah "${q.ans}"`);
         }
         vIdx++;
-        loadVerbGame();
+        loadMg1();
       };
       box.appendChild(b);
     });
   }
-  loadVerbGame();
+  loadMg1();
 
-  // --- MINI GAME 2 ---
-  const gramQuiz = [
-    { q: 'Perbaiki kalimat: "An elephant have a long trunk."', ans: 'An elephant has a long trunk.', opts: ['An elephant has a long trunk.', 'An elephant are a long trunk.'] },
-    { q: '24 telur + 17 telur altogether = ?', ans: '41 eggs altogether', opts: ['41 eggs altogether', '31 eggs altogether'] },
-    { q: 'Kalimat General Classification Report Text?', ans: 'Sunflowers are flowering plants.', opts: ['They have large yellow flowers.', 'Sunflowers are flowering plants.'] }
+  // --- MINI GAME 2: GRAMMAR & NUMERACY ---
+  const mg2Data = [
+    { q: 'Perbaiki kalimat berikut: "An elephant have a long trunk."', ans: 'An elephant has a long trunk.', opts: ['An elephant has a long trunk.', 'An elephant are a long trunk.'] },
+    { q: 'Tim menemukan 24 telur di hari Senin & 17 telur di Selasa. Berapa total telur altogether?', ans: '41 eggs altogether', opts: ['41 eggs altogether', '31 eggs altogether'] },
+    { q: 'Mana kalimat Simple Past Tense yang salah (incorrect)?', ans: 'He buyed a new bag.', opts: ['She went to school yesterday.', 'He buyed a new bag.'] }
   ];
-  let gIdx = 0;
+  let mg2Idx = 0, mg2Done = 0;
 
-  function loadGramGame() {
-    const box = document.getElementById('g-options');
-    if (gIdx >= gramQuiz.length) {
-      document.getElementById('g-question').textContent = '🎉 Mantap! Tantangan Detektif Selesai!';
+  function loadMg2() {
+    const box = document.getElementById('mg2-options');
+    if (mg2Idx >= mg2Data.length) {
+      document.getElementById('mg2-q').textContent = '🎉 Hebat! Tantangan Detektif Selesai!';
       box.innerHTML = '';
-      if (!quests.gram) {
-        completeQuest('gram', 150);
+      if (!quests.v2) {
+        completeQuest('v2', 120);
         unlockBadge(3);
+        mg2Done = mg2Data.length;
+        document.getElementById('stat-v2').textContent = `${mg2Done + (window.mg3Done || 0)} Tantangan`;
       }
       return;
     }
-    const item = gramQuiz[gIdx];
-    document.getElementById('g-prog').textContent = `Soal ${gIdx + 1}/${gramQuiz.length}`;
-    document.getElementById('g-question').textContent = item.q;
+    const item = mg2Data[mg2Idx];
+    document.getElementById('mg2-prog').textContent = `Soal ${mg2Idx + 1}/${mg2Data.length}`;
+    document.getElementById('mg2-q').textContent = item.q;
     box.innerHTML = '';
     item.opts.forEach(opt => {
       const b = document.createElement('button');
       b.className = 'game-opt';
       b.textContent = opt;
+      b.style.textAlign = 'center';
       b.onclick = () => {
         if (opt === item.ans) {
-          gIdx++;
-          showToast('✅ Hebat! Lanjut soal berikutnya');
-          loadGramGame();
+          mg2Idx++;
+          mg2Done++;
+          window.mg2Done = mg2Done;
+          showToast('✅ Tepat sekali!');
+          loadMg2();
         } else {
-          showToast('❌ Coba periksa aturan tata bahasanya!');
+          showToast('❌ Coba periksa aturannya kembali!');
         }
       };
       box.appendChild(b);
     });
   }
-  loadGramGame();
+  loadMg2();
+
+  // --- MINI GAME 3: FOLKTALE & REPORT STRUCTURE ---
+  const mg3Data = [
+    { q: 'Bagian Report Text yang memperkenalkan & mengelompokkan objek disebut...', ans: 'General Classification', opts: ['General Classification', 'Description'] },
+    { q: 'Seorang anak jujur mengakui kesalahan & meminta maaf. Apa pesan moralnya?', ans: 'We should be honest.', opts: ['We should be honest.', 'We should hide our mistakes.'] },
+    { q: 'Sunflowers are flowering plants. Kalimat ini berfungsi sebagai...', ans: 'General Classification', opts: ['General Classification', 'Description'] }
+  ];
+  let mg3Idx = 0, mg3Done = 0;
+
+  function loadMg3() {
+    const box = document.getElementById('mg3-options');
+    if (mg3Idx >= mg3Data.length) {
+      document.getElementById('mg3-q').textContent = '🎉 Mantap! Pakar Folktale Selesai!';
+      box.innerHTML = '';
+      if (!quests.v3) {
+        completeQuest('v3', 120);
+        unlockBadge(4);
+        mg3Done = mg3Data.length;
+        window.mg3Done = mg3Done;
+        document.getElementById('stat-v2').textContent = `${(window.mg2Done || 0) + mg3Done} Tantangan`;
+      }
+      return;
+    }
+    const item = mg3Data[mg3Idx];
+    document.getElementById('mg3-prog').textContent = `Soal ${mg3Idx + 1}/${mg3Data.length}`;
+    document.getElementById('mg3-q').textContent = item.q;
+    box.innerHTML = '';
+    item.opts.forEach(opt => {
+      const b = document.createElement('button');
+      b.className = 'game-opt';
+      b.textContent = opt;
+      b.style.textAlign = 'center';
+      b.onclick = () => {
+        if (opt === item.ans) {
+          mg3Idx++;
+          mg3Done++;
+          window.mg3Done = mg3Done;
+          showToast('✅ Benar!');
+          loadMg3();
+        } else {
+          showToast('❌ Kurang tepat, coba lagi!');
+        }
+      };
+      box.appendChild(b);
+    });
+  }
+  loadMg3();
 
   // --- CHECKLIST ---
   const chkItems = [
@@ -494,11 +582,11 @@
       lbl.classList.toggle('done', this.checked);
       const count = document.querySelectorAll('#chk-list input:checked').length;
       document.getElementById('chk-nav').textContent = `${count}/11`;
-      document.getElementById('stat-chk').textContent = `${count} / 11`;
-      if (count === 11 && !quests.chk) completeQuest('chk', 100);
+      if (count === 11 && !quests.chk) completeQuest('chk', 140);
     };
     chkBox.appendChild(lbl);
   });
 </script>
 </body>
 </html>
+ 
