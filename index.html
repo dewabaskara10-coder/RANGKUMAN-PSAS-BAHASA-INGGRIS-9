@@ -1,20 +1,20 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PSAS Ultimate Quest: Bahasa Inggris IX</title>
+<title>PSAS Ultimate Masterclass: Bahasa Inggris IX</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
   
   :root {
-    --primary: #6366f1;
-    --secondary: #a855f7;
+    --primary: #4f46e5;
+    --secondary: #7c3aed;
     --accent: #f59e0b;
     --success: #10b981;
     --danger: #ef4444;
-    --bg: #090d16;
-    --card: rgba(30, 41, 59, 0.85);
+    --bg: #0b0f19;
+    --card: rgba(30, 41, 59, 0.88);
     --text: #f8fafc;
     --muted: #94a3b8;
   }
@@ -22,33 +22,32 @@
   * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
   
   body {
-    background: radial-gradient(circle at top right, #1e1b4b, #090d16 60%);
+    background: radial-gradient(circle at top, #1e1b4b, #0b0f19 70%);
     color: var(--text);
     padding: 16px;
     line-height: 1.6;
     min-height: 100vh;
     overflow-x: hidden;
-    position: relative;
   }
 
   /* Animated Floating Background Orbs */
   .bg-orb {
-    position: fixed; border-radius: 50%; filter: blur(80px); z-index: -1;
-    animation: floatOrb 10s infinite alternate ease-in-out;
+    position: fixed; border-radius: 50%; filter: blur(90px); z-index: -1;
+    animation: floatOrb 12s infinite alternate ease-in-out;
   }
-  .orb-1 { width: 260px; height: 260px; background: rgba(99, 102, 241, 0.25); top: -40px; left: -40px; }
-  .orb-2 { width: 300px; height: 300px; background: rgba(168, 85, 247, 0.2); bottom: -60px; right: -40px; animation-delay: -5s; }
+  .orb-1 { width: 280px; height: 280px; background: rgba(79, 70, 229, 0.22); top: -40px; left: -40px; }
+  .orb-2 { width: 320px; height: 320px; background: rgba(124, 58, 237, 0.18); bottom: -60px; right: -40px; animation-delay: -6s; }
 
   @keyframes floatOrb {
     0% { transform: translate(0, 0) scale(1); }
-    100% { transform: translate(30px, 40px) scale(1.15); }
+    100% { transform: translate(35px, 45px) scale(1.18); }
   }
 
-  .container { max-width: 880px; margin: 0 auto; position: relative; z-index: 1; }
+  .container { max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
 
   /* Player HUD */
   .hud {
-    background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95));
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.98));
     backdrop-filter: blur(12px);
     border: 2px solid rgba(129, 140, 248, 0.4);
     border-radius: 22px;
@@ -59,8 +58,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 14px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 20px rgba(99,102,241,0.15);
-    animation: slideDown 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
   }
   .player-info { display: flex; align-items: center; gap: 14px; cursor: pointer; transition: transform 0.25s; }
   .player-info:hover { transform: scale(1.03); }
@@ -68,7 +66,7 @@
     width: 54px; height: 54px; border-radius: 16px;
     background: linear-gradient(135deg, var(--primary), var(--secondary));
     display: flex; align-items: center; justify-content: center;
-    font-size: 28px; box-shadow: 0 4px 15px rgba(168,85,247,0.5);
+    font-size: 28px; box-shadow: 0 4px 15px rgba(124,58,237,0.5);
     border: 2px solid #c4b5fd;
     animation: floatIcon 3s ease-in-out infinite;
   }
@@ -99,11 +97,11 @@
   .tab-btn:hover { transform: translateY(-3px); border-color: #818cf8; color: white; }
   .tab-btn.active {
     background: linear-gradient(135deg, var(--primary), var(--secondary));
-    color: white; border-color: #c4b5fd; box-shadow: 0 6px 20px rgba(99,102,241,0.45);
+    color: white; border-color: #c4b5fd; box-shadow: 0 6px 20px rgba(79,70,229,0.45);
     transform: translateY(-2px);
   }
 
-  /* Section Transitions */
+  /* Sections */
   .section { display: none; }
   .section.active { display: block; animation: sectionReveal 0.45s cubic-bezier(0.16, 1, 0.3, 1); }
   @keyframes sectionReveal {
@@ -117,24 +115,23 @@
     padding: 22px; margin-bottom: 16px; box-shadow: 0 8px 25px rgba(0,0,0,0.3);
     transition: transform 0.3s ease, border-color 0.3s ease;
   }
-  .card:hover { transform: translateY(-3px); border-color: rgba(129, 140, 248, 0.4); }
+  .card:hover { transform: translateY(-2px); border-color: rgba(129, 140, 248, 0.4); }
   .card h2 { font-size: 18px; color: #fde047; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
-  .card h3 { font-size: 15px; color: #38bdf8; margin: 14px 0 6px; }
+  .card h3 { font-size: 15px; color: #38bdf8; margin: 16px 0 8px; }
 
   /* Profile Customization */
   .profile-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; margin-top: 12px; }
-  .profile-card { background: rgba(15, 23, 42, 0.8); border: 1px solid #334155; padding: 16px; border-radius: 16px; }
+  .profile-card { background: rgba(15, 23, 42, 0.85); border: 1px solid #334155; padding: 16px; border-radius: 16px; }
   .profile-input {
     width: 100%; padding: 10px 14px; background: #1e293b; border: 2px solid #475569;
     color: white; border-radius: 12px; font-size: 14px; margin-top: 6px; margin-bottom: 12px;
-    transition: border-color 0.25s;
   }
   .profile-input:focus { outline: none; border-color: #fde047; }
   .avatar-picker { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px; }
   .avatar-opt {
     width: 42px; height: 42px; background: #1e293b; border: 2px solid #475569;
     border-radius: 12px; display: flex; align-items: center; justify-content: center;
-    font-size: 20px; cursor: pointer; transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    font-size: 20px; cursor: pointer; transition: all 0.25s;
   }
   .avatar-opt:hover { transform: scale(1.15) rotate(6deg); }
   .avatar-opt.selected { border-color: #fde047; background: rgba(253,224,71,0.2); transform: scale(1.1); }
@@ -143,7 +140,7 @@
   .badge-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin-top: 10px; }
   .badge-item {
     background: rgba(15, 23, 42, 0.7); border: 1px solid #334155; border-radius: 16px; padding: 14px 10px;
-    text-align: center; opacity: 0.4; filter: grayscale(100%); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    text-align: center; opacity: 0.4; filter: grayscale(100%); transition: all 0.4s;
   }
   .badge-item.unlocked {
     opacity: 1; filter: grayscale(0%); border-color: var(--success);
@@ -154,11 +151,10 @@
 
   /* Quests */
   .quest-item {
-    background: rgba(15, 23, 42, 0.8); border: 1px solid #334155; border-radius: 16px;
+    background: rgba(15, 23, 42, 0.85); border: 1px solid #334155; border-radius: 16px;
     padding: 14px 16px; margin-bottom: 10px; display: flex; justify-content: space-between;
     align-items: center; gap: 12px; transition: all 0.3s ease;
   }
-  .quest-item:hover { border-color: #6366f1; transform: translateX(4px); }
   .quest-item.completed { border-color: var(--success); background: rgba(16, 185, 129, 0.12); }
   .quest-reward {
     background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid #f59e0b;
@@ -166,28 +162,22 @@
   }
   .quest-item.completed .quest-reward { background: var(--success); color: white; border-color: var(--success); }
 
-  /* Mini Games */
+  /* Mini Games & Quizzes */
   .game-box {
     background: linear-gradient(135deg, #1e1b4b, #312e81);
     border: 2px solid #6366f1; border-radius: 20px; padding: 20px; text-align: center;
-    box-shadow: inset 0 0 25px rgba(99,102,241,0.2);
   }
   .word-display {
     font-size: 32px; font-weight: 800; color: #fde047; margin: 14px 0;
     letter-spacing: 2px; text-shadow: 0 4px 15px rgba(253,224,71,0.4);
-    animation: pulseText 1.8s infinite alternate;
   }
-  @keyframes pulseText { from { transform: scale(1); } to { transform: scale(1.06); } }
-
   .game-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 14px; }
   .game-opt, .quiz-opt {
     background: rgba(255,255,255,0.08); border: 2px solid rgba(255,255,255,0.18);
     color: white; padding: 12px 14px; border-radius: 14px; font-weight: 700; font-size: 13px;
-    cursor: pointer; transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1); text-align: left;
+    cursor: pointer; transition: all 0.2s; text-align: left;
   }
-  .game-opt:hover, .quiz-opt:hover { background: rgba(255,255,255,0.18); transform: translateY(-2px); border-color: #a5b4fc; }
-  .game-opt:active, .quiz-opt:active { transform: scale(0.96); }
-
+  .game-opt:hover, .quiz-opt:hover { background: rgba(255,255,255,0.18); border-color: #a5b4fc; }
   .quiz-opt.correct { background: rgba(16, 185, 129, 0.25); border-color: #10b981; color: #6ee7b7; }
   .quiz-opt.wrong { background: rgba(239, 68, 68, 0.25); border-color: #ef4444; color: #fca5a5; animation: shake 0.4s; }
 
@@ -203,7 +193,7 @@
     font-size: 14px; cursor: pointer; margin-top: 12px; transition: all 0.25s;
     box-shadow: 0 6px 18px rgba(245, 158, 11, 0.35);
   }
-  .btn-action:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 8px 25px rgba(245, 158, 11, 0.5); }
+  .btn-action:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(245, 158, 11, 0.5); }
 
   /* Tables */
   table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13px; border-radius: 12px; overflow: hidden; }
@@ -213,13 +203,13 @@
   /* Checklist */
   .check-item {
     display: flex; align-items: center; gap: 12px; padding: 12px;
-    background: rgba(15, 23, 42, 0.8); border: 1px solid #334155; border-radius: 14px;
+    background: rgba(15, 23, 42, 0.85); border: 1px solid #334155; border-radius: 14px;
     margin-bottom: 8px; cursor: pointer; font-size: 13px; transition: all 0.25s;
   }
-  .check-item:hover { border-color: #6366f1; transform: translateX(4px); }
+  .check-item:hover { border-color: #6366f1; }
   .check-item.done { border-color: var(--success); background: rgba(16,185,129,0.1); color: #34d399; text-decoration: line-through; }
 
-  /* Toast & Confetti Particles */
+  /* Toast & Confetti */
   #toast {
     position: fixed; bottom: 24px; right: 24px; background: linear-gradient(135deg, #10b981, #059669);
     color: white; padding: 14px 22px; border-radius: 16px; font-weight: 800; font-size: 13px;
@@ -236,7 +226,6 @@
     0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 1; }
     100% { transform: translateY(350px) rotate(720deg) scale(0.3); opacity: 0; }
   }
-  @keyframes slideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
 </style>
 </head>
 <body>
@@ -256,7 +245,7 @@
     </div>
     <div class="xp-box">
       <div class="xp-header">
-        <span>XP Kamu: <strong id="xp-val" style="color:#fde047;">0</strong> / 600 XP</span>
+        <span>XP Kamu: <strong id="xp-val" style="color:#fde047;">0</strong> / 700 XP</span>
         <span id="quest-summary">Misi: 0/5</span>
       </div>
       <div class="xp-bar-bg"><div class="xp-bar-fill" id="xp-bar"></div></div>
@@ -267,7 +256,7 @@
   <div class="tabs">
     <button class="tab-btn active" onclick="openTab('profil', this)">👤 Profil</button>
     <button class="tab-btn" onclick="openTab('misi', this)">🎯 Papan Misi</button>
-    <button class="tab-btn" onclick="openTab('materi', this)">📚 Materi Lengkap</button>
+    <button class="tab-btn" onclick="openTab('materi', this)">📚 Materi Lengkap & Detail</button>
     <button class="tab-btn" onclick="openTab('game', this)">🎮 Mini-Games (3)</button>
     <button class="tab-btn" onclick="openTab('latihan', this)">📝 Latihan Soal</button>
     <button class="tab-btn" onclick="openTab('checklist', this)">✅ Checklist (<span id="chk-nav">0/11</span>)</button>
@@ -307,7 +296,7 @@
     <div class="card">
       <h2>🏅 Lencana Pencapaian (Badges)</h2>
       <div class="badge-grid">
-        <div class="badge-item" id="badge-1"><div class="badge-icon">📖</div><div style="font-size:11px; font-weight:700;">Pengamat Materi</div></div>
+        <div class="badge-item" id="badge-1"><div class="badge-icon">📖</div><div style="font-size:11px; font-weight:700;">Master Materi</div></div>
         <div class="badge-item" id="badge-2"><div class="badge-icon">⚡</div><div style="font-size:11px; font-weight:700;">Master Verb 2</div></div>
         <div class="badge-item" id="badge-3"><div class="badge-icon">🛠️</div><div style="font-size:11px; font-weight:700;">Detektif Grammar</div></div>
         <div class="badge-item" id="badge-4"><div class="badge-icon">🐉</div><div style="font-size:11px; font-weight:700;">Pakar Folktale</div></div>
@@ -322,10 +311,10 @@
       <h2>🏆 Daftar Misi Belajar PSAS</h2>
       <div class="quest-item" id="q-read">
         <div>
-          <strong style="font-size:14px;">📖 Misi 1: Penjelajah Materi</strong>
-          <p style="font-size:12px; color:var(--muted);">Pelajari rangkuman materi dan klaim hadiah XP di bagian bawah materi.</p>
+          <strong style="font-size:14px;">📖 Misi 1: Penjelajah Materi Super</strong>
+          <p style="font-size:12px; color:var(--muted);">Pelajari seluruh rangkuman materi mendalam dan klaim hadiah XP di tab Materi.</p>
         </div>
-        <span class="quest-reward" id="r-read">+100 XP</span>
+        <span class="quest-reward" id="r-read">+120 XP</span>
       </div>
       <div class="quest-item" id="q-v1">
         <div>
@@ -344,7 +333,7 @@
       <div class="quest-item" id="q-v3">
         <div>
           <strong style="font-size:14px;">🐉 Misi 4: Pakar Folktale & Report Text</strong>
-          <p style="font-size:12px; color:var(--muted);">Tuntaskan Mini-Game 3 tentang pesan moral & struktur teks.</p>
+          <p style="font-size:12px; color:var(--muted);">Tuntaskan Mini-Game 3 tentang struktur teks & pesan moral.</p>
         </div>
         <span class="quest-reward" id="r-v3">+120 XP</span>
       </div>
@@ -353,49 +342,71 @@
           <strong style="font-size:14px;">✅ Misi 5: Siap Tempur 100%</strong>
           <p style="font-size:12px; color:var(--muted);">Centang seluruh 11 target di tab Checklist.</p>
         </div>
-        <span class="quest-reward" id="r-chk">+140 XP</span>
+        <span class="quest-reward" id="r-chk">+200 XP</span>
       </div>
     </div>
   </div>
 
-  <!-- TAB 3: MATERI LENGKAP -->
+  <!-- TAB 3: MATERI LENGKAP & DETAIL -->
   <div id="materi" class="section">
     <div class="card">
-      <h2>📋 Informasi & Struktur Ujian PSAS</h2>
-      <p style="font-size:13px; color:var(--muted);">Total <strong>35 Soal</strong> dalam waktu <strong>90 Menit</strong> (20 Pilihan Ganda, 5 PG Kompleks, 5 Benar/Salah, 5 Uraian).</p>
+      <h2>📌 Informasi Lengkap PSAS Bahasa Inggris Kelas IX</h2>
+      <table>
+        <tr><th>Komponen Ujian</th><th>Keterangan Detail</th></tr>
+        <tr><td>Mata Pelajaran & Kelas</td><td>Bahasa Inggris • Kelas IX[span_0](start_span)[span_0](end_span)</td></tr>
+        <tr><td>Materi Utama</td><td>Recount Text, Narrative Text (Folktales), Report Text, Simple Past & Simple Present[span_1](start_span)[span_1](end_span)</td></tr>
+        <tr><td>Format Soal</td><td>20 Pilihan Ganda, 5 PG Kompleks, 5 Benar/Salah (masing-masing 4 pernyataan), 5 Uraian (Total 35 soal)[span_2](start_span)[span_2](end_span)</td></tr>
+        <tr><td>Alokasi Waktu</td><td>90 Menit[span_3](start_span)[span_3](end_span)</td></tr>
+      </table>
     </div>
 
     <div class="card">
       <h2>📜 1. Recount Text & Narrative Text (Folktales)</h2>
+      <h3>A. Recount Text</h3>
+      <p style="font-size:13px; color:var(--muted); margin-bottom:8px;">Berfungsi untuk menceritakan kembali pengalaman atau peristiwa masa lalu (*To retell past experiences*[span_4](start_span)[span_4](end_span)).</p>
+      <ul style="padding-left:18px; font-size:13px; line-height:1.8; margin-bottom:12px;">
+        <li><strong>Sequence Words (Urutan Kejadian):</strong> Kata penghubung waktu seperti *First, next, after that, finally*[span_5](start_span)[span_5](end_span).</li>
+        <li><strong>Reference Words (Rujukan Kata):</strong> Menentukan rujukan kata ganti (*he, she, they, we, it*[span_6](start_span)[span_6](end_span)). Contoh: *"Rina helped Sinta. **She** was very kind."* (She merujuk pada Rina/Sinta sesuai konteks[span_7](start_span)[span_7](end_span)).</li>
+        <li><strong>Inference & Numeracy:</strong> Menyimpulkan informasi tersirat[span_8](start_span)[span_8](end_span) dan menjumlahkan angka dalam teks narasi[span_9](start_span)[span_9](end_span)[span_10](start_span)[span_10](end_span).</li>
+      </ul>
+
+      <h3>B. Narrative Text (Folktales / Cerita Rakyat)</h3>
+      <p style="font-size:13px; color:var(--muted); margin-bottom:8px;">Fokus pada alur cerita fiksi tradisional yang memuat tokoh, masalah (*problem*), penyelesaian (*resolution*), dan pesan moral (*moral value*[span_11](start_span)[span_11](end_span)).</p>
+
+      <h3>C. Simple Past Tense (Waktu Lampau)</h3>
+      <p style="font-size:13px; color:var(--muted); margin-bottom:8px;">Wajib menggunakan **Verb 2**[span_12](start_span)[span_12](end_span) untuk kalimat positif (affirmative).</p>
       <ul style="padding-left:18px; font-size:13px; line-height:1.8;">
-        <li><strong>Recount Text:</strong> Menceritakan pengalaman masa lalu (<em>To retell past experiences</em>). Gunakan kata urutan <em>First, next, after that, finally</em>.</li>
-        <li><strong>Reference (Rujukan Kata):</strong> Menentukan rujukan kata ganti seperti <em>he, she, they, we, it</em> sesuai konteks kalimat sebelumnya.</li>
-        <li><strong>Narrative Text (Folktales):</strong> Cerita rakyat berfokus pada tokoh, konflik, penyelesaian, dan pesan moral (<em>What can we learn from the story?</em>).</li>
-        <li><strong>Simple Past Tense:</strong> Wajib menggunakan <strong>Verb 2</strong> (contoh: <em>go → went, see → saw, buy → bought, help → helped</em>).</li>
+        <li>Contoh Perubahan Regular & Irregular: *go → went, see → saw, help → helped*[span_13](start_span)[span_13](end_span).</li>
+        <li>Hati-hati dengan jebakan soal perbaikan kata kerja salah, misalnya *buyed* (yang benar adalah *bought*[span_14](start_span)[span_14](end_span)).</li>
       </ul>
     </div>
 
     <div class="card">
       <h2>🐼 2. Report Text & Simple Present Tense</h2>
-      <p style="font-size:13px; margin-bottom:8px;"><strong>Social Function:</strong> Menyajikan informasi umum tentang hewan, tanaman, atau benda.</p>
-      <ul style="padding-left:18px; font-size:13px; margin-bottom:10px; line-height:1.8;">
-        <li><strong>General Classification:</strong> Pengenalan/pengelompokan objek (<em>Komodo dragons are large reptiles from Indonesia</em>).</li>
-        <li><strong>Description:</strong> Ciri fisik, habitat, makanan, kebiasaan, & ancaman konservasi (<em>They have strong legs and sharp claws</em>).</li>
+      <p style="font-size:13px; color:var(--muted); margin-bottom:8px;">Berfungsi untuk menyajikan informasi faktual umum mengenai hewan, tumbuhan, fenomena alam, atau benda (*To present general information about animals, plants, or other things*[span_15](start_span)[span_15](end_span)).</p>
+      
+      <h3>Struktur Teks (Generic Structure)[span_16](start_span)[span_16](end_span):</h3>
+      <ul style="padding-left:18px; font-size:13px; line-height:1.8; margin-bottom:12px;">
+        <li><strong>General Classification:</strong> Paragraf awal yang memperkenalkan, mengklasifikasikan, atau mendefinisikan objek yang dibahas[span_17](start_span)[span_17](end_span). (Contoh: *"Komodo dragons are large reptiles from Indonesia."*[span_18](start_span)[span_18](end_span)).</li>
+        <li><strong>Description:</strong> Paragraf penjelasan rinci mengenai ciri fisik, habitat, makanan, perilaku, kemampuan khusus, hingga ancaman konservasi[span_19](start_span)[span_19](end_span). (Contoh: *"They have strong legs and sharp claws. They eat meat."*[span_20](start_span)[span_20](end_span)).</li>
       </ul>
+
+      <h3>Kaidah Kebahasaan: Simple Present Tense[span_21](start_span)[span_21](end_span)</h3>
       <table>
-        <tr><th>Subjek</th><th>Aturan Verb</th><th>Contoh Kalimat</th></tr>
-        <tr><td><strong>I / You / We / They / Plural</strong></td><td>Verb 1 / have / are</td><td><em>Orangutans <strong>have</strong> long arms. They <strong>eat</strong> fruit.</em></td></tr>
-        <tr><td><strong>He / She / It / Singular</strong></td><td>Verb 1 + s/es / has / is</td><td><em>An orangutan <strong>has</strong> long arms. It <strong>eats</strong> fruit.</em></td></tr>
+        <tr><th>Subjek Kalimat</th><th>Aturan Kata Kerja (Verb)</th><th>Contoh Penggunaan</th></tr>
+        <tr><td><strong>I / You / We / They / Plural Noun</strong></td><td>Verb 1 / have / are[span_22](start_span)[span_22](end_span)</td><td><em>Orangutans <strong>have</strong> long arms. They <strong>eat</strong> fruit.</em>[span_23](start_span)[span_23](end_span)</td></tr>
+        <tr><td><strong>He / She / It / Singular Noun</strong></td><td>Verb 1 + s/es / has / is[span_24](start_span)[span_24](end_span)</td><td><em>An orangutan <strong>has</strong> long arms. It <strong>eats</strong> fruit.</em>[span_25](start_span)[span_25](end_span)</td></tr>
       </table>
     </div>
 
     <div class="card">
-      <h2>🔢 3. Numeracy in English</h2>
-      <ul style="padding-left:18px; font-size:13px; margin-bottom:12px; line-height:1.8;">
-        <li>➕ <strong>altogether / in total</strong> = Penjumlahan (<em>24 eggs + 17 eggs = 41 eggs altogether</em>).</li>
-        <li>➖ <strong>how many more / difference</strong> = Pengurangan/Selisih (<em>52 birds - 38 birds = 14 more birds</em>).</li>
+      <h2>🔢 3. Numeracy in English (Matematika dalam Bahasa Inggris)</h2>
+      <p style="font-size:13px; color:var(--muted); margin-bottom:8px;">Siswa sering diuji melalui soal cerita numerasi berbahasa Inggris[span_26](start_span)[span_26](end_span). Perhatikan kata kunci operasi hitung berikut:</p>
+      <ul style="padding-left:18px; font-size:13px; line-height:1.8; margin-bottom:14px;">
+        <li>➕ **Penjumlahan (+):** Kata kunci seperti *altogether*, *in total*[span_27](start_span)[span_27](end_span). (Contoh: *"A wildlife team found 24 bird eggs on Monday and 17 on Tuesday. How many eggs did they find altogether?"* $\rightarrow 24 + 17 = 41$[span_28](start_span)[span_28](end_span)).</li>
+        <li>➖ **Pengurangan / Selisih (-):** Kata kunci seperti *how many more*, *difference*[span_29](start_span)[span_29](end_span). (Contoh: *"A conservation team counted 38 birds in one forest and 52 in another. How many more birds were found in the second forest?"* $\rightarrow 52 - 38 = 14$[span_30](start_span)[span_30](end_span)).</li>
       </ul>
-      <button class="btn-action" id="btn-claim-read" onclick="completeQuest('read', 100); unlockBadge(1);">🎁 Klaim +100 XP Selesai Membaca!</button>
+      <button class="btn-action" id="btn-claim-read" onclick="completeQuest('read', 120); unlockBadge(1);">🎁 Klaim +120 XP Selesai Membaca Materi!</button>
     </div>
   </div>
 
@@ -423,7 +434,7 @@
     </div>
 
     <div class="card">
-      <h2>🐉 Mini-Game 3: Kuis Folktale & Report Text</h2>
+      <h2>🐉 Mini-Game 3: Kuis Folktale & Report Text Structure</h2>
       <div class="game-box" style="background: linear-gradient(135deg, #701a75, #581c87); border-color:#a855f7;">
         <div style="font-size:12px; font-weight:700; color:#e9d5ff; margin-bottom:6px;" id="mg3-prog">Soal 1/3</div>
         <div style="font-size:14px; font-weight:700; margin-bottom:12px;" id="mg3-q">Loading...</div>
@@ -432,11 +443,11 @@
     </div>
   </div>
 
-  <!-- TAB 5: LATIHAN SOAL INTERAKTIF -->
+  <!-- TAB 5: LATIHAN SOAL LENGKAP -->
   <div id="latihan" class="section">
     <div class="card">
-      <h2>📝 Latihan Soal PSAS + Pembahasan</h2>
-      <p style="font-size:13px; color:var(--muted); margin-bottom:14px;">Pilih jawaban yang tepat untuk mendapatkan +20 XP tiap soal benar!</p>
+      <h2>📝 Latihan Soal PSAS Berdasarkan Kisi-Kisi</h2>
+      <p style="font-size:13px; color:var(--muted); margin-bottom:14px;">Pilih jawaban yang benar untuk menguji kesiapanmu dan raih +20 XP per soal!</p>
       <div id="quiz-container"></div>
     </div>
   </div>
@@ -459,7 +470,7 @@
 
   function spawnConfetti() {
     const colors = ['#fde047', '#34d399', '#60a5fa', '#f472b6', '#a78bfa'];
-    for (let i = 0; i < 28; i++) {
+    for (let i = 0; i < 30; i++) {
       const c = document.createElement('div');
       c.className = 'confetti';
       c.style.left = Math.random() * 100 + 'vw';
@@ -497,12 +508,12 @@
     xp += amount;
     document.getElementById('xp-val').textContent = xp;
     document.getElementById('stat-xp').textContent = xp + ' XP';
-    const pct = Math.min((xp / 600) * 100, 100);
+    const pct = Math.min((xp / 700) * 100, 100);
     document.getElementById('xp-bar').style.width = pct + '%';
 
     const title = document.getElementById('rank-title');
-    if (xp >= 550) { title.textContent = 'Level 5 • PSAS Champion!'; unlockBadge(5); }
-    else if (xp >= 400) { title.textContent = 'Level 4 • Master Bahasa Inggris'; }
+    if (xp >= 600) { title.textContent = 'Level 5 • PSAS Champion!'; unlockBadge(5); }
+    else if (xp >= 450) { title.textContent = 'Level 4 • Master Bahasa Inggris'; }
     else if (xp >= 250) { title.textContent = 'Level 3 • Ksatria Grammar'; }
     else if (xp >= 100) { title.textContent = 'Level 2 • Penjelajah Teks'; }
     showToast(`🎉 +${amount} XP: ${reason}`);
@@ -658,40 +669,40 @@
   // --- LATIHAN SOAL LENGKAP ---
   const quizList = [
     {
-      q: "1. Yesterday, Dina visited a library. First, she returned two books. Next, she borrowed a science book. Finally, she went home. What did Dina do after returning the books?",
-      opts: ["A. She went home.", "B. She borrowed a science book.", "C. She visited a museum.", "D. She bought two books."],
+      q: "1. Yesterday, Dina visited a library. First, she returned two books. Next, she borrowed a science book. Finally, she went home[span_31](start_span)[span_31](end_span). What did Dina do after returning the books?[span_32](start_span)[span_32](end_span)",
+      opts: ["A. She went home[span_33](start_span)[span_33](end_span).", "B. She borrowed a science book[span_34](start_span)[span_34](end_span).", "C. She visited a museum[span_35](start_span)[span_35](end_span).", "D. She bought two books[span_36](start_span)[span_36](end_span)."],
       ans: 1,
-      exp: "Kata kunci 'Next' menunjukkan kegiatan setelah mengembalikan buku adalah meminjam buku sains."
+      exp: "Kata kunci 'Next' menunjukkan kegiatan setelah mengembalikan buku adalah meminjam buku sains[span_37](start_span)[span_37](end_span)."
     },
     {
-      q: "2. A boy lost his friend's pencil. He told the truth and apologized. His friend forgave him. What can we learn from the story?",
-      opts: ["A. We should hide our mistakes.", "B. We should never borrow things.", "C. We should be honest.", "D. We should avoid our friends."],
+      q: "2. A boy lost his friend's pencil. He told the truth and apologized. His friend forgave him[span_38](start_span)[span_38](end_span). What can we learn from the story?[span_39](start_span)[span_39](end_span)",
+      opts: ["A. We should hide our mistakes[span_40](start_span)[span_40](end_span).", "B. We should never borrow things[span_41](start_span)[span_41](end_span).", "C. We should be honest[span_42](start_span)[span_42](end_span).", "D. We should avoid our friends[span_43](start_span)[span_43](end_span)."],
       ans: 2,
-      exp: "Tindakan jujur mengakui kesalahan mengajarkan kita untuk selalu bersikap jujur (be honest)."
+      exp: "Tindakan jujur mengakui kesalahan mengajarkan kita untuk selalu bersikap jujur (be honest)[span_44](start_span)[span_44](end_span)."
     },
     {
-      q: "3. Which Simple Past Tense sentence is INCORRECT?",
-      opts: ["A. She went to school yesterday.", "B. They played football last week.", "C. He buyed a new bag.", "D. We watched a movie last night."],
+      q: "3. Which Simple Past Tense sentence is INCORRECT?[span_45](start_span)[span_45](end_span)",
+      opts: ["A. She went to school yesterday[span_46](start_span)[span_46](end_span).", "B. They played football last week[span_47](start_span)[span_47](end_span).", "C. He buyed a new bag[span_48](start_span)[span_48](end_span).", "D. We watched a movie last night[span_49](start_span)[span_49](end_span)."],
       ans: 2,
-      exp: "'buyed' salah karena bentuk lampau (Verb 2) dari 'buy' adalah 'bought'."
+      exp: "'buyed' salah karena bentuk lampau (Verb 2) dari 'buy' adalah 'bought[span_50](start_span)'[span_50](end_span)."
     },
     {
-      q: "4. Sunflowers are flowering plants. They have large yellow flowers. Which sentence is the General Classification?",
-      opts: ["A. Sunflowers are flowering plants.", "B. They have large yellow flowers."],
+      q: "4. Sunflowers are flowering plants. They have large yellow flowers[span_51](start_span)[span_51](end_span). Which sentence is the General Classification?[span_52](start_span)[span_52](end_span)",
+      opts: ["A. Sunflowers are flowering plants[span_53](start_span)[span_53](end_span).", "B. They have large yellow flowers[span_54](start_span)[span_54](end_span)."],
       ans: 0,
-      exp: "Kalimat pertama memperkenalkan dan mengelompokkan bunga matahari sebagai tanaman berbunga."
+      exp: "Kalimat pertama memperkenalkan dan mengelompokkan bunga matahari sebagai tanaman berbunga[span_55](start_span)[span_55](end_span)[span_56](start_span)[span_56](end_span)."
     },
     {
-      q: "5. Correct the sentence: 'An elephant have a long trunk.'",
-      opts: ["A. An elephant has a long trunk.", "B. An elephant are a long trunk."],
+      q: "5. Correct the sentence: 'An elephant have a long trunk.[span_57](start_span)'[span_57](end_span)",
+      opts: ["A. An elephant has a long trunk[span_58](start_span)[span_58](end_span).", "B. An elephant are a long trunk[span_59](start_span)[span_59](end_span)."],
       ans: 0,
-      exp: "Subjek tunggal (An elephant) menggunakan kata kerja 'has' dalam Simple Present Tense."
+      exp: "Subjek tunggal (An elephant) menggunakan kata kerja 'has' dalam Simple Present Tense[span_60](start_span)[span_60](end_span)[span_61](start_span)[span_61](end_span)."
     },
     {
-      q: "6. A conservation team counted 38 birds in one forest and 52 birds in another forest. How many more birds were found in the second forest?",
-      opts: ["A. 90 birds", "B. 14 birds", "C. 24 birds"],
+      q: "6. A conservation team counted 38 birds in one forest and 52 birds in another forest. How many more birds were found in the second forest?[span_62](start_span)[span_62](end_span)",
+      opts: ["A. 90 birds[span_63](start_span)[span_63](end_span)", "B. 14 birds[span_64](start_span)[span_64](end_span)", "C. 24 birds[span_65](start_span)[span_65](end_span)"],
       ans: 1,
-      exp: "'How many more' menanyakan selisih: 52 - 38 = 14 birds."
+      exp: "'How many more' menanyakan selisih: 52 - 38 = 14 birds[span_66](start_span)[span_66](end_span)[span_67](start_span)[span_67](end_span)."
     }
   ];
 
@@ -740,12 +751,17 @@
 
   // --- CHECKLIST ---
   const chkItems = [
-    "Identify purpose of Recount Text", "Understand sequence of past events",
-    "Find references & make inferences", "Identify moral values in folktales",
-    "Use Simple Past Tense correctly", "Identify purpose & main idea of Report Text",
-    "Distinguish General Classification & Description", "Use Simple Present Tense correctly",
-    "Answer numeracy questions in English", "Choose correct facts & conclusions",
-    "Write a Report Text of 7-10 sentences"
+    "I can identify the purpose of a Recount Text[span_68](start_span)[span_68](end_span).",
+    "I can understand the sequence of past events[span_69](start_span)[span_69](end_span).",
+    "I can find references and make inferences[span_70](start_span)[span_70](end_span).",
+    "I can identify moral values in folktales[span_71](start_span)[span_71](end_span).",
+    "I can use Simple Past Tense correctly[span_72](start_span)[span_72](end_span).",
+    "I can identify the purpose and main idea of a Report Text[span_73](start_span)[span_73](end_span).",
+    "I can distinguish General Classification and Description[span_74](start_span)[span_74](end_span).",
+    "I can use Simple Present Tense correctly[span_75](start_span)[span_75](end_span).",
+    "I can answer numeracy questions in English[span_76](start_span)[span_76](end_span).",
+    "I can choose correct facts and conclusions from a text[span_77](start_span)[span_77](end_span).",
+    "I can write a Report Text of 7-10 sentences[span_78](start_span)[span_78](end_span)."
   ];
   const chkBox = document.getElementById('chk-list');
   chkItems.forEach(txt => {
@@ -756,7 +772,7 @@
       lbl.classList.toggle('done', this.checked);
       const count = document.querySelectorAll('#chk-list input:checked').length;
       document.getElementById('chk-nav').textContent = `${count}/11`;
-      if (count === 11 && !quests.chk) completeQuest('chk', 140);
+      if (count === 11 && !quests.chk) completeQuest('chk', 200);
     };
     chkBox.appendChild(lbl);
   });
