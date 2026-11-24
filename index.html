@@ -8,160 +8,245 @@
   @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
   
   :root {
-    --primary: #4f46e5;
-    --secondary: #7c3aed;
+    --primary: #6366f1;
+    --secondary: #a855f7;
     --accent: #f59e0b;
     --success: #10b981;
     --danger: #ef4444;
-    --bg: #0f172a;
-    --card: #1e293b;
-    --card-light: #334155;
+    --bg: #090d16;
+    --card: rgba(30, 41, 59, 0.85);
     --text: #f8fafc;
     --muted: #94a3b8;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
-  body { background: var(--bg); color: var(--text); padding: 14px; line-height: 1.6; }
-  .container { max-width: 880px; margin: 0 auto; }
+  
+  body {
+    background: radial-gradient(circle at top right, #1e1b4b, #090d16 60%);
+    color: var(--text);
+    padding: 16px;
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* Animated Floating Background Orbs */
+  .bg-orb {
+    position: fixed; border-radius: 50%; filter: blur(80px); z-index: -1;
+    animation: floatOrb 10s infinite alternate ease-in-out;
+  }
+  .orb-1 { width: 260px; height: 260px; background: rgba(99, 102, 241, 0.25); top: -40px; left: -40px; }
+  .orb-2 { width: 300px; height: 300px; background: rgba(168, 85, 247, 0.2); bottom: -60px; right: -40px; animation-delay: -5s; }
+
+  @keyframes floatOrb {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(30px, 40px) scale(1.15); }
+  }
+
+  .container { max-width: 880px; margin: 0 auto; position: relative; z-index: 1; }
 
   /* Player HUD */
   .hud {
-    background: linear-gradient(135deg, #1e293b, #0f172a);
-    border: 2px solid #334155;
-    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95));
+    backdrop-filter: blur(12px);
+    border: 2px solid rgba(129, 140, 248, 0.4);
+    border-radius: 22px;
     padding: 16px 20px;
     margin-bottom: 18px;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    gap: 12px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    gap: 14px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 20px rgba(99,102,241,0.15);
+    animation: slideDown 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .player-info { display: flex; align-items: center; gap: 12px; cursor: pointer; }
+  .player-info { display: flex; align-items: center; gap: 14px; cursor: pointer; transition: transform 0.25s; }
+  .player-info:hover { transform: scale(1.03); }
   .avatar {
-    width: 50px; height: 50px; border-radius: 14px;
+    width: 54px; height: 54px; border-radius: 16px;
     background: linear-gradient(135deg, var(--primary), var(--secondary));
     display: flex; align-items: center; justify-content: center;
-    font-size: 26px; box-shadow: 0 4px 12px rgba(99,102,241,0.4);
-    border: 2px solid #818cf8;
+    font-size: 28px; box-shadow: 0 4px 15px rgba(168,85,247,0.5);
+    border: 2px solid #c4b5fd;
+    animation: floatIcon 3s ease-in-out infinite;
   }
-  .xp-box { flex: 1; min-width: 200px; }
-  .xp-header { display: flex; justify-content: space-between; font-size: 12px; font-weight: 700; margin-bottom: 6px; }
-  .xp-bar-bg { background: #334155; height: 10px; border-radius: 99px; overflow: hidden; }
-  .xp-bar-fill { background: linear-gradient(90deg, #f59e0b, #fde047); height: 100%; width: 0%; transition: width 0.4s ease; }
+  @keyframes floatIcon {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+  }
 
-  /* Tabs */
+  .xp-box { flex: 1; min-width: 210px; }
+  .xp-header { display: flex; justify-content: space-between; font-size: 12px; font-weight: 700; margin-bottom: 6px; }
+  .xp-bar-bg { background: #1e293b; height: 12px; border-radius: 99px; overflow: hidden; border: 1px solid #334155; }
+  .xp-bar-fill {
+    background: linear-gradient(90deg, #f59e0b, #fde047, #f59e0b);
+    background-size: 200% 100%;
+    height: 100%; width: 0%;
+    transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    animation: shimmer 2s linear infinite;
+  }
+  @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+  /* Navigation Tabs */
   .tabs { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 18px; }
   .tab-btn {
-    background: var(--card); border: 2px solid #334155; color: var(--muted);
-    padding: 10px 15px; border-radius: 14px; font-weight: 700; font-size: 13px;
-    cursor: pointer; white-space: nowrap; transition: 0.25s;
+    background: var(--card); border: 1px solid #334155; color: var(--muted);
+    padding: 11px 16px; border-radius: 14px; font-weight: 700; font-size: 13px;
+    cursor: pointer; white-space: nowrap; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
+  .tab-btn:hover { transform: translateY(-3px); border-color: #818cf8; color: white; }
   .tab-btn.active {
     background: linear-gradient(135deg, var(--primary), var(--secondary));
-    color: white; border-color: #818cf8; box-shadow: 0 4px 15px rgba(79,70,229,0.4);
+    color: white; border-color: #c4b5fd; box-shadow: 0 6px 20px rgba(99,102,241,0.45);
+    transform: translateY(-2px);
   }
 
-  .section { display: none; animation: popIn 0.35s ease; }
-  .section.active { display: block; }
+  /* Section Transitions */
+  .section { display: none; }
+  .section.active { display: block; animation: sectionReveal 0.45s cubic-bezier(0.16, 1, 0.3, 1); }
+  @keyframes sectionReveal {
+    from { opacity: 0; transform: translateY(16px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
 
   .card {
-    background: var(--card); border: 1px solid #334155; border-radius: 20px;
-    padding: 20px; margin-bottom: 16px; box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+    background: var(--card); backdrop-filter: blur(10px);
+    border: 1px solid rgba(148, 163, 184, 0.15); border-radius: 22px;
+    padding: 22px; margin-bottom: 16px; box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease, border-color 0.3s ease;
   }
+  .card:hover { transform: translateY(-3px); border-color: rgba(129, 140, 248, 0.4); }
   .card h2 { font-size: 18px; color: #fde047; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
   .card h3 { font-size: 15px; color: #38bdf8; margin: 14px 0 6px; }
 
-  /* Profile & Customization */
-  .profile-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-top: 12px; }
-  .profile-card { background: #0f172a; border: 1px solid #334155; padding: 16px; border-radius: 16px; }
+  /* Profile Customization */
+  .profile-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; margin-top: 12px; }
+  .profile-card { background: rgba(15, 23, 42, 0.8); border: 1px solid #334155; padding: 16px; border-radius: 16px; }
   .profile-input {
-    width: 100%; padding: 10px 12px; background: #1e293b; border: 1px solid #475569;
-    color: white; border-radius: 10px; font-size: 14px; margin-top: 6px; margin-bottom: 12px;
+    width: 100%; padding: 10px 14px; background: #1e293b; border: 2px solid #475569;
+    color: white; border-radius: 12px; font-size: 14px; margin-top: 6px; margin-bottom: 12px;
+    transition: border-color 0.25s;
   }
+  .profile-input:focus { outline: none; border-color: #fde047; }
   .avatar-picker { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px; }
   .avatar-opt {
-    width: 38px; height: 38px; background: #1e293b; border: 2px solid #475569;
-    border-radius: 10px; display: flex; align-items: center; justify-content: center;
-    font-size: 18px; cursor: pointer; transition: 0.2s;
+    width: 42px; height: 42px; background: #1e293b; border: 2px solid #475569;
+    border-radius: 12px; display: flex; align-items: center; justify-content: center;
+    font-size: 20px; cursor: pointer; transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
-  .avatar-opt.selected { border-color: #fde047; background: rgba(253,224,71,0.2); }
+  .avatar-opt:hover { transform: scale(1.15) rotate(6deg); }
+  .avatar-opt.selected { border-color: #fde047; background: rgba(253,224,71,0.2); transform: scale(1.1); }
 
-  /* Badges Grid */
-  .badge-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin-top: 10px; }
+  /* Badges */
+  .badge-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin-top: 10px; }
   .badge-item {
-    background: #0f172a; border: 1px solid #334155; border-radius: 14px; padding: 12px;
-    text-align: center; opacity: 0.4; transition: 0.3s;
+    background: rgba(15, 23, 42, 0.7); border: 1px solid #334155; border-radius: 16px; padding: 14px 10px;
+    text-align: center; opacity: 0.4; filter: grayscale(100%); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
-  .badge-item.unlocked { opacity: 1; border-color: var(--success); background: rgba(16,185,129,0.1); }
-  .badge-icon { font-size: 26px; margin-bottom: 4px; }
+  .badge-item.unlocked {
+    opacity: 1; filter: grayscale(0%); border-color: var(--success);
+    background: linear-gradient(135deg, rgba(16,185,129,0.15), rgba(6,78,59,0.3));
+    transform: scale(1.03); box-shadow: 0 4px 15px rgba(16,185,129,0.25);
+  }
+  .badge-icon { font-size: 28px; margin-bottom: 4px; }
 
-  /* Quest Items */
+  /* Quests */
   .quest-item {
-    background: #0f172a; border: 1px solid #334155; border-radius: 14px;
-    padding: 14px; margin-bottom: 10px; display: flex; justify-content: space-between;
-    align-items: center; gap: 12px;
+    background: rgba(15, 23, 42, 0.8); border: 1px solid #334155; border-radius: 16px;
+    padding: 14px 16px; margin-bottom: 10px; display: flex; justify-content: space-between;
+    align-items: center; gap: 12px; transition: all 0.3s ease;
   }
-  .quest-item.completed { border-color: var(--success); background: rgba(16, 185, 129, 0.1); }
+  .quest-item:hover { border-color: #6366f1; transform: translateX(4px); }
+  .quest-item.completed { border-color: var(--success); background: rgba(16, 185, 129, 0.12); }
   .quest-reward {
     background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid #f59e0b;
-    padding: 4px 10px; border-radius: 99px; font-size: 12px; font-weight: 800; white-space: nowrap;
+    padding: 5px 12px; border-radius: 99px; font-size: 12px; font-weight: 800; white-space: nowrap;
   }
   .quest-item.completed .quest-reward { background: var(--success); color: white; border-color: var(--success); }
 
   /* Mini Games */
   .game-box {
     background: linear-gradient(135deg, #1e1b4b, #312e81);
-    border: 2px solid #4f46e5; border-radius: 18px; padding: 20px; text-align: center; margin-bottom: 16px;
+    border: 2px solid #6366f1; border-radius: 20px; padding: 20px; text-align: center;
+    box-shadow: inset 0 0 25px rgba(99,102,241,0.2);
   }
   .word-display {
-    font-size: 28px; font-weight: 800; color: #fde047; margin: 14px 0;
-    letter-spacing: 1px; text-shadow: 0 2px 10px rgba(253,224,71,0.3);
+    font-size: 32px; font-weight: 800; color: #fde047; margin: 14px 0;
+    letter-spacing: 2px; text-shadow: 0 4px 15px rgba(253,224,71,0.4);
+    animation: pulseText 1.8s infinite alternate;
   }
+  @keyframes pulseText { from { transform: scale(1); } to { transform: scale(1.06); } }
+
   .game-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 14px; }
-  .game-opt {
-    background: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.2);
-    color: white; padding: 12px; border-radius: 12px; font-weight: 700; font-size: 13px;
-    cursor: pointer; transition: 0.2s; text-align: left;
+  .game-opt, .quiz-opt {
+    background: rgba(255,255,255,0.08); border: 2px solid rgba(255,255,255,0.18);
+    color: white; padding: 12px 14px; border-radius: 14px; font-weight: 700; font-size: 13px;
+    cursor: pointer; transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1); text-align: left;
   }
-  .game-opt:hover { background: rgba(255,255,255,0.2); transform: scale(1.01); }
+  .game-opt:hover, .quiz-opt:hover { background: rgba(255,255,255,0.18); transform: translateY(-2px); border-color: #a5b4fc; }
+  .game-opt:active, .quiz-opt:active { transform: scale(0.96); }
+
+  .quiz-opt.correct { background: rgba(16, 185, 129, 0.25); border-color: #10b981; color: #6ee7b7; }
+  .quiz-opt.wrong { background: rgba(239, 68, 68, 0.25); border-color: #ef4444; color: #fca5a5; animation: shake 0.4s; }
+
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-6px); }
+    75% { transform: translateX(6px); }
+  }
+
   .btn-action {
-    background: linear-gradient(135deg, #f59e0b, #d97706); color: #0f172a;
-    border: none; padding: 10px 22px; border-radius: 12px; font-weight: 800;
-    font-size: 14px; cursor: pointer; margin-top: 10px; transition: 0.2s; display: inline-block;
+    background: linear-gradient(135deg, #f59e0b, #ea580c); color: white;
+    border: none; padding: 12px 24px; border-radius: 14px; font-weight: 800;
+    font-size: 14px; cursor: pointer; margin-top: 12px; transition: all 0.25s;
+    box-shadow: 0 6px 18px rgba(245, 158, 11, 0.35);
   }
-  .btn-action:hover { transform: scale(1.04); }
+  .btn-action:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 8px 25px rgba(245, 158, 11, 0.5); }
 
   /* Tables */
-  table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13px; }
-  th, td { padding: 10px; border: 1px solid #334155; text-align: left; }
+  table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13px; border-radius: 12px; overflow: hidden; }
+  th, td { padding: 10px 12px; border: 1px solid #334155; text-align: left; }
   th { background: #0f172a; color: #38bdf8; }
 
-  /* Toast Notification */
-  #toast {
-    position: fixed; bottom: 20px; right: 20px; background: #10b981; color: white;
-    padding: 12px 20px; border-radius: 14px; font-weight: 700; font-size: 13px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.4); transform: translateY(100px);
-    opacity: 0; transition: 0.35s; z-index: 999;
-  }
-  #toast.show { transform: translateY(0); opacity: 1; }
-
+  /* Checklist */
   .check-item {
-    display: flex; align-items: center; gap: 10px; padding: 11px;
-    background: #0f172a; border: 1px solid #334155; border-radius: 12px;
-    margin-bottom: 8px; cursor: pointer; font-size: 13px;
+    display: flex; align-items: center; gap: 12px; padding: 12px;
+    background: rgba(15, 23, 42, 0.8); border: 1px solid #334155; border-radius: 14px;
+    margin-bottom: 8px; cursor: pointer; font-size: 13px; transition: all 0.25s;
   }
-  .check-item.done { border-color: var(--success); color: #34d399; text-decoration: line-through; }
+  .check-item:hover { border-color: #6366f1; transform: translateX(4px); }
+  .check-item.done { border-color: var(--success); background: rgba(16,185,129,0.1); color: #34d399; text-decoration: line-through; }
 
-  @keyframes popIn { from { opacity: 0; transform: scale(0.97); } to { opacity: 1; transform: scale(1); } }
+  /* Toast & Confetti Particles */
+  #toast {
+    position: fixed; bottom: 24px; right: 24px; background: linear-gradient(135deg, #10b981, #059669);
+    color: white; padding: 14px 22px; border-radius: 16px; font-weight: 800; font-size: 13px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.5); transform: translateY(120px) scale(0.9);
+    opacity: 0; transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); z-index: 999;
+  }
+  #toast.show { transform: translateY(0) scale(1); opacity: 1; }
+
+  .confetti {
+    position: fixed; width: 10px; height: 10px; border-radius: 3px; z-index: 9999;
+    pointer-events: none; animation: confettiFall 1.8s ease-out forwards;
+  }
+  @keyframes confettiFall {
+    0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 1; }
+    100% { transform: translateY(350px) rotate(720deg) scale(0.3); opacity: 0; }
+  }
+  @keyframes slideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
 </style>
 </head>
 <body>
 
+<div class="bg-orb orb-1"></div>
+<div class="bg-orb orb-2"></div>
+
 <div class="container">
-  <!-- PLAYER HUD -->
-  <div class="hud" onclick="openTab('profil', document.querySelectorAll('.tab-btn')[0])" style="cursor:pointer;" title="Klik untuk edit profil">
+  <!-- 1. PLAYER HUD -->
+  <div class="hud" onclick="openTab('profil', document.querySelectorAll('.tab-btn')[0])" title="Klik untuk atur profil">
     <div class="player-info">
       <div class="avatar" id="hud-avatar">🦊</div>
       <div>
@@ -178,25 +263,26 @@
     </div>
   </div>
 
-  <!-- NAVIGATION TABS -->
+  <!-- 2. NAVIGATION TABS -->
   <div class="tabs">
     <button class="tab-btn active" onclick="openTab('profil', this)">👤 Profil</button>
-    <button class="tab-btn" onclick="openTab('misi', this)">🎯 Misi</button>
-    <button class="tab-btn" onclick="openTab('game', this)">🎮 Mini-Games (3)</button>
+    <button class="tab-btn" onclick="openTab('misi', this)">🎯 Papan Misi</button>
     <button class="tab-btn" onclick="openTab('materi', this)">📚 Materi Lengkap</button>
+    <button class="tab-btn" onclick="openTab('game', this)">🎮 Mini-Games (3)</button>
+    <button class="tab-btn" onclick="openTab('latihan', this)">📝 Latihan Soal</button>
     <button class="tab-btn" onclick="openTab('checklist', this)">✅ Checklist (<span id="chk-nav">0/11</span>)</button>
   </div>
 
-  <!-- TAB 0: PROFIL -->
+  <!-- TAB 1: PROFIL PEMAIN -->
   <div id="profil" class="section active">
     <div class="card">
-      <h2>👤 Kustomisasi Profil Pejuang</h2>
+      <h2>👤 Profil & Statistik Pejuang PSAS</h2>
       <div class="profile-grid">
         <div class="profile-card">
           <label style="font-size:13px; font-weight:700;">Nama Karakter:</label>
           <input type="text" id="input-name" class="profile-input" value="Pejuang PSAS" oninput="updateProfileName(this.value)">
           
-          <label style="font-size:13px; font-weight:700;">Pilih Avatar:</label>
+          <label style="font-size:13px; font-weight:700;">Pilih Avatar Karakter:</label>
           <div class="avatar-picker">
             <div class="avatar-opt selected" onclick="setAvatar('🦊', this)">🦊</div>
             <div class="avatar-opt" onclick="setAvatar('🐱', this)">🐱</div>
@@ -207,18 +293,19 @@
           </div>
         </div>
         <div class="profile-card">
-          <label style="font-size:13px; font-weight:700; color:#38bdf8;">📊 Statistik Permainan:</label>
-          <ul style="padding-left:18px; font-size:13px; margin-top:8px; color:var(--muted); line-height:1.8;">
-            <li>Total XP: <strong id="stat-xp" style="color:#fde047;">0 XP</strong></li>
+          <label style="font-size:13px; font-weight:700; color:#38bdf8;">📊 Statistik Progres:</label>
+          <ul style="padding-left:18px; font-size:13px; margin-top:8px; color:var(--muted); line-height:1.9;">
+            <li>Total XP Terkumpul: <strong id="stat-xp" style="color:#fde047;">0 XP</strong></li>
             <li>Misi Selesai: <strong id="stat-quests" style="color:#34d399;">0 / 5</strong></li>
-            <li>Skor Mini-Game 1: <strong id="stat-v1" style="color:#38bdf8;">0 Poin</strong></li>
-            <li>Skor Mini-Game 2 & 3: <strong id="stat-v2" style="color:#f43f5e;">0 Selesai</strong></li>
+            <li>Skor Arena Verb 2: <strong id="stat-v1" style="color:#38bdf8;">0 Poin</strong></li>
+            <li>Skor Latihan Soal: <strong id="stat-quiz" style="color:#f43f5e;">0 / 6 Benar</strong></li>
           </ul>
         </div>
       </div>
     </div>
+
     <div class="card">
-      <h2>🏅 Koleksi Lencana (Badges)</h2>
+      <h2>🏅 Lencana Pencapaian (Badges)</h2>
       <div class="badge-grid">
         <div class="badge-item" id="badge-1"><div class="badge-icon">📖</div><div style="font-size:11px; font-weight:700;">Pengamat Materi</div></div>
         <div class="badge-item" id="badge-2"><div class="badge-icon">⚡</div><div style="font-size:11px; font-weight:700;">Master Verb 2</div></div>
@@ -229,81 +316,44 @@
     </div>
   </div>
 
-  <!-- TAB 1: MISI -->
+  <!-- TAB 2: PAPAN MISI -->
   <div id="misi" class="section">
     <div class="card">
-      <h2>🏆 Daftar Misi PSAS Bahasa Inggris IX</h2>
+      <h2>🏆 Daftar Misi Belajar PSAS</h2>
       <div class="quest-item" id="q-read">
         <div>
           <strong style="font-size:14px;">📖 Misi 1: Penjelajah Materi</strong>
-          <p style="font-size:12px; color:var(--muted);">Baca materi lengkap dan klaim bonus di tab Materi.</p>
+          <p style="font-size:12px; color:var(--muted);">Pelajari rangkuman materi dan klaim hadiah XP di bagian bawah materi.</p>
         </div>
         <span class="quest-reward" id="r-read">+100 XP</span>
       </div>
       <div class="quest-item" id="q-v1">
         <div>
           <strong style="font-size:14px;">⚡ Misi 2: Arena Verb 2</strong>
-          <p style="font-size:12px; color:var(--muted);">Raih minimal 30 poin di Mini-Game 1.</p>
+          <p style="font-size:12px; color:var(--muted);">Kumpulkan minimal 30 poin di Mini-Game 1.</p>
         </div>
         <span class="quest-reward" id="r-v1">+120 XP</span>
       </div>
       <div class="quest-item" id="q-v2">
         <div>
           <strong style="font-size:14px;">🛠️ Misi 3: Detektif Grammar & Numeracy</strong>
-          <p style="font-size:12px; color:var(--muted);">Selesaikan semua soal tantangan di Mini-Game 2.</p>
+          <p style="font-size:12px; color:var(--muted);">Tuntaskan semua tantangan di Mini-Game 2.</p>
         </div>
         <span class="quest-reward" id="r-v2">+120 XP</span>
       </div>
       <div class="quest-item" id="q-v3">
         <div>
           <strong style="font-size:14px;">🐉 Misi 4: Pakar Folktale & Report Text</strong>
-          <p style="font-size:12px; color:var(--muted);">Selesaikan Mini-Game 3 seputar struktur teks & pesan moral.</p>
+          <p style="font-size:12px; color:var(--muted);">Tuntaskan Mini-Game 3 tentang pesan moral & struktur teks.</p>
         </div>
         <span class="quest-reward" id="r-v3">+120 XP</span>
       </div>
       <div class="quest-item" id="q-chk">
         <div>
           <strong style="font-size:14px;">✅ Misi 5: Siap Tempur 100%</strong>
-          <p style="font-size:12px; color:var(--muted);">Centang seluruh 11 poin di tab Checklist.</p>
+          <p style="font-size:12px; color:var(--muted);">Centang seluruh 11 target di tab Checklist.</p>
         </div>
         <span class="quest-reward" id="r-chk">+140 XP</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- TAB 2: MINI-GAMES (3 BUAH) -->
-  <div id="game" class="section">
-    <!-- Mini Game 1 -->
-    <div class="card">
-      <h2>⚡ Mini-Game 1: Verb 2 Speed Arena</h2>
-      <p style="font-size:13px; color:var(--muted); margin-bottom:12px;">Pilih bentuk lampau (Verb 2) yang tepat! (+10 poin per benar)</p>
-      <div class="game-box">
-        <div style="display:flex; justify-content:space-between; font-size:13px; font-weight:700;">
-          <span>Skor: <strong id="score-mg1" style="color:#34d399;">0</strong></span>
-          <span>Target: 30 Poin</span>
-        </div>
-        <div class="word-display" id="mg1-word">GO</div>
-        <div class="game-grid" id="mg1-options" style="grid-template-columns: repeat(2, 1fr);"></div>
-      </div>
-    </div>
-
-    <!-- Mini Game 2 -->
-    <div class="card">
-      <h2>🛠️ Mini-Game 2: Detektif Grammar & Numeracy</h2>
-      <p style="font-size:13px; color:var(--muted); margin-bottom:12px;">Tantangan tata bahasa & hitung angka (<strong id="mg2-prog">Soal 1/3</strong>):</p>
-      <div class="game-box" style="background: linear-gradient(135deg, #064e3b, #065f46); border-color:#10b981;">
-        <div style="font-size:14px; font-weight:700; margin-bottom:12px;" id="mg2-q">Loading...</div>
-        <div class="game-grid" id="mg2-options" style="grid-template-columns: 1fr;"></div>
-      </div>
-    </div>
-
-    <!-- Mini Game 3 -->
-    <div class="card">
-      <h2>🐉 Mini-Game 3: Kuis Folktale & Report Text Structure</h2>
-      <p style="font-size:13px; color:var(--muted); margin-bottom:12px;">Uji pemahaman pesan moral & struktur teks (<strong id="mg3-prog">Soal 1/3</strong>):</p>
-      <div class="game-box" style="background: linear-gradient(135deg, #701a75, #581c87); border-color:#a855f7;">
-        <div style="font-size:14px; font-weight:700; margin-bottom:12px;" id="mg3-q">Loading...</div>
-        <div class="game-grid" id="mg3-options" style="grid-template-columns: 1fr;"></div>
       </div>
     </div>
   </div>
@@ -311,60 +361,115 @@
   <!-- TAB 3: MATERI LENGKAP -->
   <div id="materi" class="section">
     <div class="card">
+      <h2>📋 Informasi & Struktur Ujian PSAS</h2>
+      <p style="font-size:13px; color:var(--muted);">Total <strong>35 Soal</strong> dalam waktu <strong>90 Menit</strong> (20 Pilihan Ganda, 5 PG Kompleks, 5 Benar/Salah, 5 Uraian).</p>
+    </div>
+
+    <div class="card">
       <h2>📜 1. Recount Text & Narrative Text (Folktales)</h2>
-      <p style="font-size:13px; color:var(--muted);">Fokus utama: Menceritakan pengalaman masa lalu[span_3](start_span)[span_3](end_span) atau kisah legenda rakyat dengan struktur alur yang jelas.</p>
-      <h3>Kunci Belajar:</h3>
-      <ul style="padding-left:18px; font-size:13px; margin-bottom:10px; line-height:1.8;">
-        <li><strong>Sequence Words:</strong> <em>First, next, after that, finally</em> (menunjukkan urutan kejadian)[span_4](start_span)[span_4](end_span).</li>
-        <li><strong>Reference Words:</strong> Menentukan rujukan kata ganti (*he, she, they, we, it*)[span_5](start_span)[span_5](end_span). Contoh: *"Rina helped Sinta. **She** was very kind."* ($\rightarrow$ She merujuk ke subjek yang sesuai konteks)[span_6](start_span)[span_6](end_span).</li>
-        <li><strong>Narrative Moral Value:</strong> Pertanyaan seputar pesan moral (*"What can we learn from the story?"*)[span_7](start_span)[span_7](end_span).</li>
-        <li><strong>Simple Past Tense:</strong> Wajib menggunakan **Verb 2**[span_8](start_span)[span_8](end_span) untuk kejadian lampau (*go $\rightarrow$ went, see $\rightarrow$ saw, help $\rightarrow$ helped*[span_9](start_span)[span_9](end_span)). Hati-hati dengan bentuk kata kerja salah seperti *buyed* (yang benar *bought*)[span_10](start_span)[span_10](end_span).</li>
+      <ul style="padding-left:18px; font-size:13px; line-height:1.8;">
+        <li><strong>Recount Text:</strong> Menceritakan pengalaman masa lalu (<em>To retell past experiences</em>). Gunakan kata urutan <em>First, next, after that, finally</em>.</li>
+        <li><strong>Reference (Rujukan Kata):</strong> Menentukan rujukan kata ganti seperti <em>he, she, they, we, it</em> sesuai konteks kalimat sebelumnya.</li>
+        <li><strong>Narrative Text (Folktales):</strong> Cerita rakyat berfokus pada tokoh, konflik, penyelesaian, dan pesan moral (<em>What can we learn from the story?</em>).</li>
+        <li><strong>Simple Past Tense:</strong> Wajib menggunakan <strong>Verb 2</strong> (contoh: <em>go → went, see → saw, buy → bought, help → helped</em>).</li>
       </ul>
     </div>
 
     <div class="card">
       <h2>🐼 2. Report Text & Simple Present Tense</h2>
-      <p style="font-size:13px; color:var(--muted);">Berfungsi untuk menyajikan informasi faktual umum mengenai hewan, tumbuhan, atau benda[span_11](start_span)[span_11](end_span).</p>
-      <h3>Struktur Teks (Generic Structure)[span_12](start_span)[span_12](end_span):</h3>
+      <p style="font-size:13px; margin-bottom:8px;"><strong>Social Function:</strong> Menyajikan informasi umum tentang hewan, tanaman, atau benda.</p>
       <ul style="padding-left:18px; font-size:13px; margin-bottom:10px; line-height:1.8;">
-        <li><strong>General Classification:</strong> Pengenalan & pengelompokan objek di awal teks. Contoh: *"Komodo dragons are large reptiles from Indonesia."*[span_13](start_span)[span_13](end_span)</li>
-        <li><strong>Description:</strong> Penjelasan rinci ciri fisik, habitat, makanan, kebiasaan, hingga ancaman konservasi. Contoh: *"They have strong legs and sharp claws. They eat meat."*[span_14](start_span)[span_14](end_span)</li>
+        <li><strong>General Classification:</strong> Pengenalan/pengelompokan objek (<em>Komodo dragons are large reptiles from Indonesia</em>).</li>
+        <li><strong>Description:</strong> Ciri fisik, habitat, makanan, kebiasaan, & ancaman konservasi (<em>They have strong legs and sharp claws</em>).</li>
       </ul>
-      <h3>Kaidah Kebahasaan (Simple Present Tense)[span_15](start_span)[span_15](end_span):</h3>
       <table>
-        <tr><th>Subjek</th><th>Aturan Kata Kerja</th><th>Contoh Kalimat</th></tr>
-        <tr><td><strong>I / You / We / They / Plural</strong></td><td>Verb 1 / have / are</td><td><em>Orangutans <strong>have</strong> long arms. They <strong>eat</strong> fruit.</em>[span_16](start_span)[span_16](end_span)</td></tr>
-        <tr><td><strong>He / She / It / Singular</strong></td><td>Verb 1 + s/es / has / is</td><td><em>An orangutan <strong>has</strong> long arms. It <strong>eats</strong> fruit.</em>[span_17](start_span)[span_17](end_span)</td></tr>
+        <tr><th>Subjek</th><th>Aturan Verb</th><th>Contoh Kalimat</th></tr>
+        <tr><td><strong>I / You / We / They / Plural</strong></td><td>Verb 1 / have / are</td><td><em>Orangutans <strong>have</strong> long arms. They <strong>eat</strong> fruit.</em></td></tr>
+        <tr><td><strong>He / She / It / Singular</strong></td><td>Verb 1 + s/es / has / is</td><td><em>An orangutan <strong>has</strong> long arms. It <strong>eats</strong> fruit.</em></td></tr>
       </table>
     </div>
 
     <div class="card">
       <h2>🔢 3. Numeracy in English</h2>
-      <p style="font-size:13px; color:var(--muted); margin-bottom:8px;">Soal cerita matematika dalam bahasa Inggris[span_18](start_span)[span_18](end_span). Perhatikan kata kunci operasi hitung:</p>
-      <ul style="padding-left:18px; font-size:13px; margin-bottom:14px; line-height:1.8;">
-        <li>➕ <strong>altogether / in total</strong> = Penjumlahan (Contoh: *24 eggs + 17 eggs = 41 eggs altogether*)[span_19](start_span)[span_19](end_span).</li>
-        <li>➖ <strong>how many more / difference</strong> = Pengurangan/Selisih (Contoh: *52 birds - 38 birds = 14 more birds*)[span_20](start_span)[span_20](end_span).</li>
+      <ul style="padding-left:18px; font-size:13px; margin-bottom:12px; line-height:1.8;">
+        <li>➕ <strong>altogether / in total</strong> = Penjumlahan (<em>24 eggs + 17 eggs = 41 eggs altogether</em>).</li>
+        <li>➖ <strong>how many more / difference</strong> = Pengurangan/Selisih (<em>52 birds - 38 birds = 14 more birds</em>).</li>
       </ul>
-      <button class="btn-action" id="btn-claim-read" onclick="completeQuest('read', 100); unlockBadge(1);">🎁 Klaim +100 XP Selesai Membaca Materi!</button>
+      <button class="btn-action" id="btn-claim-read" onclick="completeQuest('read', 100); unlockBadge(1);">🎁 Klaim +100 XP Selesai Membaca!</button>
     </div>
   </div>
 
-  <!-- TAB 4: CHECKLIST -->
+  <!-- TAB 4: MINI-GAMES -->
+  <div id="game" class="section">
+    <div class="card">
+      <h2>⚡ Mini-Game 1: Verb 2 Speed Arena</h2>
+      <div class="game-box">
+        <div style="display:flex; justify-content:space-between; font-size:13px; font-weight:700;">
+          <span>Skor Arena: <strong id="score-mg1" style="color:#34d399;">0</strong></span>
+          <span>Target Misi: 30 Poin</span>
+        </div>
+        <div class="word-display" id="mg1-word">GO</div>
+        <div class="game-grid" id="mg1-options"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>🛠️ Mini-Game 2: Detektif Grammar & Numeracy</h2>
+      <div class="game-box" style="background: linear-gradient(135deg, #064e3b, #065f46); border-color:#10b981;">
+        <div style="font-size:12px; font-weight:700; color:#6ee7b7; margin-bottom:6px;" id="mg2-prog">Soal 1/3</div>
+        <div style="font-size:14px; font-weight:700; margin-bottom:12px;" id="mg2-q">Loading...</div>
+        <div class="game-grid" id="mg2-options" style="grid-template-columns: 1fr;"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>🐉 Mini-Game 3: Kuis Folktale & Report Text</h2>
+      <div class="game-box" style="background: linear-gradient(135deg, #701a75, #581c87); border-color:#a855f7;">
+        <div style="font-size:12px; font-weight:700; color:#e9d5ff; margin-bottom:6px;" id="mg3-prog">Soal 1/3</div>
+        <div style="font-size:14px; font-weight:700; margin-bottom:12px;" id="mg3-q">Loading...</div>
+        <div class="game-grid" id="mg3-options" style="grid-template-columns: 1fr;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 5: LATIHAN SOAL INTERAKTIF -->
+  <div id="latihan" class="section">
+    <div class="card">
+      <h2>📝 Latihan Soal PSAS + Pembahasan</h2>
+      <p style="font-size:13px; color:var(--muted); margin-bottom:14px;">Pilih jawaban yang tepat untuk mendapatkan +20 XP tiap soal benar!</p>
+      <div id="quiz-container"></div>
+    </div>
+  </div>
+
+  <!-- TAB 6: CHECKLIST -->
   <div id="checklist" class="section">
     <div class="card">
       <h2>✅ Checklist Kesiapan PSAS (0/11)</h2>
-      <p style="font-size:13px; color:var(--muted); margin-bottom:12px;">Centang seluruh target penguasaan materi di bawah ini:</p>
       <div id="chk-list"></div>
     </div>
   </div>
 </div>
 
-<div id="toast">🎉 Berhasil!</div>
+<div id="toast">🎉 Notifikasi Berhasil!</div>
 
 <script>
   let xp = 0;
-  let currentAvatar = '🦊';
+  let quizCorrectCount = 0;
   const quests = { read: false, v1: false, v2: false, v3: false, chk: false };
+
+  function spawnConfetti() {
+    const colors = ['#fde047', '#34d399', '#60a5fa', '#f472b6', '#a78bfa'];
+    for (let i = 0; i < 28; i++) {
+      const c = document.createElement('div');
+      c.className = 'confetti';
+      c.style.left = Math.random() * 100 + 'vw';
+      c.style.top = (Math.random() * 20 + 10) + 'vh';
+      c.style.background = colors[Math.floor(Math.random() * colors.length)];
+      c.style.animationDuration = (Math.random() * 1 + 1.2) + 's';
+      document.body.appendChild(c);
+      setTimeout(() => c.remove(), 2200);
+    }
+  }
 
   function showToast(msg) {
     const t = document.getElementById('toast');
@@ -380,9 +485,8 @@
   function setAvatar(emoji, el) {
     document.querySelectorAll('.avatar-opt').forEach(o => o.classList.remove('selected'));
     el.classList.add('selected');
-    currentAvatar = emoji;
     document.getElementById('hud-avatar').textContent = emoji;
-    showToast(`Avatar diubah ke ${emoji}!`);
+    showToast(`Avatar diganti ke ${emoji}!`);
   }
 
   function unlockBadge(id) {
@@ -420,6 +524,7 @@
       btn.disabled = true;
       btn.style.opacity = '0.6';
     }
+    spawnConfetti();
     addXP(reward, 'Misi Selesai!');
   }
 
@@ -436,7 +541,7 @@
     { v1: 'BUY', ans: 'bought', opts: ['buyed', 'buys', 'bought', 'buying'] },
     { v1: 'SEE', ans: 'saw', opts: ['seed', 'seen', 'saw', 'sees'] },
     { v1: 'EAT', ans: 'ate', opts: ['eated', 'ate', 'eaten', 'eats'] },
-    { v1: 'WRITE', ans: 'wrote', opts: ['writed', 'written', 'wrote', 'writing'] },
+    { v1: 'WRITE', ans: 'wrote', opts: ['writed', 'written', 'wrote', 'writes'] },
     { v1: 'FIND', ans: 'found', opts: ['finded', 'found', 'finds', 'finding'] }
   ];
   let vIdx = 0, scoreMg1 = 0;
@@ -449,6 +554,7 @@
     q.opts.forEach(opt => {
       const b = document.createElement('button');
       b.className = 'game-opt';
+      b.style.textAlign = 'center';
       b.textContent = opt;
       b.onclick = () => {
         if (opt === q.ans) {
@@ -456,15 +562,13 @@
           document.getElementById('score-mg1').textContent = scoreMg1;
           document.getElementById('stat-v1').textContent = scoreMg1 + ' Poin';
           showToast('✅ Benar! +10 Poin');
-          if (scoreMg1 >= 30 && !quests.v1) {
-            completeQuest('v1', 120);
-            unlockBadge(2);
-          }
+          if (scoreMg1 >= 30 && !quests.v1) { completeQuest('v1', 120); unlockBadge(2); }
         } else {
+          b.style.animation = 'shake 0.4s';
           showToast(`❌ Salah! Verb 2 dari ${q.v1} adalah "${q.ans}"`);
         }
         vIdx++;
-        loadMg1();
+        setTimeout(loadMg1, 350);
       };
       box.appendChild(b);
     });
@@ -473,23 +577,18 @@
 
   // --- MINI GAME 2: GRAMMAR & NUMERACY ---
   const mg2Data = [
-    { q: 'Perbaiki kalimat berikut: "An elephant have a long trunk."', ans: 'An elephant has a long trunk.', opts: ['An elephant has a long trunk.', 'An elephant are a long trunk.'] },
-    { q: 'Tim menemukan 24 telur di hari Senin & 17 telur di Selasa. Berapa total telur altogether?', ans: '41 eggs altogether', opts: ['41 eggs altogether', '31 eggs altogether'] },
-    { q: 'Mana kalimat Simple Past Tense yang salah (incorrect)?', ans: 'He buyed a new bag.', opts: ['She went to school yesterday.', 'He buyed a new bag.'] }
+    { q: 'Perbaiki kalimat: "An elephant have a long trunk."', ans: 'An elephant has a long trunk.', opts: ['An elephant has a long trunk.', 'An elephant are a long trunk.'] },
+    { q: '24 telur di hari Senin + 17 telur di Selasa. Berapa total altogether?', ans: '41 eggs altogether', opts: ['41 eggs altogether', '31 eggs altogether'] },
+    { q: 'Mana kalimat Simple Past Tense yang salah?', ans: 'He buyed a new bag.', opts: ['She went to school yesterday.', 'He buyed a new bag.'] }
   ];
-  let mg2Idx = 0, mg2Done = 0;
+  let mg2Idx = 0;
 
   function loadMg2() {
     const box = document.getElementById('mg2-options');
     if (mg2Idx >= mg2Data.length) {
       document.getElementById('mg2-q').textContent = '🎉 Hebat! Tantangan Detektif Selesai!';
       box.innerHTML = '';
-      if (!quests.v2) {
-        completeQuest('v2', 120);
-        unlockBadge(3);
-        mg2Done = mg2Data.length;
-        document.getElementById('stat-v2').textContent = `${mg2Done + (window.mg3Done || 0)} Tantangan`;
-      }
+      if (!quests.v2) { completeQuest('v2', 120); unlockBadge(3); }
       return;
     }
     const item = mg2Data[mg2Idx];
@@ -499,16 +598,15 @@
     item.opts.forEach(opt => {
       const b = document.createElement('button');
       b.className = 'game-opt';
-      b.textContent = opt;
       b.style.textAlign = 'center';
+      b.textContent = opt;
       b.onclick = () => {
         if (opt === item.ans) {
           mg2Idx++;
-          mg2Done++;
-          window.mg2Done = mg2Done;
           showToast('✅ Tepat sekali!');
           loadMg2();
         } else {
+          b.style.animation = 'shake 0.4s';
           showToast('❌ Coba periksa aturannya kembali!');
         }
       };
@@ -523,20 +621,14 @@
     { q: 'Seorang anak jujur mengakui kesalahan & meminta maaf. Apa pesan moralnya?', ans: 'We should be honest.', opts: ['We should be honest.', 'We should hide our mistakes.'] },
     { q: 'Sunflowers are flowering plants. Kalimat ini berfungsi sebagai...', ans: 'General Classification', opts: ['General Classification', 'Description'] }
   ];
-  let mg3Idx = 0, mg3Done = 0;
+  let mg3Idx = 0;
 
   function loadMg3() {
     const box = document.getElementById('mg3-options');
     if (mg3Idx >= mg3Data.length) {
       document.getElementById('mg3-q').textContent = '🎉 Mantap! Pakar Folktale Selesai!';
       box.innerHTML = '';
-      if (!quests.v3) {
-        completeQuest('v3', 120);
-        unlockBadge(4);
-        mg3Done = mg3Data.length;
-        window.mg3Done = mg3Done;
-        document.getElementById('stat-v2').textContent = `${(window.mg2Done || 0) + mg3Done} Tantangan`;
-      }
+      if (!quests.v3) { completeQuest('v3', 120); unlockBadge(4); }
       return;
     }
     const item = mg3Data[mg3Idx];
@@ -546,16 +638,15 @@
     item.opts.forEach(opt => {
       const b = document.createElement('button');
       b.className = 'game-opt';
-      b.textContent = opt;
       b.style.textAlign = 'center';
+      b.textContent = opt;
       b.onclick = () => {
         if (opt === item.ans) {
           mg3Idx++;
-          mg3Done++;
-          window.mg3Done = mg3Done;
           showToast('✅ Benar!');
           loadMg3();
         } else {
+          b.style.animation = 'shake 0.4s';
           showToast('❌ Kurang tepat, coba lagi!');
         }
       };
@@ -563,6 +654,89 @@
     });
   }
   loadMg3();
+
+  // --- LATIHAN SOAL LENGKAP ---
+  const quizList = [
+    {
+      q: "1. Yesterday, Dina visited a library. First, she returned two books. Next, she borrowed a science book. Finally, she went home. What did Dina do after returning the books?",
+      opts: ["A. She went home.", "B. She borrowed a science book.", "C. She visited a museum.", "D. She bought two books."],
+      ans: 1,
+      exp: "Kata kunci 'Next' menunjukkan kegiatan setelah mengembalikan buku adalah meminjam buku sains."
+    },
+    {
+      q: "2. A boy lost his friend's pencil. He told the truth and apologized. His friend forgave him. What can we learn from the story?",
+      opts: ["A. We should hide our mistakes.", "B. We should never borrow things.", "C. We should be honest.", "D. We should avoid our friends."],
+      ans: 2,
+      exp: "Tindakan jujur mengakui kesalahan mengajarkan kita untuk selalu bersikap jujur (be honest)."
+    },
+    {
+      q: "3. Which Simple Past Tense sentence is INCORRECT?",
+      opts: ["A. She went to school yesterday.", "B. They played football last week.", "C. He buyed a new bag.", "D. We watched a movie last night."],
+      ans: 2,
+      exp: "'buyed' salah karena bentuk lampau (Verb 2) dari 'buy' adalah 'bought'."
+    },
+    {
+      q: "4. Sunflowers are flowering plants. They have large yellow flowers. Which sentence is the General Classification?",
+      opts: ["A. Sunflowers are flowering plants.", "B. They have large yellow flowers."],
+      ans: 0,
+      exp: "Kalimat pertama memperkenalkan dan mengelompokkan bunga matahari sebagai tanaman berbunga."
+    },
+    {
+      q: "5. Correct the sentence: 'An elephant have a long trunk.'",
+      opts: ["A. An elephant has a long trunk.", "B. An elephant are a long trunk."],
+      ans: 0,
+      exp: "Subjek tunggal (An elephant) menggunakan kata kerja 'has' dalam Simple Present Tense."
+    },
+    {
+      q: "6. A conservation team counted 38 birds in one forest and 52 birds in another forest. How many more birds were found in the second forest?",
+      opts: ["A. 90 birds", "B. 14 birds", "C. 24 birds"],
+      ans: 1,
+      exp: "'How many more' menanyakan selisih: 52 - 38 = 14 birds."
+    }
+  ];
+
+  const qContainer = document.getElementById('quiz-container');
+  quizList.forEach((item, idx) => {
+    const wrap = document.createElement('div');
+    wrap.style.cssText = 'margin-bottom:18px; padding-bottom:14px; border-bottom:1px dashed #334155;';
+    wrap.innerHTML = `<div style="font-weight:700; font-size:14px; margin-bottom:10px;">${item.q}</div>`;
+    const fb = document.createElement('div');
+    fb.style.cssText = 'font-size:12px; margin-top:8px; padding:10px; border-radius:10px; display:none;';
+    let answered = false;
+
+    item.opts.forEach((optText, oIdx) => {
+      const btn = document.createElement('button');
+      btn.className = 'quiz-opt';
+      btn.style.display = 'block';
+      btn.style.width = '100%';
+      btn.style.marginBottom = '6px';
+      btn.textContent = optText;
+      btn.onclick = () => {
+        wrap.querySelectorAll('.quiz-opt').forEach(b => b.classList.remove('correct', 'wrong'));
+        fb.style.display = 'block';
+        if (oIdx === item.ans) {
+          btn.classList.add('correct');
+          fb.style.background = 'rgba(16,185,129,0.15)';
+          fb.style.color = '#6ee7b7';
+          fb.textContent = '✅ Benar! ' + item.exp;
+          if (!answered) {
+            answered = true;
+            quizCorrectCount++;
+            document.getElementById('stat-quiz').textContent = `${quizCorrectCount} / 6 Benar`;
+            addXP(20, 'Jawaban Latihan Benar!');
+          }
+        } else {
+          btn.classList.add('wrong');
+          fb.style.background = 'rgba(239,68,68,0.15)';
+          fb.style.color = '#fca5a5';
+          fb.textContent = '❌ Kurang tepat. Coba pilih jawaban lain!';
+        }
+      };
+      wrap.appendChild(btn);
+    });
+    wrap.appendChild(fb);
+    qContainer.appendChild(wrap);
+  });
 
   // --- CHECKLIST ---
   const chkItems = [
@@ -589,4 +763,3 @@
 </script>
 </body>
 </html>
- 
