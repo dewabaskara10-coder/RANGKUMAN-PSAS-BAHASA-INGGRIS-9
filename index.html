@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
@@ -14,7 +14,7 @@
     --success: #10b981;
     --danger: #ef4444;
     --bg: #0b0f19;
-    --card: rgba(30, 41, 59, 0.88);
+    --card: rgba(30, 41, 59, 0.9);
     --text: #f8fafc;
     --muted: #94a3b8;
   }
@@ -22,7 +22,7 @@
   * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
   
   body {
-    background: radial-gradient(circle at top, #1e1b4b, #0b0f19 70%);
+    background: radial-gradient(circle at top, #1e1b4b, #0b0f19 75%);
     color: var(--text);
     padding: 16px;
     line-height: 1.6;
@@ -35,21 +35,21 @@
     position: fixed; border-radius: 50%; filter: blur(90px); z-index: -1;
     animation: floatOrb 12s infinite alternate ease-in-out;
   }
-  .orb-1 { width: 280px; height: 280px; background: rgba(79, 70, 229, 0.22); top: -40px; left: -40px; }
-  .orb-2 { width: 320px; height: 320px; background: rgba(124, 58, 237, 0.18); bottom: -60px; right: -40px; animation-delay: -6s; }
+  .orb-1 { width: 280px; height: 280px; background: rgba(79, 70, 229, 0.25); top: -40px; left: -40px; }
+  .orb-2 { width: 320px; height: 320px; background: rgba(124, 58, 237, 0.2); bottom: -60px; right: -40px; animation-delay: -6s; }
 
   @keyframes floatOrb {
     0% { transform: translate(0, 0) scale(1); }
     100% { transform: translate(35px, 45px) scale(1.18); }
   }
 
-  .container { max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
+  .container { max-width: 920px; margin: 0 auto; position: relative; z-index: 1; }
 
   /* Player HUD */
   .hud {
     background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.98));
     backdrop-filter: blur(12px);
-    border: 2px solid rgba(129, 140, 248, 0.4);
+    border: 2px solid rgba(129, 140, 248, 0.45);
     border-radius: 22px;
     padding: 16px 20px;
     margin-bottom: 18px;
@@ -120,7 +120,7 @@
   .card h3 { font-size: 15px; color: #38bdf8; margin: 16px 0 8px; }
 
   /* Profile Customization */
-  .profile-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; margin-top: 12px; }
+  .profile-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin-top: 12px; }
   .profile-card { background: rgba(15, 23, 42, 0.85); border: 1px solid #334155; padding: 16px; border-radius: 16px; }
   .profile-input {
     width: 100%; padding: 10px 14px; background: #1e293b; border: 2px solid #475569;
@@ -137,9 +137,9 @@
   .avatar-opt.selected { border-color: #fde047; background: rgba(253,224,71,0.2); transform: scale(1.1); }
 
   /* Badges */
-  .badge-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin-top: 10px; }
+  .badge-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(115px, 1fr)); gap: 10px; margin-top: 10px; }
   .badge-item {
-    background: rgba(15, 23, 42, 0.7); border: 1px solid #334155; border-radius: 16px; padding: 14px 10px;
+    background: rgba(15, 23, 42, 0.7); border: 1px solid #334155; border-radius: 16px; padding: 14px 8px;
     text-align: center; opacity: 0.4; filter: grayscale(100%); transition: all 0.4s;
   }
   .badge-item.unlocked {
@@ -168,7 +168,7 @@
     border: 2px solid #6366f1; border-radius: 20px; padding: 20px; text-align: center;
   }
   .word-display {
-    font-size: 32px; font-weight: 800; color: #fde047; margin: 14px 0;
+    font-size: 30px; font-weight: 800; color: #fde047; margin: 12px 0;
     letter-spacing: 2px; text-shadow: 0 4px 15px rgba(253,224,71,0.4);
   }
   .game-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 14px; }
@@ -195,10 +195,14 @@
   }
   .btn-action:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(245, 158, 11, 0.5); }
 
-  /* Tables */
+  /* Tables & Examples */
   table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13px; border-radius: 12px; overflow: hidden; }
   th, td { padding: 10px 12px; border: 1px solid #334155; text-align: left; }
   th { background: #0f172a; color: #38bdf8; }
+  .example-box {
+    background: rgba(15, 23, 42, 0.75); border-left: 4px solid #38bdf8;
+    padding: 12px 14px; border-radius: 10px; margin-top: 10px; font-size: 13px;
+  }
 
   /* Checklist */
   .check-item {
@@ -245,8 +249,8 @@
     </div>
     <div class="xp-box">
       <div class="xp-header">
-        <span>XP Kamu: <strong id="xp-val" style="color:#fde047;">0</strong> / 700 XP</span>
-        <span id="quest-summary">Misi: 0/5</span>
+        <span>XP Kamu: <strong id="xp-val" style="color:#fde047;">0</strong> / 1000 XP</span>
+        <span id="quest-summary">Misi: 0/6</span>
       </div>
       <div class="xp-bar-bg"><div class="xp-bar-fill" id="xp-bar"></div></div>
     </div>
@@ -255,10 +259,10 @@
   <!-- 2. NAVIGATION TABS -->
   <div class="tabs">
     <button class="tab-btn active" onclick="openTab('profil', this)">👤 Profil</button>
-    <button class="tab-btn" onclick="openTab('misi', this)">🎯 Papan Misi</button>
-    <button class="tab-btn" onclick="openTab('materi', this)">📚 Materi Lengkap & Detail</button>
-    <button class="tab-btn" onclick="openTab('game', this)">🎮 Mini-Games (3)</button>
-    <button class="tab-btn" onclick="openTab('latihan', this)">📝 Latihan Soal</button>
+    <button class="tab-btn" onclick="openTab('misi', this)">🎯 Papan Misi (6)</button>
+    <button class="tab-btn" onclick="openTab('materi', this)">📚 Materi Super Lengkap</button>
+    <button class="tab-btn" onclick="openTab('game', this)">🎮 Mini-Games (5)</button>
+    <button class="tab-btn" onclick="openTab('latihan', this)">📝 Latihan Soal (10)</button>
     <button class="tab-btn" onclick="openTab('checklist', this)">✅ Checklist (<span id="chk-nav">0/11</span>)</button>
   </div>
 
@@ -285,9 +289,9 @@
           <label style="font-size:13px; font-weight:700; color:#38bdf8;">📊 Statistik Progres:</label>
           <ul style="padding-left:18px; font-size:13px; margin-top:8px; color:var(--muted); line-height:1.9;">
             <li>Total XP Terkumpul: <strong id="stat-xp" style="color:#fde047;">0 XP</strong></li>
-            <li>Misi Selesai: <strong id="stat-quests" style="color:#34d399;">0 / 5</strong></li>
+            <li>Misi Selesai: <strong id="stat-quests" style="color:#34d399;">0 / 6</strong></li>
             <li>Skor Arena Verb 2: <strong id="stat-v1" style="color:#38bdf8;">0 Poin</strong></li>
-            <li>Skor Latihan Soal: <strong id="stat-quiz" style="color:#f43f5e;">0 / 6 Benar</strong></li>
+            <li>Skor Latihan Soal: <strong id="stat-quiz" style="color:#f43f5e;">0 / 10 Benar</strong></li>
           </ul>
         </div>
       </div>
@@ -300,7 +304,8 @@
         <div class="badge-item" id="badge-2"><div class="badge-icon">⚡</div><div style="font-size:11px; font-weight:700;">Master Verb 2</div></div>
         <div class="badge-item" id="badge-3"><div class="badge-icon">🛠️</div><div style="font-size:11px; font-weight:700;">Detektif Grammar</div></div>
         <div class="badge-item" id="badge-4"><div class="badge-icon">🐉</div><div style="font-size:11px; font-weight:700;">Pakar Folktale</div></div>
-        <div class="badge-item" id="badge-5"><div class="badge-icon">👑</div><div style="font-size:11px; font-weight:700;">PSAS Champion</div></div>
+        <div class="badge-item" id="badge-5"><div class="badge-icon">🔍</div><div style="font-size:11px; font-weight:700;">Pronoun Hunter</div></div>
+        <div class="badge-item" id="badge-6"><div class="badge-icon">👑</div><div style="font-size:11px; font-weight:700;">PSAS Legend</div></div>
       </div>
     </div>
   </div>
@@ -308,122 +313,146 @@
   <!-- TAB 2: PAPAN MISI -->
   <div id="misi" class="section">
     <div class="card">
-      <h2>🏆 Daftar Misi Belajar PSAS</h2>
+      <h2>🏆 Daftar 6 Misi Belajar PSAS</h2>
       <div class="quest-item" id="q-read">
         <div>
           <strong style="font-size:14px;">📖 Misi 1: Penjelajah Materi Super</strong>
-          <p style="font-size:12px; color:var(--muted);">Pelajari seluruh rangkuman materi mendalam dan klaim hadiah XP di tab Materi.</p>
+          <p style="font-size:12px; color:var(--muted);">Pelajari rangkuman lengkap dan klaim bonus di bagian bawah tab Materi.</p>
         </div>
-        <span class="quest-reward" id="r-read">+120 XP</span>
+        <span class="quest-reward" id="r-read">+150 XP</span>
       </div>
       <div class="quest-item" id="q-v1">
         <div>
           <strong style="font-size:14px;">⚡ Misi 2: Arena Verb 2</strong>
-          <p style="font-size:12px; color:var(--muted);">Kumpulkan minimal 30 poin di Mini-Game 1.</p>
+          <p style="font-size:12px; color:var(--muted);">Raih minimal 40 poin di Mini-Game 1.</p>
         </div>
         <span class="quest-reward" id="r-v1">+120 XP</span>
       </div>
       <div class="quest-item" id="q-v2">
         <div>
           <strong style="font-size:14px;">🛠️ Misi 3: Detektif Grammar & Numeracy</strong>
-          <p style="font-size:12px; color:var(--muted);">Tuntaskan semua tantangan di Mini-Game 2.</p>
+          <p style="font-size:12px; color:var(--muted);">Selesaikan semua tantangan di Mini-Game 2.</p>
         </div>
         <span class="quest-reward" id="r-v2">+120 XP</span>
       </div>
       <div class="quest-item" id="q-v3">
         <div>
           <strong style="font-size:14px;">🐉 Misi 4: Pakar Folktale & Report Text</strong>
-          <p style="font-size:12px; color:var(--muted);">Tuntaskan Mini-Game 3 tentang struktur teks & pesan moral.</p>
+          <p style="font-size:12px; color:var(--muted);">Selesaikan Mini-Game 3 tentang struktur teks & pesan moral.</p>
         </div>
         <span class="quest-reward" id="r-v3">+120 XP</span>
       </div>
+      <div class="quest-item" id="q-v4">
+        <div>
+          <strong style="font-size:14px;">🔍 Misi 5: Pemburu Rujukan & Alur (Mini-Game 4 & 5)</strong>
+          <p style="font-size:12px; color:var(--muted);">Tuntaskan Mini-Game 4 dan Mini-Game 5.</p>
+        </div>
+        <span class="quest-reward" id="r-v4">+190 XP</span>
+      </div>
       <div class="quest-item" id="q-chk">
         <div>
-          <strong style="font-size:14px;">✅ Misi 5: Siap Tempur 100%</strong>
-          <p style="font-size:12px; color:var(--muted);">Centang seluruh 11 target di tab Checklist.</p>
+          <strong style="font-size:14px;">✅ Misi 6: Siap Tempur 100%</strong>
+          <p style="font-size:12px; color:var(--muted);">Centang seluruh 11 target kompetensi di tab Checklist.</p>
         </div>
-        <span class="quest-reward" id="r-chk">+200 XP</span>
+        <span class="quest-reward" id="r-chk">+100 XP</span>
       </div>
     </div>
   </div>
 
-  <!-- TAB 3: MATERI LENGKAP & DETAIL -->
+  <!-- TAB 3: MATERI SUPER LENGKAP -->
   <div id="materi" class="section">
     <div class="card">
-      <h2>📌 Informasi Lengkap PSAS Bahasa Inggris Kelas IX</h2>
+      <h2>📌 1. Informasi Struktur Ujian PSAS Bahasa Inggris IX</h2>
       <table>
-        <tr><th>Komponen Ujian</th><th>Keterangan Detail</th></tr>
-        <tr><td>Mata Pelajaran & Kelas</td><td>Bahasa Inggris • Kelas IX[span_0](start_span)[span_0](end_span)</td></tr>
-        <tr><td>Materi Utama</td><td>Recount Text, Narrative Text (Folktales), Report Text, Simple Past & Simple Present[span_1](start_span)[span_1](end_span)</td></tr>
-        <tr><td>Format Soal</td><td>20 Pilihan Ganda, 5 PG Kompleks, 5 Benar/Salah (masing-masing 4 pernyataan), 5 Uraian (Total 35 soal)[span_2](start_span)[span_2](end_span)</td></tr>
-        <tr><td>Alokasi Waktu</td><td>90 Menit[span_3](start_span)[span_3](end_span)</td></tr>
+        <tr><th>Komponen</th><th>Detail Informasi</th></tr>
+        <tr><td>Materi Utama</td><td>Recount Text, Narrative Text (Folktales), Report Text, Simple Past & Simple Present</td></tr>
+        <tr><td>Komposisi Soal</td><td>20 Pilihan Ganda, 5 PG Kompleks, 5 Benar/Salah (masing-masing 4 pernyataan), 5 Uraian</td></tr>
+        <tr><td>Total Soal & Waktu</td><td>35 Soal • 90 Menit</td></tr>
       </table>
     </div>
 
     <div class="card">
-      <h2>📜 1. Recount Text & Narrative Text (Folktales)</h2>
-      <h3>A. Recount Text</h3>
-      <p style="font-size:13px; color:var(--muted); margin-bottom:8px;">Berfungsi untuk menceritakan kembali pengalaman atau peristiwa masa lalu (*To retell past experiences*[span_4](start_span)[span_4](end_span)).</p>
-      <ul style="padding-left:18px; font-size:13px; line-height:1.8; margin-bottom:12px;">
-        <li><strong>Sequence Words (Urutan Kejadian):</strong> Kata penghubung waktu seperti *First, next, after that, finally*[span_5](start_span)[span_5](end_span).</li>
-        <li><strong>Reference Words (Rujukan Kata):</strong> Menentukan rujukan kata ganti (*he, she, they, we, it*[span_6](start_span)[span_6](end_span)). Contoh: *"Rina helped Sinta. **She** was very kind."* (She merujuk pada Rina/Sinta sesuai konteks[span_7](start_span)[span_7](end_span)).</li>
-        <li><strong>Inference & Numeracy:</strong> Menyimpulkan informasi tersirat[span_8](start_span)[span_8](end_span) dan menjumlahkan angka dalam teks narasi[span_9](start_span)[span_9](end_span)[span_10](start_span)[span_10](end_span).</li>
+      <h2>📜 2. Recount Text & Narrative Text (Folktales)</h2>
+      <h3>A. Recount Text (Pengalaman Masa Lalu)</h3>
+      <p style="font-size:13px; color:var(--muted);">Tujuan sosial: <em>To retell past experiences or events in chronological order</em> (menceritakan kembali pengalaman masa lalu secara berurutan).</p>
+      <ul style="padding-left:18px; font-size:13px; line-height:1.8; margin-top:6px;">
+        <li><strong>Struktur Teks:</strong> <em>Orientation</em> (pengenalan tokoh/waktu/tempat) → <em>Events</em> (rangkaian kejadian) → <em>Re-orientation</em> (penutup/kesan penulis).</li>
+        <li><strong>Sequence Words:</strong> Kata penghubung urutan kejadian seperti <em>First, then, next, after that, finally</em>.</li>
+        <li><strong>Reference (Rujukan Kata Ganti):</strong> Memahami kata ganti seperti <em>he, she, they, we, it, them, their</em> yang merujuk pada tokoh/benda di kalimat sebelumnya.</li>
+        <li><strong>Inference (Kesimpulan Tersirat):</strong> Menyimpulkan sifat tokoh atau hikmah pengalaman yang tidak tertulis secara langsung di teks.</li>
       </ul>
 
       <h3>B. Narrative Text (Folktales / Cerita Rakyat)</h3>
-      <p style="font-size:13px; color:var(--muted); margin-bottom:8px;">Fokus pada alur cerita fiksi tradisional yang memuat tokoh, masalah (*problem*), penyelesaian (*resolution*), dan pesan moral (*moral value*[span_11](start_span)[span_11](end_span)).</p>
-
-      <h3>C. Simple Past Tense (Waktu Lampau)</h3>
-      <p style="font-size:13px; color:var(--muted); margin-bottom:8px;">Wajib menggunakan **Verb 2**[span_12](start_span)[span_12](end_span) untuk kalimat positif (affirmative).</p>
-      <ul style="padding-left:18px; font-size:13px; line-height:1.8;">
-        <li>Contoh Perubahan Regular & Irregular: *go → went, see → saw, help → helped*[span_13](start_span)[span_13](end_span).</li>
-        <li>Hati-hati dengan jebakan soal perbaikan kata kerja salah, misalnya *buyed* (yang benar adalah *bought*[span_14](start_span)[span_14](end_span)).</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <h2>🐼 2. Report Text & Simple Present Tense</h2>
-      <p style="font-size:13px; color:var(--muted); margin-bottom:8px;">Berfungsi untuk menyajikan informasi faktual umum mengenai hewan, tumbuhan, fenomena alam, atau benda (*To present general information about animals, plants, or other things*[span_15](start_span)[span_15](end_span)).</p>
-      
-      <h3>Struktur Teks (Generic Structure)[span_16](start_span)[span_16](end_span):</h3>
-      <ul style="padding-left:18px; font-size:13px; line-height:1.8; margin-bottom:12px;">
-        <li><strong>General Classification:</strong> Paragraf awal yang memperkenalkan, mengklasifikasikan, atau mendefinisikan objek yang dibahas[span_17](start_span)[span_17](end_span). (Contoh: *"Komodo dragons are large reptiles from Indonesia."*[span_18](start_span)[span_18](end_span)).</li>
-        <li><strong>Description:</strong> Paragraf penjelasan rinci mengenai ciri fisik, habitat, makanan, perilaku, kemampuan khusus, hingga ancaman konservasi[span_19](start_span)[span_19](end_span). (Contoh: *"They have strong legs and sharp claws. They eat meat."*[span_20](start_span)[span_20](end_span)).</li>
+      <p style="font-size:13px; color:var(--muted);">Fokus pada cerita rakyat/legenda untuk menghibur dan menyampaikan pesan moral.</p>
+      <ul style="padding-left:18px; font-size:13px; line-height:1.8; margin-top:6px;">
+        <li><strong>Struktur:</strong> <em>Orientation</em> → <em>Complication</em> (munculnya masalah/konflik) → <em>Resolution</em> (penyelesaian masalah) → <em>Moral Value</em> (pesan moral).</li>
+        <li><strong>Pertanyaan Umum:</strong> Alasan tokoh melakukan tindakan tertentu, konflik utama, dan pesan moral (<em>What can we learn from the story?</em>).</li>
       </ul>
 
-      <h3>Kaidah Kebahasaan: Simple Present Tense[span_21](start_span)[span_21](end_span)</h3>
+      <h3>C. Simple Past Tense (Wajib untuk Recount & Narrative)</h3>
+      <p style="font-size:13px; color:var(--muted); margin-bottom:8px;">Digunakan untuk menyatakan kejadian yang sudah selesai di masa lampau. Menggunakan <strong>Verb 2</strong> pada kalimat positif.</p>
       <table>
-        <tr><th>Subjek Kalimat</th><th>Aturan Kata Kerja (Verb)</th><th>Contoh Penggunaan</th></tr>
-        <tr><td><strong>I / You / We / They / Plural Noun</strong></td><td>Verb 1 / have / are[span_22](start_span)[span_22](end_span)</td><td><em>Orangutans <strong>have</strong> long arms. They <strong>eat</strong> fruit.</em>[span_23](start_span)[span_23](end_span)</td></tr>
-        <tr><td><strong>He / She / It / Singular Noun</strong></td><td>Verb 1 + s/es / has / is[span_24](start_span)[span_24](end_span)</td><td><em>An orangutan <strong>has</strong> long arms. It <strong>eats</strong> fruit.</em>[span_25](start_span)[span_25](end_span)</td></tr>
+        <tr><th>Verb 1 (Dasar)</th><th>Verb 2 (Lampau - Benar)</th><th>Bentuk Salah (Hindari!)</th></tr>
+        <tr><td>go / see / buy</td><td><strong>went / saw / bought</strong></td><td>goed / seed / buyed</td></tr>
+        <tr><td>eat / write / find</td><td><strong>ate / wrote / found</strong></td><td>eated / writed / finded</td></tr>
+        <tr><td>help / visit / play</td><td><strong>helped / visited / played</strong></td><td>helpt / visiting</td></tr>
       </table>
+      <div class="example-box">
+        <strong>Catatan Kalimat Negatif & Tanya:</strong> Jika sudah memakai <strong>did / didn't</strong>, kata kerja kembali ke <strong>Verb 1</strong>! Contoh: <em>She <strong>didn't go</strong> to school yesterday</em> (bukan <em>didn't went</em>).
+      </div>
     </div>
 
     <div class="card">
-      <h2>🔢 3. Numeracy in English (Matematika dalam Bahasa Inggris)</h2>
-      <p style="font-size:13px; color:var(--muted); margin-bottom:8px;">Siswa sering diuji melalui soal cerita numerasi berbahasa Inggris[span_26](start_span)[span_26](end_span). Perhatikan kata kunci operasi hitung berikut:</p>
-      <ul style="padding-left:18px; font-size:13px; line-height:1.8; margin-bottom:14px;">
-        <li>➕ **Penjumlahan (+):** Kata kunci seperti *altogether*, *in total*[span_27](start_span)[span_27](end_span). (Contoh: *"A wildlife team found 24 bird eggs on Monday and 17 on Tuesday. How many eggs did they find altogether?"* $\rightarrow 24 + 17 = 41$[span_28](start_span)[span_28](end_span)).</li>
-        <li>➖ **Pengurangan / Selisih (-):** Kata kunci seperti *how many more*, *difference*[span_29](start_span)[span_29](end_span). (Contoh: *"A conservation team counted 38 birds in one forest and 52 in another. How many more birds were found in the second forest?"* $\rightarrow 52 - 38 = 14$[span_30](start_span)[span_30](end_span)).</li>
+      <h2>🐼 3. Report Text & Simple Present Tense</h2>
+      <p style="font-size:13px; color:var(--muted);">Tujuan sosial: <em>To present general information about animals, plants, natural phenomena, or objects based on facts</em> (menyajikan informasi faktual umum).</p>
+      
+      <h3>Struktur Teks (Generic Structure):</h3>
+      <ul style="padding-left:18px; font-size:13px; line-height:1.8; margin-top:6px;">
+        <li><strong>1. General Classification:</strong> Bagian pembuka (biasanya paragraf 1) yang memperkenalkan nama ilmiah, jenis, atau pengelompokan objek secara umum.</li>
+        <li><strong>2. Description:</strong> Bagian penjabaran rinci mengenai ciri fisik (<em>appearance</em>), habitat, makanan (<em>diet</em>), perilaku/kemampuan khusus (<em>habits/special ability</em>), serta ancaman kepunahan dan tindakan konservasi (<em>threats & conservation</em>).</li>
       </ul>
-      <button class="btn-action" id="btn-claim-read" onclick="completeQuest('read', 120); unlockBadge(1);">🎁 Klaim +120 XP Selesai Membaca Materi!</button>
+
+      <h3>Kaidah Kebahasaan: Simple Present Tense</h3>
+      <table>
+        <tr><th>Subjek Kalimat</th><th>Aturan Kata Kerja / To Be</th><th>Contoh Kalimat</th></tr>
+        <tr><td><strong>I / You / We / They / Plural (Jamak)</strong></td><td>Verb 1 / have / are</td><td><em>Sun bears <strong>have</strong> dark fur. They <strong>climb</strong> trees.</em></td></tr>
+        <tr><td><strong>He / She / It / Singular (Tunggal)</strong></td><td>Verb 1 + s/es / has / is</td><td><em>An elephant <strong>has</strong> a long trunk. It <strong>eats</strong> grass.</em></td></tr>
+      </table>
+      <div class="example-box">
+        <strong>Contoh Teks Report (Sun Bears):</strong><br>
+        <em>Sun bears are small mammals that live in tropical forests.</em> (<strong>General Classification</strong>)<br>
+        <em>They have dark fur, strong claws, and love eating insects, fruit, and honey. Unfortunately, habitat loss and illegal hunting threaten their population.</em> (<strong>Description</strong>)
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>🔢 4. Numeracy in English (Matematika dalam Bahasa Inggris)</h2>
+      <p style="font-size:13px; color:var(--muted); margin-bottom:8px;">Ujian mencakup soal hitung-hitungan sederhana berbasis teks. Kenali kata kunci operasinya:</p>
+      <table>
+        <tr><th>Kata Kunci</th><th>Operasi Hitung</th><th>Contoh Soal & Penyelesaian</th></tr>
+        <tr><td><strong>altogether / in total / combined</strong></td><td>Penjumlahan (+)</td><td>24 eggs on Monday + 17 eggs on Tuesday = <strong>41 eggs altogether</strong>.</td></tr>
+        <tr><td><strong>how many more / difference / left</strong></td><td>Pengurangan (-)</td><td>52 birds in forest B - 38 birds in forest A = <strong>14 more birds</strong>.</td></tr>
+      </table>
+      <button class="btn-action" id="btn-claim-read" onclick="completeQuest('read', 150); unlockBadge(1);">🎁 Klaim +150 XP Selesai Membaca Materi Lengkap!</button>
     </div>
   </div>
 
-  <!-- TAB 4: MINI-GAMES -->
+  <!-- TAB 4: 5 MINI-GAMES INTERAKTIF -->
   <div id="game" class="section">
+    <!-- Mini Game 1 -->
     <div class="card">
       <h2>⚡ Mini-Game 1: Verb 2 Speed Arena</h2>
       <div class="game-box">
         <div style="display:flex; justify-content:space-between; font-size:13px; font-weight:700;">
           <span>Skor Arena: <strong id="score-mg1" style="color:#34d399;">0</strong></span>
-          <span>Target Misi: 30 Poin</span>
+          <span>Target Misi: 40 Poin</span>
         </div>
         <div class="word-display" id="mg1-word">GO</div>
         <div class="game-grid" id="mg1-options"></div>
       </div>
     </div>
 
+    <!-- Mini Game 2 -->
     <div class="card">
       <h2>🛠️ Mini-Game 2: Detektif Grammar & Numeracy</h2>
       <div class="game-box" style="background: linear-gradient(135deg, #064e3b, #065f46); border-color:#10b981;">
@@ -433,21 +462,42 @@
       </div>
     </div>
 
+    <!-- Mini Game 3 -->
     <div class="card">
-      <h2>🐉 Mini-Game 3: Kuis Folktale & Report Text Structure</h2>
+      <h2>🐉 Mini-Game 3: Pakar Folktale & Report Text</h2>
       <div class="game-box" style="background: linear-gradient(135deg, #701a75, #581c87); border-color:#a855f7;">
         <div style="font-size:12px; font-weight:700; color:#e9d5ff; margin-bottom:6px;" id="mg3-prog">Soal 1/3</div>
         <div style="font-size:14px; font-weight:700; margin-bottom:12px;" id="mg3-q">Loading...</div>
         <div class="game-grid" id="mg3-options" style="grid-template-columns: 1fr;"></div>
       </div>
     </div>
+
+    <!-- Mini Game 4 -->
+    <div class="card">
+      <h2>🔍 Mini-Game 4: Pronoun Reference Hunter</h2>
+      <div class="game-box" style="background: linear-gradient(135deg, #7c2d12, #9a3412); border-color:#f97316;">
+        <div style="font-size:12px; font-weight:700; color:#fed7aa; margin-bottom:6px;" id="mg4-prog">Soal 1/3</div>
+        <div style="font-size:14px; font-weight:700; margin-bottom:12px;" id="mg4-q">Loading...</div>
+        <div class="game-grid" id="mg4-options" style="grid-template-columns: 1fr;"></div>
+      </div>
+    </div>
+
+    <!-- Mini Game 5 -->
+    <div class="card">
+      <h2>🧩 Mini-Game 5: Conservation & Sequence Matcher</h2>
+      <div class="game-box" style="background: linear-gradient(135deg, #0c4a6e, #075985); border-color:#0ea5e9;">
+        <div style="font-size:12px; font-weight:700; color:#bae6fd; margin-bottom:6px;" id="mg5-prog">Soal 1/3</div>
+        <div style="font-size:14px; font-weight:700; margin-bottom:12px;" id="mg5-q">Loading...</div>
+        <div class="game-grid" id="mg5-options" style="grid-template-columns: 1fr;"></div>
+      </div>
+    </div>
   </div>
 
-  <!-- TAB 5: LATIHAN SOAL LENGKAP -->
+  <!-- TAB 5: 10 LATIHAN SOAL LENGKAP -->
   <div id="latihan" class="section">
     <div class="card">
-      <h2>📝 Latihan Soal PSAS Berdasarkan Kisi-Kisi</h2>
-      <p style="font-size:13px; color:var(--muted); margin-bottom:14px;">Pilih jawaban yang benar untuk menguji kesiapanmu dan raih +20 XP per soal!</p>
+      <h2>📝 10 Latihan Soal PSAS + Pembahasan Lengkap</h2>
+      <p style="font-size:13px; color:var(--muted); margin-bottom:14px;">Kerjakan ke-10 soal di bawah ini untuk menguji kesiapanmu dan raih +20 XP per soal benar!</p>
       <div id="quiz-container"></div>
     </div>
   </div>
@@ -466,7 +516,9 @@
 <script>
   let xp = 0;
   let quizCorrectCount = 0;
-  const quests = { read: false, v1: false, v2: false, v3: false, chk: false };
+  let mg4Finished = false;
+  let mg5Finished = false;
+  const quests = { read: false, v1: false, v2: false, v3: false, v4: false, chk: false };
 
   function spawnConfetti() {
     const colors = ['#fde047', '#34d399', '#60a5fa', '#f472b6', '#a78bfa'];
@@ -508,14 +560,14 @@
     xp += amount;
     document.getElementById('xp-val').textContent = xp;
     document.getElementById('stat-xp').textContent = xp + ' XP';
-    const pct = Math.min((xp / 700) * 100, 100);
+    const pct = Math.min((xp / 1000) * 100, 100);
     document.getElementById('xp-bar').style.width = pct + '%';
 
     const title = document.getElementById('rank-title');
-    if (xp >= 600) { title.textContent = 'Level 5 • PSAS Champion!'; unlockBadge(5); }
-    else if (xp >= 450) { title.textContent = 'Level 4 • Master Bahasa Inggris'; }
-    else if (xp >= 250) { title.textContent = 'Level 3 • Ksatria Grammar'; }
-    else if (xp >= 100) { title.textContent = 'Level 2 • Penjelajah Teks'; }
+    if (xp >= 850) { title.textContent = 'Level 5 • PSAS Legend!'; unlockBadge(6); }
+    else if (xp >= 600) { title.textContent = 'Level 4 • Master Bahasa Inggris'; }
+    else if (xp >= 350) { title.textContent = 'Level 3 • Ksatria Grammar'; }
+    else if (xp >= 150) { title.textContent = 'Level 2 • Penjelajah Teks'; }
     showToast(`🎉 +${amount} XP: ${reason}`);
   }
 
@@ -526,8 +578,8 @@
     document.getElementById('r-' + id).textContent = 'SELESAI ✓';
     
     const doneCount = Object.values(quests).filter(Boolean).length;
-    document.getElementById('quest-summary').textContent = `Misi: ${doneCount}/5`;
-    document.getElementById('stat-quests').textContent = `${doneCount} / 5`;
+    document.getElementById('quest-summary').textContent = `Misi: ${doneCount}/6`;
+    document.getElementById('stat-quests').textContent = `${doneCount} / 6`;
     
     if (id === 'read') {
       const btn = document.getElementById('btn-claim-read');
@@ -553,7 +605,8 @@
     { v1: 'SEE', ans: 'saw', opts: ['seed', 'seen', 'saw', 'sees'] },
     { v1: 'EAT', ans: 'ate', opts: ['eated', 'ate', 'eaten', 'eats'] },
     { v1: 'WRITE', ans: 'wrote', opts: ['writed', 'written', 'wrote', 'writes'] },
-    { v1: 'FIND', ans: 'found', opts: ['finded', 'found', 'finds', 'finding'] }
+    { v1: 'FIND', ans: 'found', opts: ['finded', 'found', 'finds', 'finding'] },
+    { v1: 'TAKE', ans: 'took', opts: ['taked', 'taken', 'took', 'takes'] }
   ];
   let vIdx = 0, scoreMg1 = 0;
 
@@ -573,7 +626,7 @@
           document.getElementById('score-mg1').textContent = scoreMg1;
           document.getElementById('stat-v1').textContent = scoreMg1 + ' Poin';
           showToast('✅ Benar! +10 Poin');
-          if (scoreMg1 >= 30 && !quests.v1) { completeQuest('v1', 120); unlockBadge(2); }
+          if (scoreMg1 >= 40 && !quests.v1) { completeQuest('v1', 120); unlockBadge(2); }
         } else {
           b.style.animation = 'shake 0.4s';
           showToast(`❌ Salah! Verb 2 dari ${q.v1} adalah "${q.ans}"`);
@@ -586,123 +639,142 @@
   }
   loadMg1();
 
-  // --- MINI GAME 2: GRAMMAR & NUMERACY ---
-  const mg2Data = [
+  // Helper for sequential mini games
+  function setupSeqGame(data, progId, qId, optId, onComplete) {
+    let idx = 0;
+    function render() {
+      const box = document.getElementById(optId);
+      if (idx >= data.length) {
+        document.getElementById(qId).textContent = '🎉 Hebat! Tantangan Ini Selesai!';
+        box.innerHTML = '';
+        onComplete();
+        return;
+      }
+      const item = data[idx];
+      document.getElementById(progId).textContent = `Soal ${idx + 1}/${data.length}`;
+      document.getElementById(qId).textContent = item.q;
+      box.innerHTML = '';
+      item.opts.forEach(opt => {
+        const b = document.createElement('button');
+        b.className = 'game-opt';
+        b.style.textAlign = 'center';
+        b.textContent = opt;
+        b.onclick = () => {
+          if (opt === item.ans) {
+            idx++;
+            showToast('✅ Tepat sekali!');
+            render();
+          } else {
+            b.style.animation = 'shake 0.4s';
+            showToast('❌ Kurang tepat, coba lagi!');
+          }
+        };
+        box.appendChild(b);
+      });
+    }
+    render();
+  }
+
+  // --- MINI GAME 2 ---
+  setupSeqGame([
     { q: 'Perbaiki kalimat: "An elephant have a long trunk."', ans: 'An elephant has a long trunk.', opts: ['An elephant has a long trunk.', 'An elephant are a long trunk.'] },
     { q: '24 telur di hari Senin + 17 telur di Selasa. Berapa total altogether?', ans: '41 eggs altogether', opts: ['41 eggs altogether', '31 eggs altogether'] },
     { q: 'Mana kalimat Simple Past Tense yang salah?', ans: 'He buyed a new bag.', opts: ['She went to school yesterday.', 'He buyed a new bag.'] }
-  ];
-  let mg2Idx = 0;
+  ], 'mg2-prog', 'mg2-q', 'mg2-options', () => {
+    if (!quests.v2) { completeQuest('v2', 120); unlockBadge(3); }
+  });
 
-  function loadMg2() {
-    const box = document.getElementById('mg2-options');
-    if (mg2Idx >= mg2Data.length) {
-      document.getElementById('mg2-q').textContent = '🎉 Hebat! Tantangan Detektif Selesai!';
-      box.innerHTML = '';
-      if (!quests.v2) { completeQuest('v2', 120); unlockBadge(3); }
-      return;
-    }
-    const item = mg2Data[mg2Idx];
-    document.getElementById('mg2-prog').textContent = `Soal ${mg2Idx + 1}/${mg2Data.length}`;
-    document.getElementById('mg2-q').textContent = item.q;
-    box.innerHTML = '';
-    item.opts.forEach(opt => {
-      const b = document.createElement('button');
-      b.className = 'game-opt';
-      b.style.textAlign = 'center';
-      b.textContent = opt;
-      b.onclick = () => {
-        if (opt === item.ans) {
-          mg2Idx++;
-          showToast('✅ Tepat sekali!');
-          loadMg2();
-        } else {
-          b.style.animation = 'shake 0.4s';
-          showToast('❌ Coba periksa aturannya kembali!');
-        }
-      };
-      box.appendChild(b);
-    });
-  }
-  loadMg2();
-
-  // --- MINI GAME 3: FOLKTALE & REPORT STRUCTURE ---
-  const mg3Data = [
+  // --- MINI GAME 3 ---
+  setupSeqGame([
     { q: 'Bagian Report Text yang memperkenalkan & mengelompokkan objek disebut...', ans: 'General Classification', opts: ['General Classification', 'Description'] },
     { q: 'Seorang anak jujur mengakui kesalahan & meminta maaf. Apa pesan moralnya?', ans: 'We should be honest.', opts: ['We should be honest.', 'We should hide our mistakes.'] },
     { q: 'Sunflowers are flowering plants. Kalimat ini berfungsi sebagai...', ans: 'General Classification', opts: ['General Classification', 'Description'] }
-  ];
-  let mg3Idx = 0;
+  ], 'mg3-prog', 'mg3-q', 'mg3-options', () => {
+    if (!quests.v3) { completeQuest('v3', 120); unlockBadge(4); }
+  });
 
-  function loadMg3() {
-    const box = document.getElementById('mg3-options');
-    if (mg3Idx >= mg3Data.length) {
-      document.getElementById('mg3-q').textContent = '🎉 Mantap! Pakar Folktale Selesai!';
-      box.innerHTML = '';
-      if (!quests.v3) { completeQuest('v3', 120); unlockBadge(4); }
-      return;
-    }
-    const item = mg3Data[mg3Idx];
-    document.getElementById('mg3-prog').textContent = `Soal ${mg3Idx + 1}/${mg3Data.length}`;
-    document.getElementById('mg3-q').textContent = item.q;
-    box.innerHTML = '';
-    item.opts.forEach(opt => {
-      const b = document.createElement('button');
-      b.className = 'game-opt';
-      b.style.textAlign = 'center';
-      b.textContent = opt;
-      b.onclick = () => {
-        if (opt === item.ans) {
-          mg3Idx++;
-          showToast('✅ Benar!');
-          loadMg3();
-        } else {
-          b.style.animation = 'shake 0.4s';
-          showToast('❌ Kurang tepat, coba lagi!');
-        }
-      };
-      box.appendChild(b);
-    });
-  }
-  loadMg3();
+  // --- MINI GAME 4: PRONOUN REFERENCE HUNTER ---
+  setupSeqGame([
+    { q: '"Rina helped Sinta carry the books. She was very helpful." Kata "She" merujuk ke...', ans: 'Rina', opts: ['Rina', 'The books'] },
+    { q: '"Komodo dragons live on Komodo Island. They eat meat." Kata "They" merujuk ke...', ans: 'Komodo dragons', opts: ['Komodo dragons', 'Komodo Island'] },
+    { q: '"Budi bought a new bicycle. It is blue and fast." Kata "It" merujuk ke...', ans: 'The new bicycle', opts: ['Budi', 'The new bicycle'] }
+  ], 'mg4-prog', 'mg4-q', 'mg4-options', () => {
+    mg4Finished = true;
+    unlockBadge(5);
+    if (mg4Finished && mg5Finished && !quests.v4) completeQuest('v4', 190);
+  });
 
-  // --- LATIHAN SOAL LENGKAP ---
+  // --- MINI GAME 5: CONSERVATION & SEQUENCE ---
+  setupSeqGame([
+    { q: 'Kata penghubung yang menunjukkan urutan peristiwa TERAKHIR dalam Recount Text adalah...', ans: 'Finally', opts: ['First', 'Finally'] },
+    { q: 'Tindakan terbaik untuk melindungi Sun Bears dari kepunahan adalah...', ans: 'Protect tropical forests & stop illegal hunting', opts: ['Protect tropical forests & stop illegal hunting', 'Keep them in small cages'] },
+    { q: '"They have strong claws and dark fur." Dalam Report Text kalimat ini masuk bagian...', ans: 'Description', opts: ['General Classification', 'Description'] }
+  ], 'mg5-prog', 'mg5-q', 'mg5-options', () => {
+    mg5Finished = true;
+    if (mg4Finished && mg5Finished && !quests.v4) completeQuest('v4', 190);
+  });
+
+  // --- 10 LATIHAN SOAL LENGKAP ---
   const quizList = [
     {
-      q: "1. Yesterday, Dina visited a library. First, she returned two books. Next, she borrowed a science book. Finally, she went home[span_31](start_span)[span_31](end_span). What did Dina do after returning the books?[span_32](start_span)[span_32](end_span)",
-      opts: ["A. She went home[span_33](start_span)[span_33](end_span).", "B. She borrowed a science book[span_34](start_span)[span_34](end_span).", "C. She visited a museum[span_35](start_span)[span_35](end_span).", "D. She bought two books[span_36](start_span)[span_36](end_span)."],
+      q: "1. Yesterday, Dina visited a library. First, she returned two books. Next, she borrowed a science book. Finally, she went home. What did Dina do after returning the books?",
+      opts: ["A. She went home.", "B. She borrowed a science book.", "C. She visited a museum.", "D. She bought two books."],
       ans: 1,
-      exp: "Kata kunci 'Next' menunjukkan kegiatan setelah mengembalikan buku adalah meminjam buku sains[span_37](start_span)[span_37](end_span)."
+      exp: "Kata kunci 'Next' menunjukkan kegiatan setelah mengembalikan buku adalah meminjam buku sains."
     },
     {
-      q: "2. A boy lost his friend's pencil. He told the truth and apologized. His friend forgave him[span_38](start_span)[span_38](end_span). What can we learn from the story?[span_39](start_span)[span_39](end_span)",
-      opts: ["A. We should hide our mistakes[span_40](start_span)[span_40](end_span).", "B. We should never borrow things[span_41](start_span)[span_41](end_span).", "C. We should be honest[span_42](start_span)[span_42](end_span).", "D. We should avoid our friends[span_43](start_span)[span_43](end_span)."],
+      q: "2. A boy lost his friend's pencil. He told the truth and apologized. His friend forgave him. What can we learn from the story?",
+      opts: ["A. We should hide our mistakes.", "B. We should never borrow things.", "C. We should be honest.", "D. We should avoid our friends."],
       ans: 2,
-      exp: "Tindakan jujur mengakui kesalahan mengajarkan kita untuk selalu bersikap jujur (be honest)[span_44](start_span)[span_44](end_span)."
+      exp: "Tindakan jujur mengakui kesalahan mengajarkan kita untuk selalu bersikap jujur (be honest)."
     },
     {
-      q: "3. Which Simple Past Tense sentence is INCORRECT?[span_45](start_span)[span_45](end_span)",
-      opts: ["A. She went to school yesterday[span_46](start_span)[span_46](end_span).", "B. They played football last week[span_47](start_span)[span_47](end_span).", "C. He buyed a new bag[span_48](start_span)[span_48](end_span).", "D. We watched a movie last night[span_49](start_span)[span_49](end_span)."],
+      q: "3. Which Simple Past Tense sentence is INCORRECT?",
+      opts: ["A. She went to school yesterday.", "B. They played football last week.", "C. He buyed a new bag.", "D. We watched a movie last night."],
       ans: 2,
-      exp: "'buyed' salah karena bentuk lampau (Verb 2) dari 'buy' adalah 'bought[span_50](start_span)'[span_50](end_span)."
+      exp: "'buyed' salah karena bentuk lampau (Verb 2) dari 'buy' adalah 'bought'."
     },
     {
-      q: "4. Sunflowers are flowering plants. They have large yellow flowers[span_51](start_span)[span_51](end_span). Which sentence is the General Classification?[span_52](start_span)[span_52](end_span)",
-      opts: ["A. Sunflowers are flowering plants[span_53](start_span)[span_53](end_span).", "B. They have large yellow flowers[span_54](start_span)[span_54](end_span)."],
+      q: "4. Sunflowers are flowering plants. They have large yellow flowers. Which sentence is the General Classification?",
+      opts: ["A. Sunflowers are flowering plants.", "B. They have large yellow flowers."],
       ans: 0,
-      exp: "Kalimat pertama memperkenalkan dan mengelompokkan bunga matahari sebagai tanaman berbunga[span_55](start_span)[span_55](end_span)[span_56](start_span)[span_56](end_span)."
+      exp: "Kalimat pertama memperkenalkan dan mengelompokkan bunga matahari sebagai tanaman berbunga."
     },
     {
-      q: "5. Correct the sentence: 'An elephant have a long trunk.[span_57](start_span)'[span_57](end_span)",
-      opts: ["A. An elephant has a long trunk[span_58](start_span)[span_58](end_span).", "B. An elephant are a long trunk[span_59](start_span)[span_59](end_span)."],
-      ans: 0,
-      exp: "Subjek tunggal (An elephant) menggunakan kata kerja 'has' dalam Simple Present Tense[span_60](start_span)[span_60](end_span)[span_61](start_span)[span_61](end_span)."
-    },
-    {
-      q: "6. A conservation team counted 38 birds in one forest and 52 birds in another forest. How many more birds were found in the second forest?[span_62](start_span)[span_62](end_span)",
-      opts: ["A. 90 birds[span_63](start_span)[span_63](end_span)", "B. 14 birds[span_64](start_span)[span_64](end_span)", "C. 24 birds[span_65](start_span)[span_65](end_span)"],
+      q: "5. Choose the grammatically correct Simple Present Tense sentence:",
+      opts: ["A. An elephant have a long trunk.", "B. An elephant has a long trunk.", "C. Elephants has long trunks."],
       ans: 1,
-      exp: "'How many more' menanyakan selisih: 52 - 38 = 14 birds[span_66](start_span)[span_66](end_span)[span_67](start_span)[span_67](end_span)."
+      exp: "Subjek tunggal (An elephant) menggunakan kata kerja 'has' dalam Simple Present Tense."
+    },
+    {
+      q: "6. A conservation team counted 38 birds in one forest and 52 birds in another forest. How many more birds were found in the second forest?",
+      opts: ["A. 90 birds", "B. 14 birds", "C. 24 birds"],
+      ans: 1,
+      exp: "'How many more' menanyakan selisih: 52 - 38 = 14 birds."
+    },
+    {
+      q: "7. What is the main social function of a Report Text?",
+      opts: ["A. To amuse the readers with a fairy tale.", "B. To retell someone's past holiday.", "C. To present general factual information about something."],
+      ans: 2,
+      exp: "Report Text bertujuan menyajikan informasi faktual umum tentang hewan, tumbuhan, atau benda."
+    },
+    {
+      q: "8. A wildlife team found 24 bird eggs on Monday and 17 eggs on Tuesday. How many eggs did they find altogether?",
+      opts: ["A. 7 eggs", "B. 41 eggs", "C. 31 eggs"],
+      ans: 1,
+      exp: "'Altogether' berarti jumlah keseluruhan: 24 + 17 = 41 eggs."
+    },
+    {
+      q: "9. 'Orangutans live in rainforests. They have long arms.' What does the word 'They' refer to?",
+      opts: ["A. Rainforests", "B. Long arms", "C. Orangutans"],
+      ans: 2,
+      exp: "Kata ganti jamak 'They' merujuk pada subjek utama kalimat sebelumnya yaitu Orangutans."
+    },
+    {
+      q: "10. Sun bears are threatened by habitat loss and illegal hunting. What is the best conservation action to protect them?",
+      opts: ["A. Cutting down more trees in tropical forests.", "B. Protecting forest habitats and enforcing laws against hunting.", "C. Keeping wild sun bears as pets at home."],
+      ans: 1,
+      exp: "Melindungi habitat hutan dan mencegah perburuan liar adalah tindakan konservasi yang tepat."
     }
   ];
 
@@ -733,7 +805,7 @@
           if (!answered) {
             answered = true;
             quizCorrectCount++;
-            document.getElementById('stat-quiz').textContent = `${quizCorrectCount} / 6 Benar`;
+            document.getElementById('stat-quiz').textContent = `${quizCorrectCount} / 10 Benar`;
             addXP(20, 'Jawaban Latihan Benar!');
           }
         } else {
@@ -751,17 +823,17 @@
 
   // --- CHECKLIST ---
   const chkItems = [
-    "I can identify the purpose of a Recount Text[span_68](start_span)[span_68](end_span).",
-    "I can understand the sequence of past events[span_69](start_span)[span_69](end_span).",
-    "I can find references and make inferences[span_70](start_span)[span_70](end_span).",
-    "I can identify moral values in folktales[span_71](start_span)[span_71](end_span).",
-    "I can use Simple Past Tense correctly[span_72](start_span)[span_72](end_span).",
-    "I can identify the purpose and main idea of a Report Text[span_73](start_span)[span_73](end_span).",
-    "I can distinguish General Classification and Description[span_74](start_span)[span_74](end_span).",
-    "I can use Simple Present Tense correctly[span_75](start_span)[span_75](end_span).",
-    "I can answer numeracy questions in English[span_76](start_span)[span_76](end_span).",
-    "I can choose correct facts and conclusions from a text[span_77](start_span)[span_77](end_span).",
-    "I can write a Report Text of 7-10 sentences[span_78](start_span)[span_78](end_span)."
+    "I can identify the purpose of a Recount Text.",
+    "I can understand the sequence of past events.",
+    "I can find references and make inferences.",
+    "I can identify moral values in folktales.",
+    "I can use Simple Past Tense correctly.",
+    "I can identify the purpose and main idea of a Report Text.",
+    "I can distinguish General Classification and Description.",
+    "I can use Simple Present Tense correctly.",
+    "I can answer numeracy questions in English.",
+    "I can choose correct facts and conclusions from a text.",
+    "I can write a Report Text of 7-10 sentences."
   ];
   const chkBox = document.getElementById('chk-list');
   chkItems.forEach(txt => {
@@ -772,7 +844,7 @@
       lbl.classList.toggle('done', this.checked);
       const count = document.querySelectorAll('#chk-list input:checked').length;
       document.getElementById('chk-nav').textContent = `${count}/11`;
-      if (count === 11 && !quests.chk) completeQuest('chk', 200);
+      if (count === 11 && !quests.chk) completeQuest('chk', 100);
     };
     chkBox.appendChild(lbl);
   });
