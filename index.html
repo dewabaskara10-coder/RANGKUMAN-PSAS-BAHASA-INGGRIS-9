@@ -24,7 +24,7 @@
   body { background: var(--bg); color: var(--text); padding: 14px; line-height: 1.6; }
   .container { max-width: 860px; margin: 0 auto; }
 
-  /* Player HUD / Status Bar */
+  /* Player HUD */
   .hud {
     background: linear-gradient(135deg, #1e293b, #0f172a);
     border: 2px solid #334155;
@@ -38,12 +38,13 @@
     gap: 12px;
     box-shadow: 0 8px 24px rgba(0,0,0,0.4);
   }
-  .player-info { display: flex; align-items: center; gap: 12px; }
+  .player-info { display: flex; align-items: center; gap: 12px; cursor: pointer; }
   .avatar {
-    width: 48px; height: 48px; border-radius: 14px;
+    width: 50px; height: 50px; border-radius: 14px;
     background: linear-gradient(135deg, var(--primary), var(--secondary));
     display: flex; align-items: center; justify-content: center;
-    font-size: 24px; font-weight: 800; box-shadow: 0 4px 12px rgba(99,102,241,0.4);
+    font-size: 26px; box-shadow: 0 4px 12px rgba(99,102,241,0.4);
+    border: 2px solid #818cf8;
   }
   .xp-box { flex: 1; min-width: 200px; }
   .xp-header { display: flex; justify-content: space-between; font-size: 12px; font-weight: 700; margin-bottom: 6px; }
@@ -71,11 +72,35 @@
   }
   .card h2 { font-size: 18px; color: #fde047; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
 
-  /* Quest / Misi Cards */
+  /* Profile Customization Section */
+  .profile-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-top: 12px; }
+  .profile-card { background: #0f172a; border: 1px solid #334155; padding: 16px; border-radius: 16px; }
+  .profile-input {
+    width: 100%; padding: 10px 12px; background: #1e293b; border: 1px solid #475569;
+    color: white; border-radius: 10px; font-size: 14px; margin-top: 6px; margin-bottom: 12px;
+  }
+  .avatar-picker { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px; }
+  .avatar-opt {
+    width: 38px; height: 38px; background: #1e293b; border: 2px solid #475569;
+    border-radius: 10px; display: flex; align-items: center; justify-content: center;
+    font-size: 18px; cursor: pointer; transition: 0.2s;
+  }
+  .avatar-opt.selected { border-color: #fde047; background: rgba(253,224,71,0.2); }
+
+  /* Badges Grid */
+  .badge-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin-top: 10px; }
+  .badge-item {
+    background: #0f172a; border: 1px solid #334155; border-radius: 14px; padding: 12px;
+    text-align: center; opacity: 0.5; transition: 0.3s;
+  }
+  .badge-item.unlocked { opacity: 1; border-color: var(--success); background: rgba(16,185,129,0.1); }
+  .badge-icon { font-size: 28px; margin-bottom: 4px; }
+
+  /* Quest Items */
   .quest-item {
     background: #0f172a; border: 1px solid #334155; border-radius: 14px;
     padding: 14px; margin-bottom: 10px; display: flex; justify-content: space-between;
-    align-items: center; gap: 12px; transition: 0.3s;
+    align-items: center; gap: 12px;
   }
   .quest-item.completed { border-color: var(--success); background: rgba(16, 185, 129, 0.1); }
   .quest-reward {
@@ -84,7 +109,7 @@
   }
   .quest-item.completed .quest-reward { background: var(--success); color: white; border-color: var(--success); }
 
-  /* Mini Game 1: Verb 2 Speed Arena */
+  /* Mini Games */
   .game-box {
     background: linear-gradient(135deg, #1e1b4b, #312e81);
     border: 2px solid #4f46e5; border-radius: 18px; padding: 20px; text-align: center;
@@ -96,7 +121,7 @@
   .game-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 14px; }
   .game-opt {
     background: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.2);
-    color: white; padding: 12px; border-radius: 12px; font-weight: 700; font-size: 15px;
+    color: white; padding: 12px; border-radius: 12px; font-weight: 700; font-size: 14px;
     cursor: pointer; transition: 0.2s;
   }
   .game-opt:hover { background: rgba(255,255,255,0.2); transform: scale(1.02); }
@@ -107,12 +132,11 @@
   }
   .btn-action:hover { transform: scale(1.04); }
 
-  /* Materi Table */
+  /* Tables & Toast */
   table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13px; }
   th, td { padding: 10px; border: 1px solid #334155; text-align: left; }
   th { background: #0f172a; color: #38bdf8; }
 
-  /* Toast Notification */
   #toast {
     position: fixed; bottom: 20px; right: 20px; background: #10b981; color: white;
     padding: 12px 20px; border-radius: 14px; font-weight: 700; font-size: 13px;
@@ -121,7 +145,6 @@
   }
   #toast.show { transform: translateY(0); opacity: 1; }
 
-  /* Checklist */
   .check-item {
     display: flex; align-items: center; gap: 10px; padding: 11px;
     background: #0f172a; border: 1px solid #334155; border-radius: 12px;
@@ -135,13 +158,13 @@
 <body>
 
 <div class="container">
-  <!-- PLAYER HUD -->
-  <div class="hud">
+  <!-- PLAYER HUD / PROFIL RINGKAS -->
+  <div class="hud" onclick="openTab('profil', document.querySelectorAll('.tab-btn')[0])" style="cursor:pointer;" title="Klik untuk edit profil">
     <div class="player-info">
-      <div class="avatar" id="rank-icon">🐣</div>
+      <div class="avatar" id="hud-avatar">🦊</div>
       <div>
-        <div style="font-size:12px; color:var(--muted); font-weight:700;">STATUS PEJUANG PSAS</div>
-        <div style="font-size:16px; font-weight:800;" id="rank-title">Level 1 • Pemula</div>
+        <div style="font-size:12px; color:var(--muted); font-weight:700;" id="hud-name">Pejuang PSAS</div>
+        <div style="font-size:15px; font-weight:800; color:#fde047;" id="rank-title">Level 1 • Pemula</div>
       </div>
     </div>
     <div class="xp-box">
@@ -155,42 +178,83 @@
 
   <!-- NAVIGATION -->
   <div class="tabs">
-    <button class="tab-btn active" onclick="openTab('misi', this)">🎯 Papan Misi</button>
+    <button class="tab-btn active" onclick="openTab('profil', this)">👤 Profil & Statistik</button>
+    <button class="tab-btn" onclick="openTab('misi', this)">🎯 Papan Misi</button>
     <button class="tab-btn" onclick="openTab('game', this)">🎮 Mini-Game</button>
-    <button class="tab-btn" onclick="openTab('materi', this)">📚 Rangkuman Materi</button>
+    <button class="tab-btn" onclick="openTab('materi', this)">📚 Materi</button>
     <button class="tab-btn" onclick="openTab('checklist', this)">✅ Checklist (<span id="chk-nav">0/11</span>)</button>
   </div>
 
+  <!-- TAB 0: PROFIL PEMAIN INTERAKTIF -->
+  <div id="profil" class="section active">
+    <div class="card">
+      <h2>👤 Pengaturan Profil Pemain</h2>
+      <p style="font-size:13px; color:var(--muted); margin-bottom:14px;">Personalisasi karakter pejuang PSAS kamu di sini agar sesi belajar makin seru!</p>
+      
+      <div class="profile-grid">
+        <div class="profile-card">
+          <label style="font-size:13px; font-weight:700;">Nama Pejuang:</label>
+          <input type="text" id="input-name" class="profile-input" value="Pejuang PSAS" oninput="updateProfileName(this.value)">
+          
+          <label style="font-size:13px; font-weight:700;">Pilih Avatar Karakter:</label>
+          <div class="avatar-picker" id="avatar-picker">
+            <div class="avatar-opt selected" onclick="setAvatar('🦊', this)">🦊</div>
+            <div class="avatar-opt" onclick="setAvatar('🐱', this)">🐱</div>
+            <div class="avatar-opt" onclick="setAvatar('🐯', this)">🐯</div>
+            <div class="avatar-opt" onclick="setAvatar('🐼', this)">🐼</div>
+            <div class="avatar-opt" onclick="setAvatar('🤖', this)">🤖</div>
+            <div class="avatar-opt" onclick="setAvatar('🚀', this)">🚀</div>
+          </div>
+        </div>
+
+        <div class="profile-card">
+          <label style="font-size:13px; font-weight:700; color:#38bdf8;">📊 Statistik Belajarmu:</label>
+          <ul style="padding-left:18px; font-size:13px; margin-top:8px; color:var(--muted); line-height:1.8;">
+            <li>Total XP Terkumpul: <strong id="stat-xp" style="color:#fde047;">0 XP</strong></li>
+            <li>Misi Diselesaikan: <strong id="stat-quests" style="color:#34d399;">0 / 4</strong></li>
+            <li>Skor Verb 2 Arena: <strong id="stat-verb" style="color:#38bdf8;">0 Poin</strong></li>
+            <li>Checklist Selesai: <strong id="stat-chk" style="color:#a78bfa;">0 / 11</strong></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>🏅 Lencana Pencapaian (Badges)</h2>
+      <div class="badge-grid">
+        <div class="badge-item" id="badge-1"><div class="badge-icon">📖</div><div style="font-size:12px; font-weight:700;">Pengintai</div></div>
+        <div class="badge-item" id="badge-2"><div class="badge-icon">⚡</div><div style="font-size:12px; font-weight:700;">Master Verb 2</div></div>
+        <div class="badge-item" id="badge-3"><div class="badge-icon">🛠️</div><div style="font-size:12px; font-weight:700;">Detektif</div></div>
+        <div class="badge-item" id="badge-4"><div class="badge-icon">👑</div><div style="font-size:12px; font-weight:700;">PSAS Champion</div></div>
+      </div>
+    </div>
+  </div>
+
   <!-- TAB 1: PAPAN MISI -->
-  <div id="misi" class="section active">
+  <div id="misi" class="section">
     <div class="card">
       <h2>🏆 Daftar Misi Belajar PSAS</h2>
-      <p style="font-size:13px; color:var(--muted); margin-bottom:14px;">Selesaikan semua misi di bawah ini untuk mengumpulkan XP dan naik level menjadi <strong>Master PSAS!</strong></p>
-
       <div class="quest-item" id="q-read">
         <div>
           <strong style="font-size:14px;">📖 Misi 1: Pengintai Materi</strong>
-          <p style="font-size:12px; color:var(--muted);">Buka tab Rangkuman Materi dan klik tombol klaim di bagian paling bawah materi.</p>
+          <p style="font-size:12px; color:var(--muted);">Buka tab Materi dan klaim bonus XP di bagian bawah.</p>
         </div>
         <span class="quest-reward" id="r-read">+100 XP</span>
       </div>
-
       <div class="quest-item" id="q-verb">
         <div>
           <strong style="font-size:14px;">⚡ Misi 2: Penakluk Verb 2 (Mini-Game)</strong>
-          <p style="font-size:12px; color:var(--muted);">Raih skor minimal 30 poin di Mini-Game Tebak Simple Past Tense.</p>
+          <p style="font-size:12px; color:var(--muted);">Raih skor minimal 30 poin di Mini-Game Arena.</p>
         </div>
         <span class="quest-reward" id="r-verb">+150 XP</span>
       </div>
-
       <div class="quest-item" id="q-gram">
         <div>
           <strong style="font-size:14px;">🛠️ Misi 3: Detektif Grammar & Numeracy</strong>
-          <p style="font-size:12px; color:var(--muted);">Selesaikan semua tantangan kuis di Mini-Game 2.</p>
+          <p style="font-size:12px; color:var(--muted);">Selesaikan semua soal tantangan di Mini-Game 2.</p>
         </div>
         <span class="quest-reward" id="r-gram">+150 XP</span>
       </div>
-
       <div class="quest-item" id="q-chk">
         <div>
           <strong style="font-size:14px;">✅ Misi 4: Siap Tempur 100%</strong>
@@ -203,11 +267,9 @@
 
   <!-- TAB 2: MINI GAMES -->
   <div id="game" class="section">
-    <!-- Mini Game 1 -->
     <div class="card">
       <h2>⚡ Mini-Game 1: Verb 2 Speed Arena</h2>
       <p style="font-size:13px; color:var(--muted); margin-bottom:12px;">Pilih bentuk <strong>Simple Past Tense (Verb 2)</strong> yang tepat! (+10 poin per jawaban benar)</p>
-      
       <div class="game-box">
         <div style="display:flex; justify-content:space-between; font-size:13px; font-weight:700;">
           <span>Skor Game: <strong id="v-score" style="color:#34d399;">0</strong></span>
@@ -218,11 +280,9 @@
       </div>
     </div>
 
-    <!-- Mini Game 2 -->
     <div class="card">
       <h2>🛠️ Mini-Game 2: Detektif Grammar & Numeracy</h2>
-      <p style="font-size:13px; color:var(--muted); margin-bottom:12px;">Temukan kalimat yang benar atau hitung hasil numerasi berikut (<strong id="g-prog">Soal 1/3</strong>):</p>
-      
+      <p style="font-size:13px; color:var(--muted); margin-bottom:12px;">Selesaikan tantangan tata bahasa & numerasi (<strong id="g-prog">Soal 1/3</strong>):</p>
       <div class="game-box" style="background: linear-gradient(135deg, #064e3b, #065f46); border-color:#10b981;">
         <div style="font-size:15px; font-weight:700; margin-bottom:12px;" id="g-question">Loading...</div>
         <div class="game-grid" id="g-options" style="grid-template-columns: 1fr;"></div>
@@ -230,35 +290,25 @@
     </div>
   </div>
 
-  <!-- TAB 3: RANGKUMAN MATERI -->
+  <!-- TAB 3: MATERI -->
   <div id="materi" class="section">
     <div class="card">
       <h2>📜 1. Recount & Narrative Text (Simple Past)</h2>
       <table>
         <tr><th>Materi</th><th>Inti Penting</th><th>Contoh</th></tr>
-        <tr><td><strong>Recount Text</strong></td><td>Menceritakan pengalaman masa lalu (<em>First, next, after that, finally</em>)</td><td><em>Last Sunday, I visited my grandma.</em></td></tr>
-        <tr><td><strong>Narrative / Folktale</strong></td><td>Tokoh, masalah, solusi, & pesan moral</td><td><em>What can we learn from the story?</em></td></tr>
+        <tr><td><strong>Recount Text</strong></td><td>Pengalaman masa lalu (<em>First, next, after that, finally</em>)</td><td><em>Last Sunday, I visited my grandma.</em></td></tr>
+        <tr><td><strong>Narrative / Folktale</strong></td><td>Tokoh, masalah, resolusi, & pesan moral</td><td><em>What can we learn from the story?</em></td></tr>
         <tr><td><strong>Simple Past Tense</strong></td><td>Wajib pakai <strong>Verb 2</strong></td><td><em>go → went, buy → bought, see → saw</em></td></tr>
       </table>
     </div>
-
     <div class="card">
       <h2>🐼 2. Report Text & Simple Present Tense</h2>
-      <p style="font-size:13px; margin-bottom:8px;"><strong>Struktur:</strong> 1) <em>General Classification</em> (pengenalan umum) & 2) <em>Description</em> (ciri fisik, habitat, makanan, ancaman).</p>
       <table>
         <tr><th>Subject</th><th>Aturan Kata Kerja</th><th>Contoh</th></tr>
         <tr><td><strong>I/You/We/They/Plural</strong></td><td>Verb 1 / have / are</td><td><em>Sun bears <strong>have</strong> strong claws.</em></td></tr>
         <tr><td><strong>He/She/It/Singular</strong></td><td>Verb 1 + s/es / has / is</td><td><em>An elephant <strong>has</strong> a long trunk.</em></td></tr>
       </table>
-    </div>
-
-    <div class="card">
-      <h2>🔢 3. Numeracy in English</h2>
-      <ul style="padding-left:20px; font-size:13px; margin-bottom:14px;">
-        <li><strong>altogether / in total</strong> = Penjumlahan (+)</li>
-        <li><strong>how many more / difference</strong> = Pengurangan (-)</li>
-      </ul>
-      <button class="btn-action" id="btn-claim-read" onclick="completeQuest('read', 100)">🎁 Klaim +100 XP Selesai Membaca!</button>
+      <button class="btn-action" id="btn-claim-read" onclick="completeQuest('read', 100); unlockBadge(1);">🎁 Klaim +100 XP Selesai Membaca!</button>
     </div>
   </div>
 
@@ -266,16 +316,16 @@
   <div id="checklist" class="section">
     <div class="card">
       <h2>✅ Checklist Kesiapan PSAS (0/11)</h2>
-      <p style="font-size:13px; color:var(--muted); margin-bottom:12px;">Centang semua target belajar di bawah untuk menyelesaikan Misi 4:</p>
       <div id="chk-list"></div>
     </div>
   </div>
 </div>
 
-<div id="toast">🎉 +100 XP Didapatkan!</div>
+<div id="toast">🎉 Notifikasi Berhasil!</div>
 
 <script>
   let xp = 0;
+  let currentAvatar = '🦊';
   const quests = { read: false, verb: false, gram: false, chk: false };
 
   function showToast(msg) {
@@ -285,18 +335,38 @@
     setTimeout(() => t.classList.remove('show'), 2600);
   }
 
+  function updateProfileName(name) {
+    document.getElementById('hud-name').textContent = name.trim() || 'Pejuang PSAS';
+  }
+
+  function setAvatar(emoji, el) {
+    document.querySelectorAll('.avatar-opt').forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+    currentAvatar = emoji;
+    document.getElementById('hud-avatar').textContent = emoji;
+    showToast(`Avatar diubah ke ${emoji}!`);
+  }
+
+  function unlockBadge(id) {
+    document.getElementById('badge-' + id).classList.add('unlocked');
+  }
+
   function addXP(amount, reason) {
     xp += amount;
     document.getElementById('xp-val').textContent = xp;
+    document.getElementById('stat-xp').textContent = xp + ' XP';
     const pct = Math.min((xp / 500) * 100, 100);
     document.getElementById('xp-bar').style.width = pct + '%';
 
-    const icon = document.getElementById('rank-icon');
     const title = document.getElementById('rank-title');
-    if (xp >= 450) { icon.textContent = '👑'; title.textContent = 'Level 4 • Master PSAS!'; }
-    else if (xp >= 250) { icon.textContent = '🔥'; title.textContent = 'Level 3 • Ksatria Grammar'; }
-    else if (xp >= 100) { icon.textContent = '⚔️'; title.textContent = 'Level 2 • Penjelajah Teks'; }
-
+    if (xp >= 450) {
+      title.textContent = 'Level 4 • Master PSAS!';
+      unlockBadge(4);
+    } else if (xp >= 250) {
+      title.textContent = 'Level 3 • Ksatria Grammar';
+    } else if (xp >= 100) {
+      title.textContent = 'Level 2 • Penjelajah Teks';
+    }
     showToast(`🎉 +${amount} XP: ${reason}`);
   }
 
@@ -308,6 +378,7 @@
     
     const doneCount = Object.values(quests).filter(Boolean).length;
     document.getElementById('quest-summary').textContent = `Misi: ${doneCount}/4`;
+    document.getElementById('stat-quests').textContent = `${doneCount} / 4`;
     
     if (id === 'read') {
       const btn = document.getElementById('btn-claim-read');
@@ -325,14 +396,12 @@
     btn.classList.add('active');
   }
 
-  // --- MINI GAME 1: VERB 2 ---
+  // --- MINI GAME 1 ---
   const verbs = [
     { v1: 'GO', ans: 'went', opts: ['goed', 'went', 'gone', 'going'] },
     { v1: 'BUY', ans: 'bought', opts: ['buyed', 'buys', 'bought', 'buying'] },
     { v1: 'SEE', ans: 'saw', opts: ['seed', 'seen', 'saw', 'sees'] },
-    { v1: 'EAT', ans: 'ate', opts: ['eated', 'ate', 'eaten', 'eats'] },
-    { v1: 'WRITE', ans: 'wrote', opts: ['writed', 'written', 'wrote', 'writes'] },
-    { v1: 'FIND', ans: 'found', opts: ['finded', 'found', 'finds', 'finding'] }
+    { v1: 'EAT', ans: 'ate', opts: ['eated', 'ate', 'eaten', 'eats'] }
   ];
   let vIdx = 0, vScore = 0;
 
@@ -349,10 +418,14 @@
         if (opt === q.ans) {
           vScore += 10;
           document.getElementById('v-score').textContent = vScore;
+          document.getElementById('stat-verb').textContent = vScore + ' Poin';
           showToast('✅ Benar! +10 Poin');
-          if (vScore >= 30 && !quests.verb) completeQuest('verb', 150);
+          if (vScore >= 30 && !quests.verb) {
+            completeQuest('verb', 150);
+            unlockBadge(2);
+          }
         } else {
-          showToast(`❌ Kurang tepat! Verb 2 dari ${q.v1} adalah "${q.ans}"`);
+          showToast(`❌ Salah! Verb 2 dari ${q.v1} adalah "${q.ans}"`);
         }
         vIdx++;
         loadVerbGame();
@@ -362,32 +435,23 @@
   }
   loadVerbGame();
 
-  // --- MINI GAME 2: GRAMMAR & NUMERACY ---
+  // --- MINI GAME 2 ---
   const gramQuiz = [
-    {
-      q: 'Perbaiki kalimat ini: "An elephant have a long trunk."',
-      ans: 'An elephant has a long trunk.',
-      opts: ['An elephant has a long trunk.', 'An elephant are a long trunk.', 'An elephant having a long trunk.']
-    },
-    {
-      q: 'Tim konservasi menemukan 24 telur di hari Senin dan 17 telur di hari Selasa. Berapa total telur altogether?',
-      ans: '41 eggs altogether',
-      opts: ['7 eggs altogether', '41 eggs altogether', '31 eggs altogether']
-    },
-    {
-      q: 'Kalimat manakah yang termasuk "General Classification" dalam Report Text?',
-      ans: 'Sunflowers are flowering plants.',
-      opts: ['They have large yellow flowers.', 'Sunflowers are flowering plants.', 'They grow well in sunny places.']
-    }
+    { q: 'Perbaiki kalimat: "An elephant have a long trunk."', ans: 'An elephant has a long trunk.', opts: ['An elephant has a long trunk.', 'An elephant are a long trunk.'] },
+    { q: '24 telur + 17 telur altogether = ?', ans: '41 eggs altogether', opts: ['41 eggs altogether', '31 eggs altogether'] },
+    { q: 'Kalimat General Classification Report Text?', ans: 'Sunflowers are flowering plants.', opts: ['They have large yellow flowers.', 'Sunflowers are flowering plants.'] }
   ];
   let gIdx = 0;
 
   function loadGramGame() {
     const box = document.getElementById('g-options');
     if (gIdx >= gramQuiz.length) {
-      document.getElementById('g-question').textContent = '🎉 Hebat! Semua tantangan Detektif Grammar selesai!';
+      document.getElementById('g-question').textContent = '🎉 Mantap! Tantangan Detektif Selesai!';
       box.innerHTML = '';
-      if (!quests.gram) completeQuest('gram', 150);
+      if (!quests.gram) {
+        completeQuest('gram', 150);
+        unlockBadge(3);
+      }
       return;
     }
     const item = gramQuiz[gIdx];
@@ -401,10 +465,10 @@
       b.onclick = () => {
         if (opt === item.ans) {
           gIdx++;
-          showToast('✅ Mantap! Lanjut soal berikutnya');
+          showToast('✅ Hebat! Lanjut soal berikutnya');
           loadGramGame();
         } else {
-          showToast('❌ Coba periksa lagi aturan Simple Present / hitungannya!');
+          showToast('❌ Coba periksa aturan tata bahasanya!');
         }
       };
       box.appendChild(b);
@@ -414,16 +478,11 @@
 
   // --- CHECKLIST ---
   const chkItems = [
-    "Identify the purpose of Recount Text",
-    "Understand sequence of past events",
-    "Find references & make inferences",
-    "Identify moral values in folktales",
-    "Use Simple Past Tense correctly",
-    "Identify purpose & main idea of Report Text",
-    "Distinguish General Classification & Description",
-    "Use Simple Present Tense correctly",
-    "Answer numeracy questions in English",
-    "Choose correct facts & conclusions",
+    "Identify purpose of Recount Text", "Understand sequence of past events",
+    "Find references & make inferences", "Identify moral values in folktales",
+    "Use Simple Past Tense correctly", "Identify purpose & main idea of Report Text",
+    "Distinguish General Classification & Description", "Use Simple Present Tense correctly",
+    "Answer numeracy questions in English", "Choose correct facts & conclusions",
     "Write a Report Text of 7-10 sentences"
   ];
   const chkBox = document.getElementById('chk-list');
@@ -435,6 +494,7 @@
       lbl.classList.toggle('done', this.checked);
       const count = document.querySelectorAll('#chk-list input:checked').length;
       document.getElementById('chk-nav').textContent = `${count}/11`;
+      document.getElementById('stat-chk').textContent = `${count} / 11`;
       if (count === 11 && !quests.chk) completeQuest('chk', 100);
     };
     chkBox.appendChild(lbl);
@@ -442,4 +502,3 @@
 </script>
 </body>
 </html>
-  
